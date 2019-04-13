@@ -1,0 +1,83 @@
+<!DOCTYPE HTML> 
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style>
+    #nav-bottom {
+        height: 30px;
+        background-color: rgba(34, 34, 34, 0.9);
+    }
+    
+    #nav-bottom ul {
+        bottom: 27px;
+        border-radius: 0px;
+    }
+    
+    #nav-bottom button {
+        border: none;
+        background-color: rgba(0, 0, 0, 0);
+        height: 30px;
+        color: rgba(255, 255, 255, 0.3);
+        border-radius: 0px
+    }
+    
+    .dropup {
+        float: left;
+    }
+    
+    .div-dropup {
+        position: relative;
+        left: 15px;
+    }
+</style>
+
+<!-- 这是一个底部的导航模块 -->
+<div class="navbar-fixed-bottom navbar-inverse" id="nav-bottom">
+    <!-- 底部，反色 -->
+    <div class="div-dropup">
+        <div class="dropup" id="menu1">
+            <button class="btn dropdown-toggle " type="button" data-toggle="dropdown">
+					导航菜单一 <span class="glyphicon glyphicon-chevron-up"></span>
+				</button>
+            <ul class="dropdown-menu" role="menu">
+                <!-- role用于照顾残障人士 -->
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">子链接一</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">子链接二</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">子链接三</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">首页</a></li>
+            </ul>
+        </div>
+        <div class="dropup" id="menu2">
+            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+					导航菜单二<span class="glyphicon glyphicon-chevron-up"></span>
+				</button>
+            <ul class="dropdown-menu" role="menu">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">关于我们</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">网站介绍</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(".div-dropup button").mouseenter(function() {
+        $(this).next().css("display","block");
+        $(this).css("background-color", "rgba(0,0,0, 0.3)");
+    });
+
+    $(".div-dropup button").mouseleave(function() {
+        $(this).next().css("display","none");
+        $(this).css("background-color", "rgba(0,0,0, 0)");
+    });
+
+    $(".div-dropup ul").mouseenter(function() {
+        $(this).css("display","block");
+        $(this).prev().css("background-color", "rgba(0,0,0, 0.3)");
+    });
+
+    $(".div-dropup ul").mouseleave(function() {
+        $(this).css("display","none");
+        $(this).prev().css("background-color", "rgba(0,0,0, 0)");
+    });
+</script>
+</html>

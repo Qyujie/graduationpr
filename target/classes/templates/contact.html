@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
+    <!-- TITLE -->
+    <title>Contact</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="shortcut icon" href="images/favicon.png">
+
+    <!-- GOOGLE FONT -->
+    <link href='http://fonts.googleapis.com/css?family=Hind:400,300,500,600%7cMontserrat:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- CSS LIBRARY -->
+    <link rel="stylesheet" type="text/css" href="css/lib/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/font-lotusicon.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/settings.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/bootstrap-select.min.css">
+    
+     <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+
+    <!-- MAIN STYLE -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    
+</head>
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <span class="preloader-dot"></span>
+    </div>
+    <!-- END / PRELOADER -->
+
+    <!-- PAGE WRAP -->
+    <div id="page-wrap">
+
+        <!-- HEADER -->
+        <div th:include="/common/header"></div>
+        
+        <!-- SUB BANNER -->
+        <div th:include="/common/banner"></div>
+
+        <!-- CONTACT -->
+        <section class="section-contact">
+            <div class="container">
+                <div class="contact">
+                    <div class="row">
+
+                        <div class="col-md-6 col-lg-5">
+
+                            <div class="text">
+                                <h2>Contact</h2>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</p>
+                                <ul>
+                                    <li><i class="icon lotus-icon-location"></i> 225 Beach Street, Australian</li>
+                                    <li><i class="icon lotus-icon-phone"></i> +61 2 6854 8496</li>
+                                    <li><i class="icon fa fa-envelope-o"></i> lotushotel@gmail.com</li>
+                                </ul>
+                            </div>
+
+                            <div class="contact-location">
+                                <a class="btn-collapse" data-toggle="collapse" href="#location">OTHER LOCATION <span class="fa fa-angle-down"></span></a>
+                                <div class="collapse" id="location">
+                                    <div class="location-group">
+                                        <h6>NORTH AMERICA</h6>
+                                        <span>Caribbean, French West Indies</span>
+
+                                        <!-- ITEM -->
+                                        <div class="location-item" data-location="39.0926986,-94.5747324">
+                                            <div class="img">
+                                                <img src="images/contact/img-1.jpg" alt="">
+                                                <i class="fa  fa-map-marker"></i>
+                                            </div>
+                                            <div class="text">
+                                                <address>PO Box 4077, 2584 St Martin, CEDEX, French West Indies</address>
+                                                <p>
+                                                    Tel: 858 634 8975 <br>
+                                                    Fax: +1 212 854 7039
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- END / ITEM -->
+
+                                        <!-- ITEM -->
+                                        <div class="location-item" data-location="39.0912284,-94.5743515">
+                                            <div class="img">
+                                                <img src="images/contact/img-2.jpg" alt="">
+                                                <i class="fa  fa-map-marker"></i>
+                                            </div>
+                                            <div class="text">
+                                                <address>PO Box 4077, 2584 St Martin, CEDEX, French West Indies</address>
+                                                <p>
+                                                    Tel: 858 634 8975 <br>
+                                                    Fax: +1 212 854 7039
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- END / ITEM -->
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6 col-lg-6 col-lg-offset-1">
+                            <div class="contact-form">
+                                <form id="send-contact-form" action="send_mail_contact.php" method="post"> 
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <input type="text" class="field-text"  name="name" placeholder="Name">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="field-text" name="email" placeholder="Email">
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <input type="text" class="field-text" name="subject" placeholder="Subject">
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <textarea cols="30" rows="10" name="message"  class="field-textarea" placeholder="Write what do you want"></textarea>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <button type="submit" class="awe-btn awe-btn-13">SEND</button>
+                                        </div>
+                                    </div>
+                                    <div id="contact-content"></div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>  
+                </div>
+            </div>
+        </section>
+        <!-- END / CONTACT -->
+
+        <!-- MAP -->
+        <section class="section-map">
+            <h1 class="element-invisible">Map</h1>
+            <div class="contact-map">
+                <div id="map"></div>
+            </div>
+        </section>
+        <!-- END / MAP -->
+        
+        <!-- FOOTER -->
+        <div th:include="/common/footer"></div>
+
+    </div>
+    <!-- END / PAGE WRAP -->
+
+
+    <!-- LOAD JQUERY -->
+    <script type="text/javascript" src="js/lib/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/lib/bootstrap-select.js"></script>
+    <script src="/maps.google.com/maps/api/js?key=AIzaSyAb2lfsiytHD7rMhBaAvJz2CKhk05uiIuE"></script>
+    <script src="http://ditu.google.cn/maps/api/js?v=3.exp&amp;signed_in=true"></script>
+    <script type="text/javascript" src="js/lib/isotope.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="js/lib/owl.carousel.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.appear.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.countTo.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.parallax-1.1.3.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="js/lib/SmoothScroll.js"></script>
+    <!-- validate -->
+    <script type="text/javascript" src="js/lib/jquery.form.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.validate.min.js"></script>
+    <!-- Custom jQuery -->
+    <script type="text/javascript" src="js/scripts.js"></script>
+    <!-- js -->
+	<script src="/common/scroll/jquery.nicescroll.js"/></script>
+	<script src="/common/scroll/scrollStyle.js"/></script>
+	
+	<script src="https://webapi.amap.com/maps?v=1.4.14&key=f911c902d3510fd7fc78dcea0849af8f"></script>
+	<script src="//webapi.amap.com/ui/1.0/main.js"></script>
+	<script>
+	//设置DomLibrary，jQuery或者Zepto
+	AMapUI.setDomLibrary(jQuery);
+
+  	var map = new AMap.Map('map', {
+        zoom: 16,
+        center: [104.695140, 31.535799]
+    });
+    
+	//加载BasicControl，loadUI的路径参数为模块名中 'ui/' 之后的部分
+	AMapUI.loadUI(['control/BasicControl','overlay/SimpleMarker'], function(BasicControl,SimpleMarker) {
+  		//缩放控件
+  		map.addControl(new BasicControl.Zoom({
+  			position: 'lt', //left top，左上角
+     		showZoomNum: true, //显示zoom值
+ 	 	}));
+
+  		//图层切换控件
+  		map.addControl(new BasicControl.LayerSwitcher({
+     		 position: 'rt' //right top，右上角
+ 		}));
+ 		
+ 		initPage(SimpleMarker);
+	});
+	
+	function initPage(SimpleMarker) {
+
+    //创建SimpleMarker实例
+    new SimpleMarker({
+
+        //前景文字
+        iconLabel: 'A',
+
+        //图标主题
+        iconTheme: 'default',
+
+        //背景图标样式
+        iconStyle: 'red',
+
+        //...其他Marker选项...，不包括content
+        map: map,
+        position: [104.695140, 31.535799]
+    });  
+    }
+	</script>
+</body>
+</html>

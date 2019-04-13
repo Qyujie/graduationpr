@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+<script src="/js/jquery/2.0.0/jquery.min.js"></script>
+<script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+<!-- js -->
+<script src="/js/myjs/common/buttonTop.js"></script>
+<script src="/js/myjs/userInformation/select.js"></script>
+<script src="/js/myjs/userInformation/userInformation.js"></script>
+<script src="/js/myjs/userInformation/upload.js"></script>
+<script src="/js/myjs/userInformation/initialization.js"></script>
+<script src="/js/myjs/common/modelTip.js"></script>
+<!-- css -->
+<link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="/css/mycss/commonStyle.css" rel="stylesheet" type="text/css" />
+<link href="/css/mycss/userInformationStyle.css" rel="stylesheet" type="text/css" />
+<link href="/css/mycss/myIconfont/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="/css/mycss/common.css" rel="stylesheet" type="text/css" />
+<link href="/css/mycss/loginStyle.css" rel="stylesheet" type="text/css" />
+<head>
+    <title>个人信息</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+	<!-- 顶部导航栏 -->
+    <div th:include="/common/navtop"></div>
+    <!-- 这是当前网页位置提醒栏 -->
+    <div th:include="/common/position"></div>
+    
+    <!-- 这是个人信息编辑内容的div -->
+    <div class="panel panel-info div-userInformation">
+        <div class="panel-heading">基本信息</div>
+
+        <div class="panel-body">
+
+            <!-- 头像 -->
+            <div id="div-headPortrait" th:style="'background:url(' + @{${headPortrait}} + ');
+            background-size: cover;'">
+                <span class="iconfont icon-xiangji"></span>
+                <input type="file" name="file" accept="image/*" />
+            </div>
+
+            <!-- 基本信息输入框组 -->
+            <div class="input-login">
+                <div class="form-group">
+                    <div class="tip-txet">账号</div>
+                    <input id="name-value" maxlength="20" th:value="${name}"  readonly="readonly"/>
+                </div>
+                <div class="form-group">
+                    <div class="tip-txet">生日</div>
+                    <select id="select-year">
+                            <option th:value="${birthdayYear}">年</option>
+					    </select>
+                    <select id="select-month">
+						    <option th:value="${birthdayMonth}">月</option>
+					    </select>
+                    <select id="select-day">
+					    	<option th:value="${birthdayDay}">日</option>
+					    </select>
+                </div>
+                <div class="form-group">
+                    <div class="tip-txet">性别</div>
+                    <select id="sex-value">
+								<option>请选择</option>
+								<option th:selected="${sex =='男 '}">男</option>
+								<option th:selected="${sex =='女 '}">女</option>
+					</select>
+                </div>
+                <div class="form-group">
+                    <div class="tip-txet">手机号码</div>
+                    <input id="phone-value" maxlength="15" th:value="${phone}" />
+                </div>
+                <div class="form-group">
+                    <div class="tip-txet">地区</div>
+                    <select id="prefecture-value">
+								<option>请选择</option>
+								<option th:selected="${prefecture =='中国 '}">中国</option>
+								<option th:selected="${prefecture =='其它 '}">其它</option>
+					</select>
+                </div>
+                <div class="form-group">
+                    <div class="tip-txet">真实姓名</div>
+                    <input id="real_name-value" maxlength="15" th:value="${realName}" />
+                </div>
+                <div class="form-group">
+                    <div class="tip-txet">身份证号</div>
+                    <input id="id_card-value" maxlength="18" th:value="${idCard}" />
+                </div>
+            </div>
+
+            <div class="submit" id="uiSubmit">保存</div>
+        </div>
+
+    </div>
+
+    <!-- 账号绑定 -->
+    <div class="panel panel-info div-userInformation">
+        <div class="panel-heading">账号绑定</div>
+        <div id="div-userInformationBinding">
+            <div id="div-userInformationBindingList">
+                <div>
+                    <ul>
+                        <li id="li-Phone">
+                            <form>
+                                <span class="iconfont icon-shoujisel"></span>
+                                <button>绑定：手机号</button>
+                            </form>
+                        </li>
+                        <li id="li-QQ">
+                            <form>
+                                <span class="iconfont icon-qq-copy"></span>
+                                <button>绑定：QQ</button>
+                            </form>
+                        </li>
+                        <li id="li-Weixin">
+                            <form>
+                                <span class="iconfont icon-unie655"></span>
+                                <button>绑定：微信</button>
+                            </form>
+                        </li>
+
+                    </ul>
+                </div>
+                <div>
+                    <ul>
+                        <li id="li-Email">
+                            <form>
+                                <span class="iconfont icon-youxiang"></span>
+                                <button>绑定：邮箱</button>
+                            </form>
+                        </li>
+                        <li id="li-Facebook">
+                            <form>
+                                <span class="iconfont icon-facebook3"></span>
+                                <button>绑定：Facebook</button>
+                            </form>
+                        </li>
+                        <li id="li-Google">
+                            <form>
+                                <span class="iconfont icon-googleplus_F"></span>
+                                <button>绑定：Google</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+<!-- js -->
+<script src="/common/scroll/jquery.nicescroll.js"/></script>
+<script src="/common/scroll/scrollStyle.js"/></script>
+</html>

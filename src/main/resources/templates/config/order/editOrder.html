@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+<script src="/js/jquery/2.0.0/jquery.min.js"/></script>
+  <script src="/js/bootstrap/3.3.6/bootstrap.min.js"/></script>
+  <script src="/js/myjs/common/navtop/navTopCreate.js"/></script>
+  
+  <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="/css/mycss/common.css" rel="stylesheet" type="text/css" />
+  <link href="/css/mycss/config/configCommonStyle" rel="stylesheet" type="text/css" />
+
+<head>
+    <title>editOrder</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<!-- 顶部导航栏 -->
+  <div th:include="/common/navtop"></div>
+  <!-- 菜单栏 -->
+  <div th:include="/common/menu"></div>
+  
+  <!-- 表格 -->
+<div class="workingroom">
+    <div class="addOrEdit" >
+        <form action="updateOrder" method="post">
+          房型:
+          <select name="roomtype">
+			<option value="">请选择</option>
+			<option th:each="roomtype:${roomtypes}" th:value="${roomtype.name}" th:text="${roomtype.name}"
+					th:selected="${roomtype.name==resource.roomtype}">></option>
+		  </select>
+          <br/>
+          床型:
+          <select name="bedtype">
+			<option value="">请选择</option>
+			<option th:each="bedtype:${bedtypes}" th:value="${bedtype.name}" th:text="${bedtype.name}"
+			 		th:selected="${bedtype.name==resource.bedtype}"></option>
+		  </select>
+		  <br/>
+		  早餐:
+		  <select name="breakfast">
+			<option value="">请选择</option>
+			<option th:each="breakfast:${breakfasts}" th:value="${breakfast.name}" th:text="${breakfast.name}"
+			        th:selected="${breakfast.name==resource.breakfast}"></option>
+		  </select>
+          <br/>
+          人数:
+		  <select name="number">
+			<option value="">请选择</option>
+			<option value="1" th:selected="${resource.number==1}">1人</option>
+			<option value="2" th:selected="${resource.number==2}">2人</option>
+			<option value="3" th:selected="${resource.number==3}">3人</option>
+			<option value="4" th:selected="${resource.number==4}">4人及以上</option>
+		  </select>
+          <br/>
+          价格:
+          <input type="text" name="price" th:value="${resource.price}"/>
+          <br/>
+          设施:
+          <div th:each="facility:${facilities}">
+          <input type="checkbox" name="facilities" th:checked="${resource_hasFacility[facility.name]}" 
+          		 th:value="${facility.id}"/>
+          <span th:text="${facility.name}"></span>
+          </div>
+          <br/>
+          政策:
+          <div th:each="policy:${policies}"  >
+          <input type="checkbox" name="policies" th:checked="${resource_hasPolicy[policy.name]}"
+          		 th:value="${policy.id}"/>
+          <span th:text="${policy.name}"></span>
+          </div>
+          <br/><br/>
+          <input type="hidden" name="id" th:value="${resource.id}">
+          <input type="submit" value="确定"/>
+        </form>
+      </div>
+</div>
+</body>
+<script src="/common/scroll/jquery.nicescroll.js"/></script>
+  <script src="/common/scroll/scrollStyle.js"/></script>
+</html>

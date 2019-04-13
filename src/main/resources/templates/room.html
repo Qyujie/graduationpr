@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
+    <title>Room</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="shortcut icon" href="images/favicon.png">
+
+    <!-- CSS LIBRARY -->
+    <link rel="stylesheet" type="text/css" href="css/lib/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/font-lotusicon.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/settings.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/bootstrap-select.min.css">
+
+    <!-- MAIN STYLE -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    
+</head>
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <span class="preloader-dot"></span>
+    </div>
+    <!-- END / PRELOADER -->
+
+    <!-- PAGE WRAP -->
+    <div id="page-wrap">
+
+        <!-- HEADER -->
+        <div th:include="/common/header"></div>
+
+        <!-- SUB BANNER -->
+        <div th:include="/common/banner"></div>
+
+        <!-- ROOM -->
+        <section class="section-room bg-white">
+            <div class="container">
+
+                <div class="room-wrap-1">
+                    <div class="row">
+                        
+                        <!-- ITEM -->
+                        <div class="col-md-6" th:each="roomtype:${roomtypes}">
+                            <div class="room_item-1">
+                            
+                                <h2><a href="#" th:text="${roomtype.name}"></a></h2>
+                            
+                                <div class="img">
+                                    <a href="#"><img th:src="@{${roomtype.imgurl}}" alt=""></a>
+                                </div>
+                            
+                                <div class="desc">
+                                    <p th:text="${roomtype.desc}"></p>
+                                    <ul>
+                                        <li>容量: 最多 [[${roomtype.people}]] 人</li>
+                                        <li>大小: [[${roomtype.size}]]</li>
+                                        <li>床: [[${roomtype.bedtype}]]</li>
+                                    </ul>
+                                </div>
+                            
+                                <div class="bot">
+                                    <span class="price">起价 <span class="amout">¥[[${roomtype.price}]]</span> /days</span>
+                                    <a href="#" class="awe-btn awe-btn-13">详细信息</a>
+                                </div>
+                            
+                            </div>
+                        </div>
+                        <!-- END / ITEM -->
+
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+        <!-- END / ROOM -->
+        
+        <!-- FOOTER -->
+        <div th:include="/common/footer"></div>
+
+    </div>
+    <!-- END / PAGE WRAP -->
+
+
+    <!-- LOAD JQUERY -->
+    <script type="text/javascript" src="js/lib/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/lib/bootstrap-select.js"></script>
+    <script src="http://ditu.google.cn/maps/api/js?v=3.exp&amp;signed_in=true"></script>
+    <script type="text/javascript" src="js/lib/isotope.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="js/lib/owl.carousel.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.appear.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.countTo.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.parallax-1.1.3.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="js/lib/SmoothScroll.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
+    <!-- js -->
+	<script src="/common/scroll/jquery.nicescroll.js"/></script>
+	<script src="/common/scroll/scrollStyle.js"/></script>
+</body>
+</html>

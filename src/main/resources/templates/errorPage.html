@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+<script src="/js/jquery/2.0.0/jquery.min.js"></script>
+<link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet" />
+<link href="/css/mycss/style.css" rel="stylesheet" />
+<script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+<script src="/js/myjs/herf.js"></script>
+
+<head>
+    <title>errorPage</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <div>
+
+        系统 出现了异常，异常原因是： <span th:text="${exception}"></span>
+        <br/><br/> 出现异常的地址是： <span th:text="${url}"></span>
+    </div>
+</body>
+
+</html>

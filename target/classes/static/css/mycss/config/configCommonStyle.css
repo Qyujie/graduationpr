@@ -1,0 +1,39 @@
+.workingroom{
+    position:relative;
+    overflow: hidden;
+}
+ 
+div.workingroom div.menu{
+    position:absolute;
+    left:-160px;
+    top:-20px;
+}
+div.workingroom div.menu a{
+    display:block;
+    margin-top:20px;
+}
+ 
+div.workingroom div.addOrEdit{
+    margin:20px;
+    text-align:center;
+}
+
+.panel-group{
+	width: 150px;
+	margin: 0 auto auto 0;
+	background-color: rgb(40, 54, 67);
+}
+
+.panel-body li,.panel-heading{
+	text-align: center;
+}
+
+.panel{
+	border-radius: 0px;
+	border:0px;
+	border-bottom: 1px #c0c0c0;
+}
+
+.panel-group .panel + .panel {
+    margin-top: 0px;
+}

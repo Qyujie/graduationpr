@@ -1,0 +1,67 @@
+package pers.qyj.graduationpr.web;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import pers.qyj.graduationpr.pojo.Facility;
+import pers.qyj.graduationpr.service.FacilityService;
+
+@Controller
+@RequestMapping("config/resource")
+public class FacilityController {
+	@Autowired
+	FacilityService facilityService;
+	
+	@RequestMapping("listFacility")
+	public String list(Model model) {
+		List<Facility> facilities = facilityService.list();
+		model.addAttribute("facilities", facilities);
+		
+		model.addAttribute("requestUrl", "listFacility");
+		
+		return "config/resource/listFacility";
+	}
+
+	@RequestMapping("editFacility")
+	public String list(Model model, int id) {
+		Facility facility = facilityService.get(id);
+		model.addAttribute("facility", facility);
+		return "config/resource/editFacility";
+	}
+
+	@RequestMapping("updateFacility")
+	public String update(Model model, Facility facility) {
+		System.out.println(facility.getId());
+		System.out.println(facility.getName());
+		System.out.println(facility.getDesc());
+		facilityService.update(facility);
+		
+		model.addAttribute("requestUrl", "listFacility");
+		
+		return "redirect:listFacility";
+	}
+
+	@RequestMapping("addFacility")
+	public String list(Model model, Facility facility) {
+		System.out.println(facility.getName());
+		System.out.println(facility.getDesc());
+		facilityService.add(facility);
+		
+		model.addAttribute("requestUrl", "listFacility");
+		
+		return "redirect:listFacility";
+	}
+
+	@RequestMapping("deleteFacility")
+	public String delete(Model model, int id) {
+		facilityService.delete(id);
+		
+		model.addAttribute("requestUrl", "listFacility");
+		
+		return "redirect:listFacility";
+	}
+}

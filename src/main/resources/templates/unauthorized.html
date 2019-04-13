@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+<link href="/css/style.css" rel="stylesheet" type="text/css" />
+
+<head>
+    <title>index</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+<div class="workingroom">
+	<span>权限不足,具体原因：</span>
+	<span th:text="${session.ex.message}"></span>
+	<br>
+	<a href="#" onClick="javascript:history.back()">返回</a>
+</div>
+
+</body>
+
+</html>

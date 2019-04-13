@@ -1,0 +1,107 @@
+body {
+    background-color: rgba(20, 185, 200, 0.1);
+}
+
+.div-userInformation {
+    width: 80%;
+    /* background-color:rgba(20,185,200,0.1); */
+    margin: 0 auto 20px;
+}
+
+.panel-body {
+    width: 380px;
+    margin: 0 auto;
+}
+
+.panel {
+    border: none;
+    border-radius: 16px;
+}
+
+.panel-heading {
+    font-size: 150%;
+    border: none;
+    border-radius: 16px 16px 0 0;
+}
+
+
+/* 基本信息块 */
+
+#div-headPortrait {
+    height: 150px;
+    width: 150px;
+    margin: 50px auto;
+    padding: 47px 54px;
+    border-radius: 75px;
+    background-color: rgba(0, 185, 20, 0.1);
+}
+
+#div-headPortrait span {
+    opacity: 0.4;
+    font-size: 300%;
+    /* background-color:red; */
+}
+
+.tip-txet {
+    color: rgb(145, 145, 145);
+    margin-bottom: 8px;
+}
+
+#div-headPortrait span:hover {
+    cursor: pointer;
+}
+
+#div-headPortrait input {
+    display: none;
+}
+
+#div-userInformationBody button {
+    display: block;
+    margin: 50px auto;
+    width: 100px;
+    background-color: rgba(20, 185, 200, 1);
+}
+
+select {
+    width: 100px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+/* 账号绑定块 */
+
+#div-userInformationBindingList {
+    /* background-color:rgba(255,0,255,0.1); */
+    margin: auto 50px auto 100px;
+}
+
+#div-userInformationBindingList div {
+    width: 30%;
+    float: left;
+    margin: 20px 40px 20px 90px;
+    /* background-color:rgba(255,0,255,0.1); */
+}
+
+#div-userInformationBindingList li {
+    /* background-color:rgba(255,0,255,0.1); */
+    margin: 10px 20px;
+}
+
+#div-userInformationBindingList li span {
+    color: rgba(20, 185, 200, 1);
+    font-size: 250%;
+}
+
+#div-userInformationBindingList li button {
+    background-color: transparent;
+    border: 0px;
+    color: rgba(20, 185, 200, 1);
+    position: absolute;
+    margin: 15px 10px;
+}
+
+#div-userInformationBindingList li button:hover {
+    text-decoration: underline;
+}

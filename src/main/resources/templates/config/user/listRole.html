@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+  <script src="/js/jquery/2.0.0/jquery.min.js"/></script>
+  <script src="/js/bootstrap/3.3.6/bootstrap.min.js"/></script>
+  <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="/css/mycss/common.css" rel="stylesheet" type="text/css" />
+  <link href="/css/mycss/config/configCommonStyle.css" rel="stylesheet" type="text/css" />
+
+  <head>
+    <title>
+      index
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+
+  <body>
+  <!-- 顶部导航栏 -->
+  <div th:include="/common/navtop"></div>
+  <!-- 菜单栏 -->
+  <div th:include="/common/menu"></div>
+  
+  <!-- 表格 -->
+      <div class="workingroom">
+        <table class="table table-condensed table-striped">
+        	<tr>
+            	<td>id</td>
+            	<td>角色名称</td>
+            	<td>角色描述</td>
+            	<td>权限</td>
+            	<td>编辑</td>
+            	<td>删除</td>
+        	</tr>
+          	<tr th:each="role:${roles}">
+            	<td th:text="${role.id}"></td>
+            	<td th:text="${role.name}"></td>
+            	<td th:text="${role.desc_}"></td>
+            	<td>
+            		<div th:each="role_permission:${role_permissions[role.name]}" 
+            		   th:text="${role_permission.name}+'/'+${role_permission.desc_}"></div>
+            	</td>
+            	<td><a th:href="@{'editRole?id='+${role.id}}">编辑</a></td>
+          		<td><a th:href="@{'deleteRole?id='+${role.id}}">删除</a></td>
+            </tr>
+          </c:forEach>
+        </table>
+
+        <div class="addOrEdit" >
+          <form action="addRole" method="post">
+            角色名称:
+            <input type="text" name="name"/>
+            <br>
+            角色描述:
+            <input type="text" name="desc_"/>
+            <br>
+            <br>
+            <input type="submit" value="增加"/>
+          </form>
+        </div>
+    </body>
+    
+  <script src="/common/scroll/jquery.nicescroll.js"/></script>
+  <script src="/common/scroll/scrollStyle.js"/></script>
+  </html>

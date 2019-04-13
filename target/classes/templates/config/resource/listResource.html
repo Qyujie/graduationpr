@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+  <script src="/js/jquery/2.0.0/jquery.min.js"/></script>
+  <script src="/js/bootstrap/3.3.6/bootstrap.min.js"/></script>
+  <script src="/js/myjs/common/navtop/navTopCreate.js"/></script>
+  
+  <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="/css/mycss/common.css" rel="stylesheet" type="text/css" />
+  <link href="/css/mycss/config/configCommonStyle.css" rel="stylesheet" type="text/css" />
+
+  <head>
+    <title>
+      资源列表
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+
+  <body>
+  <!-- 顶部导航栏 -->
+  <div th:include="/common/navtop"></div>
+  <!-- 菜单栏 -->
+  <div th:include="/common/menu"></div>
+  
+  <!-- 表格 -->
+    <div class="workingroom">
+      <table class="table table-condensed table-striped">
+      	<tr>
+          <td>id</td>
+          <td>房型</td>
+          <td>早餐</td>
+          <td>设施服务</td>
+          <td>政策</td>
+          <td>房价（含服务费）</td>
+          <td>编辑</td>
+          <td>删除</td>
+        </tr>
+        <tr th:each="resource:${resources}">
+          <td th:text="${resource.id}"></td>
+          <td th:text="${resource.roomtype}"></td>
+          <td th:text="${resource.breakfast}"></td>
+          <td>
+			<div th:each="facility:${resource_facilities[resource.id+'']}" th:text="${facility.name}"></div>
+          </td>
+          <td>
+			<div th:each="policy:${resource_policies[resource.id+'']}" th:text="${policy.name}"></div>
+          </td>
+          <td th:text="${resource.price}"></td>
+          <td><a th:href="@{'editResource?id='+${resource.id}}">编辑</a></td>
+          <td><a th:href="@{'deleteResource?id='+${resource.id}}">删除</a></td>
+        </tr>
+      </table>
+
+      <div class="addOrEdit" >
+         <a href="addResource">添加</a>
+      </div>
+    </div>
+  </body>
+<script src="/common/scroll/jquery.nicescroll.js"/></script>
+  <script src="/common/scroll/scrollStyle.js"/></script>
+</html>

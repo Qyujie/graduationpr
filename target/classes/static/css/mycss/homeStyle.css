@@ -1,0 +1,20 @@
+#div-home{
+	height:1000px;
+	width:80%;
+	margin:0 auto;
+	background-color:rgba(20,185,200,0.1);
+}
+
+/* 轮播图片 */
+.carousel{
+	width:100%;
+	height: 250px;
+}
+
+.carousel-inner{
+	height: 250px;
+}
+
+.carousel-inner img{
+	margin: 0 auto;
+}

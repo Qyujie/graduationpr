@@ -1,0 +1,63 @@
+/* bodydiv.html **********************************/
+
+.bodydiv {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+}
+
+
+/* position.html ***************************************/
+
+.position {
+    width: 100%;
+    height: 30px;
+}
+
+#div-position {
+    background-color: rgba(20, 0, 200, 0.5);
+}
+
+
+/* 置顶按钮 ***********************************/
+
+.wraper {
+    width: 960px;
+    margin: 0 auto
+}
+
+.top_arrow {
+    border: 0 none;
+    bottom: 150px;
+    cursor: pointer;
+    display: none;
+    height: auto;
+    margin: 0;
+    opacity: 0.5;
+    padding: 0;
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    width: 35px;
+    z-index: 2147483647;
+}
+
+
+/*模态提示框*****************************************/
+
+#ModalTip {
+    border: none;
+    margin: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 20%;
+    height: 8%;
+    text-align: center;
+    font-size: 120%;
+    background-color: rgba(20, 185, 200, 0.7);
+    display: none;
+}

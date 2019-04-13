@@ -1,0 +1,44 @@
+<!DOCTYPE HTML> 
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="/js/jquery/2.0.0/jquery.min.js"></script>
+<script src="/js/bootstrap/3.3.6/bootstrap.min.js"/></script>
+<link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="/css/mycss/common/navtopStyle.css" rel="stylesheet" type="text/css" />
+
+<div class="navtop">
+
+    <div id="div-navtop-center">
+
+        <!-- 按钮组 -->
+        <div id="div-button-navtop">
+            <span class="home">主页</span>
+            <span class="#">链接一</span>
+            <span class="#">链接二</span>
+            <span class="#">链接三</span>
+        </div>
+
+        <!-- 搜索栏 -->
+        <div id="div-topNavigation" role="navigation">
+            <form method="get" action="search">
+                <button class="btn btn-default" type="submit">
+					<span class="glyphicon glyphicon-search"></span>
+				</button>
+                <div class="input-group" id="div-navTopCommonSearch">
+                    <input type="search" placeholder="Search" />
+                </div>
+            </form>
+        </div>
+
+        <!-- 头像 -->
+        <div class="dropdown" id="div-navtop-headPortrait">
+            <div data-toggle="dropdown"></div>
+            <ul class="dropdown-menu" role="menu"></ul>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="/js/myjs/common/navTopController.js"></script>
+</html>

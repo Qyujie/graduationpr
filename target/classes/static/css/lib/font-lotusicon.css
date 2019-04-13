@@ -1,0 +1,115 @@
+@font-face {
+	font-family: 'Lotus Icon';
+	src:url('../../fonts/lotus/icomoon.eot?-kpo47j');
+	src:url('../../fonts/lotus/icomoon.eot?#iefix-kpo47j') format('embedded-opentype'),
+		url('../../fonts/lotus/icomoon.woff?-kpo47j') format('woff'),
+		url('../../fonts/lotus/icomoon.ttf?-kpo47j') format('truetype'),
+		url('../../fonts/lotus/icomoon.svg?-kpo47j#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="lotus-icon-"], [class*=" lotus-icon-"] {
+	font-family: 'Lotus Icon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.lotus-icon-person:before {
+	content: "\e600";
+}
+.lotus-icon-quote-left:before {
+	content: "\e601";
+}
+.lotus-icon-breakfast:before {
+	content: "\e602";
+}
+.lotus-icon-decor:before {
+	content: "\e603";
+}
+.lotus-icon-bed:before {
+	content: "\e604";
+}
+.lotus-icon-telephone:before {
+	content: "\e605";
+}
+.lotus-icon-hangers:before {
+	content: "\e606";
+}
+.lotus-icon-phone:before {
+	content: "\e607";
+}
+.lotus-icon-ocenview:before {
+	content: "\e608";
+}
+.lotus-icon-calendar:before {
+	content: "\e609";
+}
+.lotus-icon-cart:before {
+	content: "\e60a";
+}
+.lotus-icon-wifi:before {
+	content: "\e60b";
+}
+.lotus-icon-arrow:before {
+	content: "\e60c";
+}
+.lotus-icon-air-conditioner:before {
+	content: "\e60d";
+}
+.lotus-icon-cable:before {
+	content: "\e60e";
+}
+.lotus-icon-luxury:before {
+	content: "\e60f";
+}
+.lotus-icon-location:before {
+	content: "\e610";
+}
+.lotus-icon-size:before {
+	content: "\e611";
+}
+.lotus-icon-cloud:before {
+	content: "\e612";
+}
+.lotus-icon-view:before {
+	content: "\e613";
+}
+.lotus-icon-time:before {
+	content: "\e614";
+}
+.lotus-icon-bar:before {
+	content: "\e615";
+}
+.lotus-icon-dressing-table:before {
+	content: "\e616";
+}
+.lotus-icon-bar-coffee:before {
+	content: "\e617";
+}
+.lotus-icon-microphone:before {
+	content: "\e618";
+}
+.lotus-icon-media-play:before {
+	content: "\e619";
+}
+.lotus-icon-down-arrow:before {
+	content: "\e61a";
+}
+.lotus-icon-cooker-hood:before {
+	content: "\e61b";
+}
+.lotus-icon-left-arrow:before {
+	content: "\e61c";
+}
+.lotus-icon-right-arrow:before {
+	content: "\e61d";
+}

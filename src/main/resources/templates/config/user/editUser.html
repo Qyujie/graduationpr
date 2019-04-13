@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+<script src="/js/jquery/2.0.0/jquery.min.js"/></script>
+  <script src="/js/bootstrap/3.3.6/bootstrap.min.js"/></script>
+  <script src="/js/myjs/common/navtop/navTopCreate.js"/></script>
+  
+  <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="/css/mycss/common.css" rel="stylesheet" type="text/css" />
+  <link href="/css/mycss/config/configCommonStyle.css" rel="stylesheet" type="text/css" />
+
+<head>
+    <title>index</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<!-- 顶部导航栏 -->
+  <div th:include="/common/navtop"></div>
+  <!-- 菜单栏 -->
+  <div th:include="/common/menu"></div>
+  
+  <!-- 表格 -->
+<div class="workingroom">
+    <div class="addOrEdit" >
+        <form action="updateUser" method="post">
+            用户名: <input type="text" name="name" th:value="${user.name}"> <br><br>
+            密码: <input type="password" name="password" value="" placeholder="留空就表示不修改密码"> <br><br>
+            
+            <div th:if="${hasEditRolePermission == true}" 
+                 style="text-align:left;width:300px;margin:0px auto;padding-left:50px">
+            配置角色:<br>
+            <div th:each="role:${roles}">
+            	<input type="checkbox" th:checked="${user_hasRole[role.name]}"
+            	       name="roleIds" th:value="${role.id}"/>
+            	<span th:text="${role.name}"></span>
+            </div>
+            </div>
+            <input type="hidden" name="id" th:value="${user.id}">
+            <input type="submit" value="修改">
+        </form>  
+    </div>
+</div>
+</body>
+<script src="/common/scroll/jquery.nicescroll.js"/></script>
+  <script src="/common/scroll/scrollStyle.js"/></script>
+</html>

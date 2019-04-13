@@ -1,0 +1,39 @@
+/* 隐藏滚动条  因为我要使用插件的滚动条  不隐藏的话每次加载页面原始滚动条会闪一下再消失 */
+body::-webkit-scrollbar{
+    display:none;
+}
+
+/* 这个玩意儿是用来取消所有bootstrap中的btn类样式的点击出现的虚线的 */
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+    outline: none;         
+}
+
+/* 去掉点击a时出现的虚线 */
+a:focus,
+a:active:focus,
+a.active:focus,
+a.focus,
+a:active.focus,
+a.active.focus {
+    outline: none;         
+}
+
+/* 超链接没有下划线 */
+a{
+	display:inline-block;
+}
+
+li{
+	list-style-type:none;
+}
+
+/* 解决表格中中文自动换行问题  因为我的表格里的中文数据的最后一个字总是会单独占一行*/
+table td{  
+    word-break: keep-all;  
+    white-space:nowrap;  
+}  

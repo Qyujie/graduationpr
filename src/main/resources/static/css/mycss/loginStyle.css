@@ -1,0 +1,133 @@
+/*子元素设置100%高度需要将父元素高度设为100%*/
+
+html,
+body {
+    height: 100%;
+}
+
+
+/* 登录窗口div */
+
+.whitediv {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    margin: 0 auto;
+}
+
+.form-login {
+    width: 380px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.trademark {
+    text-align: center;
+}
+
+.hr-split {
+    height: 1px;
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+    margin: 30px 0;
+}
+
+.input-login {
+    margin: 0 auto 20px;
+}
+
+.form-group input {
+    padding: 5px 40px 10px 0;
+    height: auto;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ddd;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 20px !important;
+}
+
+.form-group input:focus {
+    animation: input-border-bottom .5s forwards;
+}
+
+@keyframes input-border-bottom {
+    to {
+        border-bottom: 1px solid #5bc0de;
+    }
+}
+
+.tip-failed {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 5px 0 0;
+    font-size: 12px;
+    color: #DB4437;
+    display: none;
+}
+
+.tip-failed>span:first-child {
+    float: left;
+    margin: 0 3px;
+    width: 15px;
+    height: 15px;
+    line-height: 13px;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid #DB4437;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #ccc;
+    font-size: 20px !important;
+    height: 100%;
+    width: 40px;
+    text-align: center;
+    line-height: 36px;
+}
+
+
+/*没有账号去注册的链接*/
+
+.help-block {
+    text-align: right;
+}
+
+.link,
+.link:hover {
+    color: #5bc0de;
+}
+
+
+/*登录按钮*/
+
+.submit {
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+    background-color: #5bc0de;
+    background-image: linear-gradient(-90deg, #5bc0de 0%, #fb7299 100%);
+    box-shadow: 0 4px 8px 0 rgba(207, 29, 82, 0.16);
+    color: #fff;
+    font-size: 18px;
+    border-radius: 4px;
+    margin: 21px auto;
+    cursor: pointer;
+}
+
+
+/*记住我/忘记密码*/
+
+.checkbox a {
+    float: right;
+}

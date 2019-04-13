@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+  <script src="/js/jquery/2.0.0/jquery.min.js"/></script>
+  <script src="/js/bootstrap/3.3.6/bootstrap.min.js"/></script>
+  <script src="/js/myjs/common/navtop/navTopCreate.js"/></script>
+  
+  <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="/css/mycss/common.css" rel="stylesheet" type="text/css" />
+  <link href="/css/mycss/config/configCommonStyle.css" rel="stylesheet" type="text/css" />
+
+  <head>
+    <title>
+      index
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+
+  <body>
+  <!-- 顶部导航栏 -->
+  <div th:include="/common/navtop"></div>
+  <!-- 菜单栏 -->
+  <div th:include="/common/menu"></div>
+  
+  <!-- 表格 -->
+    <div class="workingroom">
+        <table class="table table-condensed table-striped">
+          <tr>
+            <td>id</td>
+            <td>权限名称</td>
+            <td>权限描述</td>
+            <td>权限对应的路径</td>
+            <td>编辑</td>
+            <td>删除</td>
+          </tr>
+            <tr th:each="permission:${page.list}">
+              <td th:text="${permission.id}"></td>
+              <td th:text="${permission.name}"></td>
+              <td th:text="${permission.desc_}"></td>
+              <td th:text="${permission.url}"></td>
+              <td><a th:href="@{'editPermission?id='+${permission.id}}">编辑</a></td>
+          	  <td><a th:href="@{'deletePermission?id='+${permission.id}}">删除</a></td>
+            </tr>
+          </c:forEach>
+        </table>
+
+        <div class="addOrEdit" >
+          <form action="addPermission" method="post">
+            权限名称:
+            <input type="text" name="name">
+            <br>
+            权限描述:
+            <input type="text" name="desc_">
+            <br>
+            权限对应的url:
+            <input type="text" name="url">
+            <br>
+            <br>
+            <input type="submit" value="增加">
+          </form>
+        </div>
+    </body>
+<script src="/common/scroll/jquery.nicescroll.js"/></script>
+  <script src="/common/scroll/scrollStyle.js"/></script>
+  </html>

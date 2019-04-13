@@ -1,0 +1,624 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
+    <!-- TITLE -->
+    <title>Home</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="shortcut icon" href="images/favicon.png">
+
+    <!-- CSS LIBRARY -->
+    <link rel="stylesheet" type="text/css" href="css/lib/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/font-lotusicon.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/settings.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/bootstrap-select.min.css">
+
+    <!-- MAIN STYLE -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <span class="preloader-dot"></span>
+    </div>
+    <!-- END / PRELOADER -->
+
+    <!-- PAGE WRAP -->
+    <div id="page-wrap">
+
+        <!-- HEADER -->
+        <div th:include="/common/header"></div>
+
+        <!-- BANNER SLIDER -->
+        <section class="section-slider">
+            <h1 class="element-invisible">Slider</h1>
+            <div id="slider-revolution">
+                <ul>
+                    <li data-transition="fade">
+                        <img src="images/slider/img-1.jpg" data-bgposition="left center" data-duration="14000" data-bgpositionend="right center" alt="">
+
+                        <div class="tp-caption sft fadeout slider-caption-sub slider-caption-1" data-x="center" data-y="100" data-speed="700" data-start="1500" data-easing="easeOutBack">
+                            <img src="images/slider/hom1-slide1.png" alt="icons">
+                        </div>
+
+                        <div class="tp-caption sft fadeout slider-caption-sub slider-caption-1" data-x="center" data-y="240" data-speed="700" data-start="1500" data-easing="easeOutBack">
+                            WELCOME TO
+                        </div>
+
+                        <div class="tp-caption sfb fadeout slider-caption slider-caption-sub-1" data-x="center" data-y="280" data-speed="700" data-easing="easeOutBack" data-start="2000">THE LOTUS HOTEL</div>
+
+                        <a href="#" class="tp-caption sfb fadeout awe-btn awe-btn-12 awe-btn-slider" data-x="center" data-y="380" data-easing="easeOutBack" data-speed="700" data-start="2200">VIEW NOW</a>
+                    </li>
+
+                    <li data-transition="fade">
+                        <img src="images/slider/img-1.jpg" data-bgposition="left center" data-duration="14000" data-bgpositionend="right center" alt="">
+
+                        <div class="tp-caption sft fadeout" data-x="center" data-y="195" data-speed="700" data-start="1300" data-easing="easeOutBack">
+                            <img src="images/icon-slider-1.png" alt="">
+                        </div>
+
+                        <div class="tp-caption sft fadeout slider-caption-sub slider-caption-sub-3" data-x="center" data-y="220" data-speed="700" data-start="1500" data-easing="easeOutBack">
+                            EACH HOTEL IS
+                        </div>
+
+                        <div class="tp-caption sfb fadeout slider-caption slider-caption-3" data-x="center" data-y="260" data-speed="700" data-easing="easeOutBack" data-start="2000">
+                            UNIQUE 60%
+                        </div>
+
+                        <div class="tp-caption sfb fadeout slider-caption-sub slider-caption-sub-3" data-x="center" data-y="365" data-easing="easeOutBack" data-speed="700" data-start="2200">JUST LIKE YOU</div>
+
+                        <div class="tp-caption sfb fadeout slider-caption-sub slider-caption-sub-3" data-x="center" data-y="395" data-easing="easeOutBack" data-speed="700" data-start="2400"><img src="images/icon-slider-2.png" alt=""></div>
+                    </li>
+
+                </ul>
+            </div>
+
+        </section>
+        <!-- END / BANNER SLIDER -->
+
+        <!-- 搜索 -->
+        <section class="section-check-availability">
+            <div class="container">
+                <div class="check-availability">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <h2>CHECK AVAILABILITY</h2>
+                        </div>
+                        <div class="col-lg-9">
+                            <form id="ajax-form-search-room" action="search_step_2.php" method="post">
+                                <div class="availability-form">
+                                    <input type="text" name="arrive" class="awe-calendar from" placeholder="入住日期">
+                                    <input type="text" name="departure" class="awe-calendar to" placeholder="退房日期">
+
+                                    <select class="awe-select" name="adults">
+                                        <option>成人</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                    <select class="awe-select" name="children">
+                                        <option>儿童</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                    <div class="vailability-submit">
+                                        <button class="awe-btn awe-btn-13">搜索</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END / 搜索 -->
+
+        <!-- 房型列表 -->
+        <section class="section-accomd awe-parallax bg-14">
+            <div class="container">
+                <div class="accomd-modations">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="accomd-modations-header">
+                            	<span>ROOMS & RATES</span>
+                                <h2 class="heading">房型 & 费用</h2>
+                                <img src="images/icon-accmod.png" alt="icon">
+                                <p>这里添加一段描述，我想不出来，所以就用这句话了</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="accomd-modations-content owl-single">
+
+                                <div class="row" th:each="i:${#numbers.sequence(0,roomtypes.length/6)}">
+                                    <!-- ITEM -->
+                                    <div class="col-xs-4" th:each="k:${#numbers.sequence(0,5)}"
+                                         th:if="${roomtypes.length>6*i+k}">
+                                        <div class="accomd-modations-room">
+                                            <div class="img">
+                                                <a th:href="@{${roomtypes[6*i+k].imgurl}}"><img th:src="@{${roomtypes[6*i+k].imgurl}}" alt=""></a>
+                                            </div>
+                                            <div class="text">
+                                                <h2><a href="#" th:text="${roomtypes[6*i+k].name}"></a></h2>
+                                                <p class="price">
+                                                    <span class="amout" th:text="'¥'+${roomtypes[6*i+k].price}"></span>/days
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END / ITEM -->
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- END / 房型列表 -->
+
+        <!-- ABOUT -->
+        <section class="section-home-about bg-white">
+            <div class="container">
+                <div class="home-about">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="img">
+                                <a href="#"><img src="images/home/about/img-1.jpg" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text">
+                                <h2 class="heading">关于酒店</h2>
+                                <span class="box-border"></span>
+                                <p>2008年开业，2019年装修，共有100间房城市海滩度假村坐落在拉布拉多公园遗产自然保护区旁边，与南部滨水区无缝连接。我们位于离城市很近的地方;但也完全沉浸在大自然的包围之中。这种独特的组合让我们成为自然爱好者的天堂，也是快速逃离的绝佳去处。
+                                   城市海滩度假村坐落在拉布拉多公园遗产自然保护区旁边，与南部滨水区无缝连接。我们位于离城市很近的地方;但也完全沉浸在大自然的包围之中。这种独特的组合让我们成为自然爱好者的天堂，也是快速逃离的绝佳去处。
+                                   我们的度假村有意将自然环境的元素融入设计和结构中，使我们的客人能够重新连接——体验和享受大自然的彻底静修。</p>
+                                <a href="#" class="awe-btn awe-btn-default">获取更多</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END / ABOUT -->
+
+        <!-- OUR BEST -->
+        <section class="section-our-best bg-white">
+            <div class="container">
+
+                <div class="our-best">
+                    <div class="row">
+
+                        <div class="col-md-6 col-md-push-6">
+                            <div class="img">
+                                <img src="images/home/ourbest/img-1.jpg" alt="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-md-pull-6 ">
+                            <div class="text">
+                                <h2 class="heading">为什么选择我们</h2>
+                                <p>维斯塔德尔马酒店是加泰罗尼亚岛最受欢迎的酒店之一，是公认的阿瓦隆领先的酒店之一，拥有优雅的岛式酒店、周到的设施和独特的风格。</p>
+                                <ul>
+                                    <li><img src="images/home/ourbest/icon-3.png" alt="icon">250间5星级最佳客房</li>
+                                    <li><img src="images/home/ourbest/icon-2.png" alt="icon">带冰箱的湿吧</li>
+                                    <li><img src="images/home/ourbest/icon-4.png" alt="icon">双漩涡按摩浴缸</li>
+                                    <li><img src="images/home/ourbest/icon-5.png" alt="icon">超高的接待量 </li>
+                                    <li><img src="images/home/ourbest/icon-1.png" alt="icon">精美的早餐</li>
+                                    <li><img src="images/home/ourbest/icon-6.png" alt="icon">大酒店海景</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- END / OUR BEST -->
+
+        <!-- HOME GUEST BOOK -->
+        <div class="section-home-guestbook awe-parallax bg-13">
+            <div class="container">
+                <div class="home-guestbook">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="guestbook-content owl-single">
+
+                                <!-- ITEM -->
+                                <div class="guestbook-item">
+                                    <div class="img">
+                                        <img src="images/avatar/img-5.jpg" alt="">
+                                    </div>
+
+                                    <div class="text">
+                                        <p>This is the only place to stay in Catalina! I have stayed in the cheaper hotels and they were fine, but this is just the icing on the cake! After spending the day bike riding and hiking to come back and enjoy a
+                                            glass of wine while looking out your ocean view window and then to top it all off...</p>
+                                        <span><strong>Seelentag</strong></span><br>
+                                        <span>From Los Angeles, California</span>
+                                    </div>
+                                </div>
+                                <!-- ITEM -->
+
+                                <!-- ITEM -->
+                                <div class="guestbook-item">
+                                    <div class="img">
+                                        <img src="images/avatar/img-5.jpg" alt="">
+                                    </div>
+
+                                    <div class="text">
+                                        <p>This is the only place to stay in Catalina! I have stayed in the cheaper hotels and they were fine, but this is just the icing on the cake! After spending the day bike riding and hiking to come back and enjoy a
+                                            glass of wine while looking out your ocean view window and then to top it all off...</p>
+                                        <span><strong>Seelentag</strong></span><br>
+                                        <span>From Los Angeles, California</span>
+                                    </div>
+                                </div>
+                                <!-- ITEM -->
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- END / HOME GUEST BOOK -->
+
+        <!-- HOME NEW -->
+        <section class="section-event-news bg-white">
+            <div class="container">
+
+                <div class="event-news">
+                    <div class="row">
+
+                        <!-- EVENT -->
+                        <div class="col-md-6">
+                            <div class="event">
+                                <h2 class="heading">活 动</h2>
+                                <span class="box-border w350"></span>
+
+                                <div class="row">
+
+                                    <!-- ITEM -->
+                                    <div class="col-xs-12 col-sm-12">
+                                        <div class="event-slide owl-single">
+
+                                            <div class="event-item">
+                                                <div class="img hover-zoom">
+                                                    <a href="#">
+                                                        <img src="images/home/eventdeal/img-1.jpg" alt="">
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                            <div class="event-item">
+                                                <div class="img hover-zoom">
+                                                    <a href="#">
+                                                        <img src="images/home/eventdeal/img-1.jpg" alt="">
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- END / ITEM -->
+
+                                    <!-- ITEM -->
+                                    <div class="col-xs-6">
+                                        <div class="event-item">
+                                            <div class="img hover-zoom">
+                                                <a href="#">
+                                                    <img src="images/home/eventdeal/img-2.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="text">
+                                                <div class="text-cn">
+                                                    <h2>SAVE THE DATE</h2>
+                                                    <span>BECCA &amp; ROBERT</span>
+                                                    <a href="#" class="awe-btn awe-btn-12">查看更多</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END / ITEM -->
+
+                                    <!-- ITEM -->
+                                    <div class="col-xs-6">
+                                        <div class="event-item">
+                                            <div class="img hover-zoom">
+                                                <a href="#">
+                                                    <img src="images/home/eventdeal/img-2.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="text">
+                                                <div class="text-cn">
+                                                    <h2>GO ON BEACH. lotus </h2>
+                                                    <a href="#" class="awe-btn awe-btn-12">查看更多</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END / ITEM -->
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END / EVENT -->
+
+                        <!-- NEWS -->
+                        <div class="col-md-6">
+                            <div class="news">
+                                <h2 class="heading">新 闻</h2>
+                                <span class="box-border w350 space-5"></span>
+
+                                <div class="row">
+
+                                    <!-- ITEM -->
+                                    <div class="col-md-12">
+                                        <div class="news-item">
+                                            <div class="img">
+                                                <a href="#"><img src="images/home/lotusnews/img-1.jpg" alt=""></a>
+                                            </div>
+                                            <div class="text">
+                                                <span class="date">21 / March</span>
+                                                <h2><a href="#">酒店菜单更新</a></h2>
+                                                <a href="" class="read-more">[ 更 多 ]</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END / ITEM -->
+
+                                    <!-- ITEM -->
+                                    <div class="col-md-12">
+                                        <div class="news-item">
+                                            <div class="img">
+                                                <a href="#"><img src="images/home/lotusnews/img-1.jpg" alt=""></a>
+                                            </div>
+                                            <div class="text">
+                                                <span class="date">8 / March</span>
+                                                <h2><a href="#">婚礼:乔纳塔 & 杰西卡</a></h2>
+                                                <a href="" class="read-more">[ 更 多 ]</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END / ITEM -->
+
+                                    <!-- ITEM -->
+                                    <div class="col-md-12">
+                                        <div class="news-item">
+                                            <div class="img">
+                                                <a href="#"><img src="images/home/lotusnews/img-1.jpg" alt=""></a>
+                                            </div>
+                                            <div class="text">
+                                                <span class="date">16 / February</span>
+                                                <h2><a href="#">2019年最佳婚礼指南</a></h2>
+                                                <a href="" class="read-more">[ 更 多 ]</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END / ITEM -->
+
+                                </div>
+
+                                <a href="#" class="awe-btn awe-btn-default">查看更多</a>
+
+                            </div>
+
+                        </div>
+                        <!-- END / NEWS -->
+
+                    </div>
+
+                    <div class="hr"></div>
+
+                </div>
+
+            </div>
+        </section>
+        <!-- END / HOME NEW -->
+
+        <!-- GALLERY -->
+        <section class="section-gallery bg-white">
+
+            <div class="gallery  no-padding">
+                <h2 class="heading text-center">展 示</h2>
+
+                <!-- FILTER -->
+                <div class="gallery-cat text-center">
+                    <ul class="list-inline">
+                        <li class="active"><a href="#" data-filter="*">全 部</a></li>
+                        <li><a href="#" data-filter=".ground">酒 店</a></li>
+                        <li><a href="#" data-filter=".suite">房 间</a></li>
+                        <li><a href="#" data-filter=".bathroom">浴 室</a></li>
+                        <li><a href="#" data-filter=".dining">餐 厅</a></li>
+                    </ul>
+                </div>
+                <!-- END / FILTER -->
+
+                <!-- GALLERY CONTENT -->
+                <div class="gallery-content hover-img">
+                    <div class="row">
+                        <div class="gallery-isotope col-6 pd-0">
+
+                            <!-- ITEM SIZE -->
+                            <div class="item-size"></div>
+                            <!-- END / ITEM SIZE -->
+                            <!-- ITEM -->
+
+                            <div class="item-isotope suite dining ">
+                                <div class="gallery_item">
+                                    <a href="images/gallery/popup/img-1.jpg" class="gallery-popup mfp-image" title="Luxury Room view all">
+                                        <img src="images/gallery/img-1.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- END / ITEM -->
+
+                            <!-- ITEM -->
+                            <div class="item-isotope  ground bathroom suite">
+                                <div class="gallery_item">
+                                    <a href="images/gallery/popup/img-1.jpg" class="gallery-popup mfp-image" title="Luxury Room view all">
+                                        <img src="images/gallery/img-1.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- END / ITEM -->
+
+                            <!-- ITEM -->
+                            <div class="item-isotope ground bathroom dining">
+                                <div class="gallery_item">
+                                    <a href="images/gallery/popup/img-1.jpg" class="gallery-popup mfp-image" title="Luxury Room view all">
+                                        <img src="images/gallery/img-1.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- END / ITEM -->
+
+                            <!-- ITEM -->
+                            <div class="item-isotope suite dining">
+                                <div class="gallery_item">
+                                    <a href="images/gallery/popup/img-1.jpg" class="gallery-popup mfp-image" title="Luxury Room view all">
+                                        <img src="images/gallery/img-1.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- END / ITEM -->
+
+                            <!-- ITEM -->
+                            <div class="item-isotope  ground suite dining">
+                                <div class="gallery_item">
+                                    <a href="images/gallery/popup/img-1.jpg" class="gallery-popup mfp-image" title="Luxury Room view all">
+                                        <img src="images/gallery/img-1.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- END / ITEM -->
+
+                            <!-- ITEM -->
+                            <div class="item-isotope ground bathroom dining">
+                                <div class="gallery_item">
+                                    <a href="images/gallery/popup/img-1.jpg" class="gallery-popup mfp-image" title="Luxury Room view all">
+                                        <img src="images/gallery/img-1.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- END / ITEM -->
+
+                            <!-- ITEM -->
+                            <div class="item-isotope ground suite dining">
+                                <div class="gallery_item">
+                                    <a href="images/gallery/popup/img-1.jpg" class="gallery-popup mfp-image" title="Luxury Room view all">
+                                        <img src="images/gallery/img-1.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- END / ITEM -->
+
+                            <!-- ITEM -->
+                            <div class="item-isotope bathroom suite dining">
+                                <div class="gallery_item">
+                                    <a href="images/gallery/popup/img-1.jpg" class="gallery-popup mfp-image" title="Luxury Room view all">
+                                        <img src="images/gallery/img-1.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- END / ITEM -->
+
+                            <!-- ITEM -->
+                            <div class="item-isotope bathroom suite dining">
+                                <div class="gallery_item">
+                                    <a href="images/gallery/popup/img-1.jpg" class="gallery-popup mfp-image" title="Luxury Room view all">
+                                        <img src="images/gallery/img-1.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- END / ITEM -->
+
+                            <!-- ITEM -->
+                            <div class="item-isotope ground bathroom">
+                                <div class="gallery_item">
+                                    <a href="images/gallery/popup/img-1.jpg" class="gallery-popup mfp-image" title="Luxury Room view all">
+                                        <img src="images/gallery/img-1.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- END / ITEM -->
+
+                            <!-- ITEM -->
+                            <div class="item-isotope ground bathroom suite ">
+                                <div class="gallery_item">
+                                    <a href="images/gallery/popup/img-1.jpg" class="gallery-popup mfp-image" title="Luxury Room view all">
+                                        <img src="images/gallery/img-1.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- END / ITEM -->
+
+                            <!-- ITEM -->
+                            <div class="item-isotope ground bathroom">
+                                <div class="gallery_item">
+                                    <a href="images/gallery/popup/img-1.jpg" class="gallery-popup mfp-image" title="Luxury Room view all">
+                                        <img src="images/gallery/img-1.jpg" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- END / ITEM -->
+
+                        </div>
+                    </div>
+
+                    <div class="our-gallery text-center">
+                        <a href="#" class="awe-btn awe-btn-default">浏览我们的图库</a>
+                    </div>
+
+                </div>
+                <!-- GALLERY CONTENT -->
+
+            </div>
+        </section>
+        <!-- END / GALLERY -->
+
+        <!-- FOOTER -->
+        <div th:include="/common/footer"></div>
+
+    </div>
+    <!-- END / PAGE WRAP -->
+
+
+    <!-- LOAD JQUERY -->
+    <script type="text/javascript" src="js/lib/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/lib/bootstrap-select.js"></script>
+    <!---<script src="http://ditu.google.cn/maps/api/js?v=3.exp&amp;signed_in=true"></script>--->
+    <script type="text/javascript" src="js/lib/isotope.pkgd.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="js/lib/owl.carousel.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.appear.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.countTo.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.parallax-1.1.3.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="js/lib/SmoothScroll.js"></script>
+    <!-- validate -->
+    <script type="text/javascript" src="js/lib/jquery.form.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.validate.min.js"></script>
+    <!-- Custom jQuery -->
+    <script type="text/javascript" src="js/scripts.js"></script>
+    
+    <!-- js -->
+	<script src="/common/scroll/jquery.nicescroll.js"/></script>
+	<script src="/common/scroll/scrollStyle.js"/></script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+<script src="/js/jquery/2.0.0/jquery.min.js"/></script>
+  <script src="/js/bootstrap/3.3.6/bootstrap.min.js"/></script>
+  <script src="/js/myjs/common/navtop/navTopCreate.js"/></script>
+  
+  <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="/css/mycss/common.css" rel="stylesheet" type="text/css" />
+  <link href="/css/mycss/config/configCommonStyle.css" rel="stylesheet" type="text/css" />
+
+<head>
+    <title>index</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<!-- 顶部导航栏 -->
+  <div th:include="/common/navtop"></div>
+  <!-- 菜单栏 -->
+  <div th:include="/common/menu"></div>
+  
+  <!-- 表格 -->
+<div class="workingroom">
+    <div class="addOrEdit" >
+        <form action="updatePermission" method="post">
+            权限名称: <input type="text" name="name" th:value="${permission.name}"> <br/>
+            权限描述: <input type="text" name="desc_" th:value="${permission.desc_}"> <br/>
+            权限对应的url: <input type="text" name="url"  th:value="${permission.url}"> <br/><br/>
+            <input type="hidden" name="id" th:value="${permission.id}">
+            <input type="submit" value="修改">
+        </form>  
+    </div>
+</div>
+</body>
+<script src="/common/scroll/jquery.nicescroll.js"/></script>
+  <script src="/common/scroll/scrollStyle.js"/></script>
+</html>
