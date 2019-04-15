@@ -31,4 +31,17 @@ public class RoomCotroller {
 		model.addAttribute("requestUrl", "room");
 		return "room";
 	} 
+	
+	@RequestMapping("/roomInformation")
+	public String roomInformation(Model model, Integer id){
+		
+		List<Resource> resources = resourceService.list();
+		List<Roomtype> roomtypes = roomtypeService.list();
+		
+		model.addAttribute("resources", resources);
+		model.addAttribute("roomtypes", roomtypes);
+		
+		model.addAttribute("requestUrl", "room");
+		return "roomInformation";
+	} 
 }

@@ -24,7 +24,7 @@ public class PermissionController {
 	@RequestMapping("listPermission")
 	public String list(Model model,
 	           @RequestParam(value = "start", defaultValue = "0") int start,
-	           @RequestParam(value = "size", defaultValue = "5") int size) 
+	           @RequestParam(value = "size", defaultValue = "30") int size) 
 	        		   throws Exception {
 		PageHelper.startPage(start,size,"id");
 		List<Permission> permissions = permissionService.list();
@@ -38,8 +38,11 @@ public class PermissionController {
 	}
 
 	@RequestMapping("editPermission")
-	public String list(Model model, Long id) {
-		Permission permission = permissionService.get(id);
+	public String list(Model model, Integer id) {
+		if(id==null){
+			return "redirect:listPermission";
+		}
+		Permission permission = permissionService.get(id.longValue());
 		model.addAttribute("permission", permission);
 		return "config/user/editPermission";
 	}
@@ -65,10 +68,12 @@ public class PermissionController {
 	}
 
 	@RequestMapping("deletePermission")
-	public String delete(Model model, long id) {
-		permissionService.delete(id);
-		
-		model.addAttribute("requestUrl", "listPermission");
+	public String delete(Model model, Integer id) {
+		if(id!=null){
+			permissionService.delete(id.longValue());
+			
+			model.addAttribute("requestUrl", "listPermission");
+		}
 		
 		return "redirect:listPermission";
 	}

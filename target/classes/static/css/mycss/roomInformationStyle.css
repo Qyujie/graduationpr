@@ -1,0 +1,13 @@
+.check-availability {
+    margin-top: 0;
+}
+
+.check-availability .availability-form {
+    text-align: left;
+}
+
+.check-availability::before {
+    top: 0;
+    background: rgba(0,0,0,0.7);
+    height: 400px;
+}

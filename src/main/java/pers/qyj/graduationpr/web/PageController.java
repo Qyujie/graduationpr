@@ -59,7 +59,7 @@ public class PageController {
 
 	@RequestMapping("config")
 	public String config() {
-		return "common/menu";
+		return "redirect:/config/user/listUser";
 	}
 	
 	@RequestMapping("config/user")

@@ -67,12 +67,15 @@ public class LoginController {
 	@RequestMapping("/verificationUser")
 	@ResponseBody
 	public String verificationUser(User c) {
+		
 		Subject subject = SecurityUtils.getSubject();
 		try {
 			UsernamePasswordToken token = new UsernamePasswordToken(c.getName(), c.getPassword());
 			subject.login(token);
 			System.out.println("登陆成功");
+			subject.getSession().setAttribute("id", c.getId());
 			return "登录成功";
+			
 
 		} catch (Exception e) {
 			return "登录失败";

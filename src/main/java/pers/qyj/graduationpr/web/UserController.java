@@ -48,9 +48,12 @@ public class UserController {
 	}
 
 	@RequestMapping("editUser")
-	public String edit(Model model, long id) {
+	public String edit(Model model, Integer id) {
+		if(id==null){
+			return "redirect:listUser";
+		}
 		//获取用户
-		User user = userService.get(id);
+		User user = userService.get(id.longValue());
 		model.addAttribute("user", user);
 		
 		//获取该用户的角色
@@ -127,10 +130,12 @@ public class UserController {
 	}
 
 	@RequestMapping("deleteUser")
-	public String delete(Model model, long id) {
-		userService.delete(id);
-		
-		model.addAttribute("requestUrl", "listUser");
+	public String delete(Model model, Integer id) {
+		if(id!=null){
+			userService.delete(id.longValue());
+			
+			model.addAttribute("requestUrl", "listUser");
+		}
 		
 		return "redirect:listUser";
 	}

@@ -31,10 +31,10 @@
     <div id="page-wrap">
 
         <!-- HEADER -->
-        <div th:include="/common/header"></div>
+        <div th:include="common/header"></div>
 
         <!-- SUB BANNER -->
-        <div th:include="/common/banner"></div>
+        <div th:include="common/banner"></div>
 
         <!-- ROOM -->
         <section class="section-room bg-white">
@@ -64,7 +64,7 @@
                             
                                 <div class="bot">
                                     <span class="price">起价 <span class="amout">¥[[${roomtype.price}]]</span> /days</span>
-                                    <a href="#" class="awe-btn awe-btn-13">详细信息</a>
+                                    <a th:href="@{'roomInformation?id='+${roomtype.id}}" class="awe-btn awe-btn-13">详细信息</a>
                                 </div>
                             
                             </div>
@@ -79,7 +79,7 @@
         <!-- END / ROOM -->
         
         <!-- FOOTER -->
-        <div th:include="/common/footer"></div>
+        <div th:include="common/footer"></div>
 
     </div>
     <!-- END / PAGE WRAP -->

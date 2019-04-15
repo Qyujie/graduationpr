@@ -1,6 +1,6 @@
 
     var pageGet = "/getHeadPortrait";
-    var pageExit = "exit";
+    var pageExit = "/exit";
     var $liLogin = $(
         '<li><a href="/home">主页</a></li>' +
         '<li><a href="/userInformation">个人中心</a></li>' +

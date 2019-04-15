@@ -45,8 +45,13 @@ public class RoleController {
 	}
 
 	@RequestMapping("editRole")
-	public String list(Model model, long id) {
-		Role role = roleService.get(id);
+	public String list(Model model, Integer id) {
+		
+		if(id==null){
+			return "redirect:listRole";
+		}
+		
+		Role role = roleService.get(id.longValue());
 		model.addAttribute("role", role);
 
 		List<Permission> permissions = permissionService.list();
@@ -92,8 +97,10 @@ public class RoleController {
 	}
 
 	@RequestMapping("deleteRole")
-	public String delete(Model model, long id) {
-		roleService.delete(id);
+	public String delete(Model model, Integer id) {
+		if(id!=null){
+			roleService.delete(id.longValue());
+		}
 		return "redirect:listRole";
 	}
 
