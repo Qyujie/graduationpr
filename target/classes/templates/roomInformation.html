@@ -63,28 +63,103 @@
                                     <option>3</option>
                                 </select>
                     	</div>
+                    	
+                    	<!-- roomtype  -->
                     	<div class="availability-form">
-                        	<input type="text" name="arrive" class="awe-calendar from" placeholder="入住日期">
-                        	<input type="text" name="departure" class="awe-calendar to" placeholder="退房日期">
-	
-	                        	<select class="awe-select" name="adults">
-                                	<option>成人</option>
-                                	<option>1</option>
-                                	<option>2</option>
-                                	<option>3</option>
-                            	</select>
-                                <select class="awe-select" name="children">
-                                    <option>儿童</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
+                        	<div class="btn-group" data-toggle="buttons">
+                        		<label class="btn btn-default active roomtype" >
+    								<input type="radio"/><span>全部</span>
+  								</label>
+  								
+  								<label class="btn btn-default roomtype" th:each="roomtype:${roomtypes}">
+    								<input type="radio"/>
+    								<span th:text="${roomtype.name}"></span>
+  								</label>
+							</div>
                     	</div>
+                    	
+                    	<!-- breakfast  -->
+                    	<div class="availability-form">
+                        	<div class="btn-group" data-toggle="buttons">
+                        		<label class="btn btn-default active breakfast" >
+    								<input type="radio"/><span>全部</span>
+  								</label>
+  								
+  								<label class="btn btn-default breakfast" th:each="breakfast:${breakfasts}">
+    								<input type="radio"/>
+    								<span th:text="${breakfast.name}"></span>
+  								</label>
+							</div>
+                    	</div>
+                    	
+                    	<!-- facility  -->
+                    	<div class="availability-form">
+                        	<div class="btn-group" data-toggle="buttons">
+  								<label class="btn btn-default facility" th:each="facility:${facilities}">
+    								<input type="checkbox"/>
+    								<span th:text="${facility.name}"></span>
+  								</label>
+							</div>
+                    	</div>
+                    	
+                    	<!-- policy  -->
+                    	<div class="availability-form">
+                        	<div class="btn-group" data-toggle="buttons">
+  								<label class="btn btn-default policy" th:each="policy:${policies}">
+    								<input type="checkbox"/>
+    								<span th:text="${policy.name}"></span>
+  								</label>
+							</div>
+                    	</div>
+                    	
                 	</form>
                 </div>
             </div>
         </section>
         <!-- END / 搜索 -->
+        
+        <!-- ROOM -->
+        <section class="section-room bg-white">
+            <div class="container">
+
+                <table class="table">
+  					<thead>
+     					<th>房型</th>
+          				<th>早餐</th>
+          				<th>设施服务</th>
+          				<th>政策</th>
+          				<th>剩余</th>
+          				<th>房价（含服务费）</th>
+          				<th> </th>
+  					</thead>
+  					<tbody>
+     					<tr th:each="resource:${resources}">
+        					<td>
+        						<img width="250px" th:src="@{${resource_imgurl[resource.id+'']}}" alt=""/>
+        						<div th:text="${resource.roomtype}"></div>
+        					</td> 
+        					<td th:text="${resource.breakfast}"></td> 
+        					<td>
+								<div th:each="facility:${resource_facilities[resource.id+'']}" th:text="${facility.name}"></div>
+          					</td>
+          					<td>
+								<div th:each="policy:${resource_policies[resource.id+'']}" th:text="${policy.name}"></div>
+          					</td>
+          					<td th:text="${resource.remain}"></td>
+        					<td th:text="${resource.price}"></td> 
+        					<td>
+                        		<div class="btn-group-vertical" data-toggle="buttons">
+  									<div class="div-btn-reserve">预订</div>
+  									<div class="div-btn-add">添加</div>
+                    			</div>
+                    		</td>
+     					</tr>
+  					</tbody>
+				</table>
+                
+            </div>
+        </section>
+        <!-- END / ROOM -->
 
     </div>
     <!-- END / PAGE WRAP -->
@@ -113,6 +188,8 @@
     <script type="text/javascript" src="js/scripts.js"></script>
     
     <!-- js -->
+    <script src="/js/myjs/roomInformation/search.js"/></script>
+    
 	<script src="/common/scroll/jquery.nicescroll.js"/></script>
 	<script src="/common/scroll/scrollStyle.js"/></script>
 </body>

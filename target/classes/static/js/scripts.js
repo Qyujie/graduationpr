@@ -758,56 +758,6 @@
         });
     }
 
-    /* ----------------------------- search form ------------------------- */
-    if ($('#ajax-form-search-room').length) {
-        $('#ajax-form-search-room').validate({
-            rules: {
-                arrive: {
-                    required: true,
-                    minlength: 10
-                },
-                departure: {
-                    required: true,
-                    minlength: 10
-                },
-                adults: {
-                    required: true,
-                    minlength: 1
-                },
-                children: {
-                    required: false
-                }
-            },
-            messages: {
-                arrive: {
-                    required: "Please enter a arrive.",
-                    minlength: $.format("At least {0} characters required.")
-                },
-                departure: {
-                    required: "Please enter a departure.",
-                    minlength: $.format("At least {0} characters required.")
-                },
-                adults: {
-                    required: "Please select number of adults.",
-                    minlength: $.format("At least {0} characters required.")
-                },
-            },
-
-            submitHandler: function (form) {
-                $(form).ajaxSubmit({
-                    success: function (responseText, statusText, xhr, $form) {
-                        $(form).parent().append(responseText);
-                        $(form).remove();
-                    }
-                });
-                return false;
-            }
-        });
-
-        $('#ajax-form-search-room .vailability-submit .awe-btn').on('click', function () {
-            $(this).parents('form:first').submit();
-        });
-    }
 
     $(document).ready(function () {
         $(window).load(function () {
@@ -817,8 +767,6 @@
             $('body').append('<div class="awe-popup-overlay" id="awe-popup-overlay"></div><div class="awe-popup-wrap" id="awe-popup-wrap"><div class="awe-popup-content"></div><span class="awe-popup-close" id="awe-popup-close"></div>');
             GalleryIsotope();
             GuestBookMasonry();
-            AttractionMap();
-            ContactMap();
         });
 
         $(window).scroll(function (event) {
@@ -830,7 +778,6 @@
             PopupCenter();
             MenuResize();
             MenuSticky();
-            AttractionClick();
         }).trigger('resize');
 
     });

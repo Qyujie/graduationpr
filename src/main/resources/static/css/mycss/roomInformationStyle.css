@@ -1,13 +1,62 @@
 .check-availability {
-    margin-top: 0;
+	margin-top: 0;
 }
 
 .check-availability .availability-form {
-    text-align: left;
+	text-align: left;
 }
 
 .check-availability::before {
-    top: 0;
-    background: rgba(0,0,0,0.7);
-    height: 400px;
+	top: 0;
+	background: rgba(0, 0, 0, 0.7);
+	height: 265px;
 }
+
+.btn-default {
+	background-color: transparent;
+	outline: none;
+	border: 2px solid #fff;
+	height: 40px;
+	line-height: 36px;
+	padding-top: 0;
+	padding-bottom: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	font-size: 12px;
+	color: #fff;
+}
+
+.btn-default:hover,.btn-default.active{
+	background-color: #e1bd85;
+	border-color: #e1bd85
+}
+
+.div-btn-reserve,.div-btn-add{
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.42857143;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	color: #fff;
+}
+
+.div-btn-reserve{
+	background-color: #337ab7;
+	border-color: #2e6da4
+}
+
+.div-btn-add{
+	background-color: #5bc0de;
+	border-color: #46b8da
+}
+
