@@ -70,14 +70,22 @@ public class ResourceServiceImpl implements ResourceService {
 
 	@Override
 	public List<Resource> list(Order order) {
-		List<Resource> result = new ArrayList<>();
+		List<Resource> resources = new ArrayList<>();
 		ResourceOrderExample example = new ResourceOrderExample();
 		example.createCriteria().andOidEqualTo(order.getId());
 		List<ResourceOrder> ros = resourceOrderMapper.selectByExample(example);
 		for (ResourceOrder resourceOrder : ros) {
-			result.add(resourceMapper.selectByPrimaryKey(resourceOrder.getReid()));
+			resources.add(resourceMapper.selectByPrimaryKey(resourceOrder.getReid()));
 		}
-		return result;
+		return resources;
+	}
+
+	@Override
+	public List<Resource> list(String roomName) {
+		ResourceExample example = new ResourceExample();
+		example.createCriteria().andRoomtypeEqualTo(roomName);
+		List<Resource> resources = resourceMapper.selectByExample(example);
+		return resources;
 	}
 
 }

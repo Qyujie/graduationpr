@@ -13,6 +13,8 @@ public interface ResourceService {
 	public List<Resource> list();
 	
 	public List<Resource> list(Order order);
+	
+	public List<Resource> list(String roomName);
 
 	public void add(Resource resource);
 

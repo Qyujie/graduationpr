@@ -60,3 +60,7 @@
 	border-color: #46b8da
 }
 
+.ui-datepicker{
+	z-index: 1000 !important;
+}
+
