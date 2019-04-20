@@ -105,14 +105,10 @@ public class RoomCotroller {
 	@RequestMapping("/searchRoomInformation")
 	@ResponseBody
 	public List<Object> searchRoomInformation(Model model,String arrive,String departure,Integer adults,Integer children,
-			String roomtype,String breakfast,String[] facility,String[] policy){
+			String roomtype,String breakfast,Integer[] facility,Integer[] policy){
 		List<Resource> resources = new ArrayList<>();
 		
-		if(roomtype.equals("")){
-			resources = resourceService.list();
-		}else{
-			resources = resourceService.list(roomtype);
-		}
+		resources = resourceService.list(arrive,departure,adults,children,roomtype,breakfast,facility,policy);
 		
 		Map<String, List<Facility>> resource_facilities = new HashMap<>();
 		for (Resource resource : resources) {

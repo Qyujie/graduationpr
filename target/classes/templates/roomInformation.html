@@ -97,7 +97,7 @@
                         	<div class="btn-group" data-toggle="buttons">
   								<label class="btn btn-default facility" th:each="facility:${facilities}">
     								<input type="checkbox"/>
-    								<span th:text="${facility.name}"></span>
+    								<span th:text="${facility.name}" th:value="${facility.id}"></span>
   								</label>
 							</div>
                     	</div>
@@ -107,7 +107,7 @@
                         	<div class="btn-group" data-toggle="buttons">
   								<label class="btn btn-default policy" th:each="policy:${policies}">
     								<input type="checkbox"/>
-    								<span th:text="${policy.name}"></span>
+    								<span th:text="${policy.name}" th:value="${policy.id}"></span>
   								</label>
 							</div>
                     	</div>

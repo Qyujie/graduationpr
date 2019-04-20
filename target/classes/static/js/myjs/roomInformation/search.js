@@ -8,8 +8,6 @@ $(function() {
 	var breakfast = "";
 	var facility = [];
 	var policy = [];
-	facility[0] = "";
-	policy[0] = "";
 
 	/* 入住时间 */
 	$(".from").change(function() {
@@ -67,12 +65,14 @@ $(function() {
 		var text = [];
 		text = $(this).parent().children(".Active").children("span");
 		for (var i = 0; i < text.length; i++) {
-			facility[i] = $(text[i]).text();
+			facility[i] = $(text[i]).attr("value"); 
 		}
-		if (typeof facility[0] == "undefined") {
-			facility[0] = "";
+		if (typeof text[0] == "undefined") {
+			facility[0] = null;
 		}
-		console.log(facility[0]);
+		if(facility.length>text.length){
+			facility.splice(text.length,facility.length-text.length);
+		}
 		ajax();
 	});
 
@@ -86,12 +86,17 @@ $(function() {
 		var text = [];
 		text = $(this).parent().children(".Active").children("span");
 		for (var i = 0; i < text.length; i++) {
-			policy[i] = $(text[i]).text();
+			policy[i] = $(text[i]).attr("value"); 
 		}
-		if (typeof policy[0] == "undefined") {
-			policy[0] = "";
+		if (typeof text[0] == "undefined") {
+			policy[0] = null;
 		}
-		console.log(facility[0]);
+		if(policy.length>text.length){
+			policy.splice(text.length,policy.length-text.length);
+		}
+
+		console.log(text.length);
+		console.log(policy.length);
 		ajax();
 	});
 
@@ -110,8 +115,62 @@ $(function() {
 				"policy" : policy,
 			},
 			traditional : true,// 这里设置为true，不然传不了数组
-			success : function(model) {
-				console.log(model);
+			success : function(list) {
+				$("tbody").empty();
+				
+				for(var resource of list[0]){
+					
+					var imgurl = list[3][resource.id];
+					
+					var roomtype = resource.roomtype;
+					
+					var breakfast = resource.breakfast;
+					
+					var facilities = list[1][resource.id];
+					var $facility = "";
+					for(var facility of facilities){
+						$facility += "<div>"+ facility.name +"</div>";
+					}
+					
+					var policies = list[2][resource.id];
+					var $policy = "";
+					for(var policy of policies){
+						$policy += "<div>"+ policy.name +"</div>";
+					}
+					var remain = resource.remain;
+					
+					var price = resource.price;
+					
+					
+					$("tbody").append(
+							'<tr>'+
+							'<td>'+
+							'	<img width="250px" src="'+ imgurl +'" alt=""/>'+
+							'	<div>'+ roomtype +'</div>'+
+							'</td> '+
+							'<td>'+ breakfast +'</td>'+
+							'<td>'+ $facility +'</td>'+
+							'<td>'+ $policy +'</td>'+
+		  					'<td>'+ remain +'</td>'+
+							'<td>'+ price +'</td> '+
+							'<td>'+
+		                	'	<div class="btn-group-vertical" data-toggle="buttons">'+
+							'			<div class="div-btn-reserve">预订</div>'+
+							'			<div class="div-btn-add">添加</div>'+
+		            		'	</div>'+
+		            		'</td>'+
+							'</tr>'
+							);
+				}
+				
+//				console.log('resources:');
+//				console.log(list[0]);
+//				console.log('resource_facilities:');
+//				console.log(list[1]);
+//				console.log('resource_policies:');
+//				console.log(list[2]);
+//				console.log('resource_imgurl:');
+//				console.log(list[3]);
 				}
 		});
 	}
