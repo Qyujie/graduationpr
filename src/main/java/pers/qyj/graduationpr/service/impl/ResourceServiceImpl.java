@@ -13,6 +13,7 @@ import pers.qyj.graduationpr.mapper.ResourceFacilityMapper;
 import pers.qyj.graduationpr.mapper.ResourceMapper;
 import pers.qyj.graduationpr.mapper.ResourceOrderMapper;
 import pers.qyj.graduationpr.mapper.ResourcePolicyMapper;
+import pers.qyj.graduationpr.mapper.RoomtypeMapper;
 import pers.qyj.graduationpr.pojo.Order;
 import pers.qyj.graduationpr.pojo.Resource;
 import pers.qyj.graduationpr.pojo.ResourceExample;
@@ -23,6 +24,8 @@ import pers.qyj.graduationpr.pojo.ResourceOrder;
 import pers.qyj.graduationpr.pojo.ResourceOrderExample;
 import pers.qyj.graduationpr.pojo.ResourcePolicy;
 import pers.qyj.graduationpr.pojo.ResourcePolicyExample;
+import pers.qyj.graduationpr.pojo.Roomtype;
+import pers.qyj.graduationpr.pojo.RoomtypeExample;
 import pers.qyj.graduationpr.service.ResourceFacilityService;
 import pers.qyj.graduationpr.service.ResourcePolicyService;
 import pers.qyj.graduationpr.service.ResourceService;
@@ -35,6 +38,8 @@ public class ResourceServiceImpl implements ResourceService {
 	ResourceFacilityService resourceFacilityService;
 	@Autowired
 	ResourcePolicyService resourcePolicyService;
+	@Autowired
+	RoomtypeMapper roomtypeMapper;
 	@Autowired
 	ResourceOrderMapper resourceOrderMapper;
 	@Autowired
@@ -118,6 +123,39 @@ public class ResourceServiceImpl implements ResourceService {
 			resourceCriteria.andBreakfastEqualTo(breakfast);
 		}
 
+		if (adults != null || children != null ) {
+			float cpeople = 0;
+			float apeople = 0;
+			if(adults != null){
+				apeople = adults;
+			}
+			if(children != null){
+				cpeople = children;
+			}
+			/**
+			 * 根据成人和儿童的人数计算床数
+			 * 这里把床的容量看做10，成人的大小为6，儿童的大小为4
+			 * 比例随便定，只要满足1张床最多只能容纳1+1，且不满足2+0和0+3
+			 * 即一张床最多睡一个成人和一个儿童，不能睡两个成人或三个儿童
+			 * 在数量较少的情况下此算法有效，当然数量也不可能多得起来
+			 * */
+			int bedNumMin = (int) Math.ceil((apeople*6+cpeople*4)/10);
+			int bedNumMax = (int) (apeople+cpeople);
+			
+			RoomtypeExample roomtypeExample = new RoomtypeExample();
+			pers.qyj.graduationpr.pojo.RoomtypeExample.Criteria roomtypeCriteria = roomtypeExample.createCriteria();
+			roomtypeCriteria.andPeopleBetween(bedNumMin, bedNumMax);
+			List<Roomtype> roomtypes = roomtypeMapper.selectByExample(roomtypeExample);
+			
+			List<String> renames = new ArrayList<String>();
+			for (Roomtype rroomtype : roomtypes) {
+				renames.add(rroomtype.getName());
+			}
+			if(renames.size()>0){
+				resourceCriteria.andRoomtypeIn(renames);
+			}
+		}
+		
 		
 		/**
 		 * 获取设施与资源的映射表，得到映射数据

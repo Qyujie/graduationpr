@@ -1,0 +1,120 @@
+<!DOCTYPE HTML> 
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
+      xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>右侧购物车</title>
+	
+	<link rel="stylesheet" href="/common/shoppingCart/css/base.css">
+	<link rel="stylesheet" href="/common/shoppingCart/css/home.css">
+	
+</head>
+<body>
+
+	<div class="global_toolbar">
+		<div class="toolbar_btn center" style="top: 50%; margin-top: -150px;">
+			<a href="#" id="needtohelp_0_GetPricing" class="bar_forum bar_project_consulting">
+				<samp>
+					<i class="iconi icon-LiveChat1">
+						<img src="/common/shoppingCart/images/car-0.png" alt="">
+					</i>
+				</samp>
+				<em>
+					<i>项目咨询</i>
+				</em>
+			</a>
+			<a id="needtohelp_0_shoppingCart" class="bar_cart " data-id="global_toolbar">
+				<samp>
+					<i class="iconi icon-LiveChat1">
+						<img src="/common/shoppingCart/images/car-1.png" alt="">
+					</i>
+				</samp>
+				<em>
+					<i>购物车</i>
+				</em>
+				<span id="lmliCount" style="display: block;">5</span>
+			</a>
+			<a href="#" id="needtohelp_0_forum" class="bar_forum">
+				<samp>
+					<i class="iconi icon-LiveChat1">
+						<img src="/common/shoppingCart/images/car-2.png" alt="">
+					</i>
+				</samp>
+				<em>
+					<i>查找经销商</i>
+				</em>
+			</a>
+			<a href="#" id="needtohelp_0_GetQuote" class="bar_forum bar_inquire">
+				<samp>
+					<i class="iconi icon-LiveChat1">
+						<img src="/common/shoppingCart/images/car-3.png" alt="">
+					</i>
+				</samp>
+				<em>
+					<i>售前咨询</i>
+				</em>
+			</a>
+			<a href="#" id="needtohelp_0_contactus" class="bar_contact bar_forum" data-id="contact_column">
+				<samp>
+					<i class="iconi icon-LiveChat1">
+						<img src="/common/shoppingCart/images/car-4.png" alt="">
+					</i>
+				</samp>
+				<em>
+					<i>更多联系方式</i>
+				</em>
+			</a>
+		</div>
+		<div class="toolbar_content">
+			<div class="css_column cart_column js_column" id="shop_cart">
+				<h4>
+					购物车<a href="javascript:void(0)" class="icon-close ">X</a>
+				</h4>
+				<div id="resultData">
+					<ul style="height: auto;">
+						<li class="clearfix">
+							<input type="checkbox" class="checkbox_c " name="checkbox_c_Name" data-url="" checked="checked">
+							<span class="check"></span>
+							<div class="img_con">
+								<img src="/common/shoppingCart/images/pd1.jpg" alt="">
+							</div>
+							<div class="product_name">
+								<span title="CE12808">CE12808</span>
+								<a href="javascript:void(0)" class="del_pro_btn">删除</a>
+							</div>
+							<div class="amount_btn clearfix">
+								<div class="spinner">
+									<button class="decrease" disabled="disabled">-</button>
+									<input type="text" value="1" class="spinnerExample value" maxlength="2">
+									<button class="increase">+</button>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="count_info clearfix">
+					<label>
+						<input type="checkbox" class="select_all" checked="checked">
+						<span class="check"></span>
+						<span class="text">全选</span>
+					</label>
+					<p>
+						共计： <span>0</span>
+						个产品
+					</p>
+				</div>
+				<div class="more shop-more clearfix">
+					<a href="#" target="">购买更多产品</a>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+
+	<script type="text/javascript" src="/common/shoppingCart/js/common.js"></script>
+
+
+
+</body></html>

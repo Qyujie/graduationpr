@@ -6,6 +6,9 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="shortcut icon" href="images/favicon.png">
+    
+    <script src="/js/jquery/2.0.0/jquery.min.js"></script>
+	<script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
 
     <!-- CSS LIBRARY -->
     <link rel="stylesheet" type="text/css" href="css/lib/font-awesome.min.css">
@@ -25,12 +28,6 @@
 
 <body>
 
-    <!-- PRELOADER -->
-    <div id="preloader">
-        <span class="preloader-dot"></span>
-    </div>
-    <!-- END / PRELOADER -->
-
     <!-- PAGE WRAP -->
     <div id="page-wrap">
 
@@ -39,7 +36,9 @@
         
         <!-- SUB BANNER -->
         <div th:include="common/banner"></div>
-
+        
+         <!-- 购物车 -->
+        <div th:include="common/shoppingCart"></div>
 
         <!-- 搜索 -->
         <section class="section-check-availability">
@@ -126,8 +125,9 @@
   					<thead>
      					<th>房型</th>
           				<th>早餐</th>
+          				<th>入住人数</th>
           				<th>设施服务</th>
-          				<th>政策</th>
+          				<th>退订政策</th>
           				<th>剩余</th>
           				<th>房价（含服务费）</th>
           				<th> </th>
@@ -135,10 +135,11 @@
   					<tbody>
      					<tr th:each="resource:${resources}">
         					<td>
-        						<img width="250px" th:src="@{${resource_imgurl[resource.id+'']}}" alt=""/>
+        						<img width="250px" th:src="@{${resource_roomtype[resource.id+''].imgurl}}" alt=""/>
         						<div th:text="${resource.roomtype}"></div>
         					</td> 
         					<td th:text="${resource.breakfast}"></td> 
+        					<td th:text="${resource_roomtype[resource.id+''].people}"></td>
         					<td>
 								<div th:each="facility:${resource_facilities[resource.id+'']}" th:text="${facility.name}"></div>
           					</td>
@@ -149,8 +150,8 @@
         					<td th:text="${resource.price}"></td> 
         					<td>
                         		<div class="btn-group-vertical" data-toggle="buttons">
-  									<div class="div-btn-reserve">预订</div>
-  									<div class="div-btn-add">添加</div>
+  									<div class="div-btn-reserve" th:value="${resource.id}">预订</div>
+  									<div class="div-btn-add" th:value="${resource.id}">添加</div>
                     			</div>
                     		</td>
      					</tr>

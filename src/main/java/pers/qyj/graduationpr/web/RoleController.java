@@ -87,8 +87,6 @@ public class RoleController {
 
 	@RequestMapping("addRole")
 	public String list(Model model, Role role) {
-		System.out.println(role.getName());
-		System.out.println(role.getDesc_());
 		roleService.add(role);
 		
 		model.addAttribute("requestUrl", "listRole");

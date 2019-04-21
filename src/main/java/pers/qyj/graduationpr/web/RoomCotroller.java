@@ -84,11 +84,11 @@ public class RoomCotroller {
 			resource_policies.put(resource.getId() + "", rpolicies);
 		}
 		
-		Map<String, String> resource_imgurl = new HashMap<>();
+		Map<String, Roomtype> resource_roomtype = new HashMap<>();
 		for (Resource resource : resources) {
 			for(Roomtype roomtype:roomtypes)
 			if(resource.getRoomtype().equals(roomtype.getName())){
-				resource_imgurl.put(resource.getId() + "", roomtype.getImgurl());
+				resource_roomtype.put(resource.getId() + "", roomtype);
 				break;
 			}
 		}
@@ -96,7 +96,7 @@ public class RoomCotroller {
 		model.addAttribute("resources", resources);
 		model.addAttribute("resource_facilities", resource_facilities);
 		model.addAttribute("resource_policies", resource_policies);
-		model.addAttribute("resource_imgurl", resource_imgurl);
+		model.addAttribute("resource_roomtype", resource_roomtype);
 		
 		
 		return "roomInformation";
@@ -123,11 +123,11 @@ public class RoomCotroller {
 		}
 
 		List<Roomtype> roomtypes = roomtypeService.list();
-		Map<String, String> resource_imgurl = new HashMap<>();
+		Map<String, Roomtype> resource_roomtype = new HashMap<>();
 		for (Resource resource : resources) {
 			for(Roomtype rroomtype:roomtypes)
 			if(resource.getRoomtype().equals(rroomtype.getName())){
-				resource_imgurl.put(resource.getId() + "", rroomtype.getImgurl());
+				resource_roomtype.put(resource.getId() + "", rroomtype);
 				break;
 			}
 		}
@@ -136,9 +136,9 @@ public class RoomCotroller {
 		list.add(resources);
 		list.add(resource_facilities);
 		list.add(resource_policies);
-		list.add(resource_imgurl);
+		list.add(resource_roomtype);
 		
 		return list;
-	}  
+	} 
 	
 }

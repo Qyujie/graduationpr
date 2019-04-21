@@ -3,7 +3,7 @@ $(function() {
 	var arrive = null;// 入住时间
 	var departure = null;// 退房时间
 	var adults = null;// 成人人数
-	var children = null;// 小孩人数
+	var children = null;// 儿童人数
 	var roomtype = "";
 	var breakfast = "";
 	var facility = [];
@@ -26,14 +26,18 @@ $(function() {
 	/* 成人人数 */
 	$(".awe-select[name='adults']").change(function() {
 		adults = $(this).val();
-		console.log(adults);
+		if (adults == "成人") {
+			adults = null;
+		}
 		ajax();
 	});
 
-	/* 小孩人数 */
+	/* 儿童人数 */
 	$(".awe-select[name='children']").change(function() {
 		children = $(this).val();
-		console.log(children);
+		if (children == "儿童") {
+			children = null;
+		}
 		ajax();
 	});
 
@@ -94,9 +98,6 @@ $(function() {
 		if(policy.length>text.length){
 			policy.splice(text.length,policy.length-text.length);
 		}
-
-		console.log(text.length);
-		console.log(policy.length);
 		ajax();
 	});
 
@@ -119,20 +120,23 @@ $(function() {
 				$("tbody").empty();
 				
 				for(var resource of list[0]){
+					var id = resource.id;
 					
-					var imgurl = list[3][resource.id];
+					var imgurl = list[3][id].imgurl;
 					
 					var roomtype = resource.roomtype;
 					
 					var breakfast = resource.breakfast;
 					
-					var facilities = list[1][resource.id];
+					var people = list[3][id].people;
+					
+					var facilities = list[1][id];
 					var $facility = "";
 					for(var facility of facilities){
 						$facility += "<div>"+ facility.name +"</div>";
 					}
 					
-					var policies = list[2][resource.id];
+					var policies = list[2][id];
 					var $policy = "";
 					for(var policy of policies){
 						$policy += "<div>"+ policy.name +"</div>";
@@ -149,30 +153,68 @@ $(function() {
 							'	<div>'+ roomtype +'</div>'+
 							'</td> '+
 							'<td>'+ breakfast +'</td>'+
+							'<td>'+ people +'</td>'+
 							'<td>'+ $facility +'</td>'+
 							'<td>'+ $policy +'</td>'+
 		  					'<td>'+ remain +'</td>'+
 							'<td>'+ price +'</td> '+
 							'<td>'+
 		                	'	<div class="btn-group-vertical" data-toggle="buttons">'+
-							'			<div class="div-btn-reserve">预订</div>'+
-							'			<div class="div-btn-add">添加</div>'+
+							'			<div class="div-btn-reserve" value="'+ id +'">预订</div>'+
+							'			<div class="div-btn-add" value="'+ id +'">添加</div>'+
 		            		'	</div>'+
 		            		'</td>'+
 							'</tr>'
 							);
 				}
-				
-//				console.log('resources:');
-//				console.log(list[0]);
-//				console.log('resource_facilities:');
-//				console.log(list[1]);
-//				console.log('resource_policies:');
-//				console.log(list[2]);
-//				console.log('resource_imgurl:');
-//				console.log(list[3]);
 				}
 		});
 	}
+	
+	
+	$("tbody").delegate('.div-btn-add','click',function (){
+		var page = "addShopping";
+		var id = $(this).attr("value"); 
+		$.ajax({
+			url : page,
+			type : "POST",
+			data : {
+				"id" : id ,
+			},
+			success : function(messge) {
+				if(messge[1]==1){
+					$("#resultData ul").append(
+							'<li class="clearfix" value="'+ messge[0] +'">'+
+							'<input type="checkbox" class="checkbox_c " name="checkbox_c_Name" data-url="" checked="checked">'+
+							'<span class="check"></span>'+
+							'<div class="img_con">'+
+							'	<img src="/common/shoppingCart/images/pd1.jpg" alt="">'+
+							'</div>'+
+							'<div class="product_name">'+
+							'	<span title="CE12808">CE12808</span>'+
+							'	<a href="javascript:void(0)" class="del_pro_btn" onclick="">删除</a>'+
+							'</div>'+
+							'<div class="amount_btn clearfix">'+
+							'	<div class="spinner">'+
+							'		<button class="decrease" disabled="disabled">-</button>'+
+							'		<input type="text" value="1" class="spinnerExample value"  maxlength="2">'+
+							'		<button class="increase">+</button>'+
+							'	</div>'+
+							'</div>'+
+							'</li>'
+					);
+				}else{
+					var num = $(".clearfix[value='"+ messge[0] +"'] .spinnerExample").val();
+					console.log(num);
+					num++;
+					$(".clearfix[value='"+ messge[0] +"'] .spinnerExample").val(num);
+					$(".clearfix[value='"+ messge[0] +"'] .spinnerExample").siblings('.decrease').prop("disabled",false);
+				}
+				
+			}
+		});
+		
+		
+	});
 
 });
