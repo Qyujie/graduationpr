@@ -33,7 +33,7 @@
 				<em>
 					<i>购物车</i>
 				</em>
-				<span id="lmliCount" style="display: block;">5</span>
+				<span id="lmliCount" style="display: none;">0</span>
 			</a>
 			<a href="#" id="needtohelp_0_forum" class="bar_forum">
 				<samp>
@@ -73,20 +73,20 @@
 				</h4>
 				<div id="resultData">
 					<ul style="height: auto;">
-						<li class="clearfix">
-							<input type="checkbox" class="checkbox_c " name="checkbox_c_Name" data-url="" checked="checked">
+						<li class="clearfix" th:each="shoppingCart:${shoppingCarts}" th:value=${id_resource[shoppingCart.id].id}>
+							<input type="checkbox" class="checkbox_c " name="checkbox_c_Name" data-url="" checked="checked"/>
 							<span class="check"></span>
 							<div class="img_con">
-								<img src="/common/shoppingCart/images/pd1.jpg" alt="">
+								<img th:src="@{${id_roomtype[shoppingCart.id].imgurl}}" alt=""/>
 							</div>
 							<div class="product_name">
-								<span title="CE12808">CE12808</span>
-								<a href="javascript:void(0)" class="del_pro_btn">删除</a>
+								<span>[[${id_resource[shoppingCart.id].roomtype}+${id_resource[shoppingCart.id].id}]]</span>
+								<a class="del_pro_btn">删除</a>
 							</div>
 							<div class="amount_btn clearfix">
 								<div class="spinner">
-									<button class="decrease" disabled="disabled">-</button>
-									<input type="text" value="1" class="spinnerExample value" maxlength="2">
+									<button class="decrease" th:disabled="${shoppingCart.number}<=1?'true':'false'">-</button>
+									<input type="text" class="spinnerExample value" maxlength="2" th:value="${shoppingCart.number}" />
 									<button class="increase">+</button>
 								</div>
 							</div>
@@ -99,11 +99,13 @@
 						<span class="check"></span>
 						<span class="text">全选</span>
 					</label>
+					<a class="del_all_pro_btn">删除选中</a>
 					<p>
 						共计： <span>0</span>
 						个产品
 					</p>
 				</div>
+				<div class="div-btn-Settlement">结算</div>
 				<div class="more shop-more clearfix">
 					<a href="#" target="">购买更多产品</a>
 				</div>

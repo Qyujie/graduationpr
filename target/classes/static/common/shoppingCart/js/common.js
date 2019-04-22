@@ -85,10 +85,6 @@ $(function() {
                 r = (r = (r = (r = "?" == /\?/.exec(i) ? i + "&hideCompareList=" + t + e + "|" : i + "?hideCompareList=" + t + e + "|").replace("en-GB", "uk")).replace("ru-RU", "ru")).replace("test120.huawei.com/zh", "test120.huawei.com/zh/EBG/Home").replace("test120.huawei.com/cn", "test120.huawei.com/zh/EBG/Home"),
                     window.open(r)
             }
-        }),
-        $(".select_all").click(function() {
-            $("input.checkbox_c").prop("checked", $(this).prop("checked")),
-                countAll();
         });
     $(window).width();
     $("#shop_cart h4 a").click(function() {
@@ -182,7 +178,6 @@ $(function() {
             t.stopPropagation()
         }),
         $(".toolbar_btn a:not('.bar_forum')").bind("click", function(t) {
-        	countAll();
             t.stopPropagation();
             var e = $(this).attr("data-id")
                 , i = $("." + e);
@@ -401,55 +396,3 @@ function closeCart() {
         $(".shopping_btn b").hide(),
         $(".shopping_btn").removeClass("open")
 }
-
-
-function countAll(){
-	var num = 0;
-	var cs = $(".checkbox_c");
-	for(var i=0;i<cs.length;i++){
-		if($(cs[i]).prop("checked")){
-			num++;
-		}
-	}
-	$(".count_info p span").text(num);
-	if(num==cs.length){
-		return true;
-	}else{
-		return false;
-	}
-}
-
-$(function() {
-	$("#resultData ul").delegate('.checkbox_c ','click',function (){
-		if(countAll()){
-			 $("input.select_all").prop("checked",true);
-		}else{
-			$("input.select_all").prop("checked",false);
-		}
-	});
-	
-	$("#resultData ul").delegate('.decrease ','click',function (){
-		var num = $(this).next().val();
-		num--;
-		$(this).next().val(num);
-		if(num<=1){
-			$(this).prop("disabled",true);
-		}
-	});
-	
-	$("#resultData ul").delegate('.increase ','click',function (){
-		var num = $(this).prev().val();
-		num++;
-		$(this).prev().val(num);
-		$(this).siblings('.decrease').prop("disabled",false);
-	});
-	
-	$("#resultData ul").delegate('.spinnerExample ','input propertychange',function (){
-		var num = $(this).val();
-		if(num<=1){
-			$(this).prev().prop("disabled",true);
-		}else{
-			$(this).prev().prop("disabled",false);
-		}
-	});
-});

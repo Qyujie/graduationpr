@@ -42,7 +42,7 @@ public class RoomtypeController {
 	}
 
 	@RequestMapping("editRoomtype")
-	public String list(Model model, Integer id) {
+	public String list(Model model, String name) {
 		String update = "add";
 		Roomtype roomtype = new Roomtype();
 
@@ -50,9 +50,9 @@ public class RoomtypeController {
 		List<Bedtype> bedtypes = bedtypeService.list();
 		model.addAttribute("bedtypes", bedtypes);
 		
-		if (id != null) {
+		if (name.equals("")) {
 			update = "update";
-			roomtype = roomtypeService.get(id);
+			roomtype = roomtypeService.get(name);
 			}
 		
 		Subject subject = SecurityUtils.getSubject();
@@ -84,8 +84,8 @@ public class RoomtypeController {
 	}
 
 	@RequestMapping("deleteRoomtype")
-	public String delete(Model model, int id) {
-		roomtypeService.delete(id);
+	public String delete(Model model, String name) {
+		roomtypeService.delete(name);
 		
 		model.addAttribute("requestUrl", "listRoomtype");
 		

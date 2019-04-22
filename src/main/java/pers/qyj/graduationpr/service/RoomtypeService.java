@@ -10,9 +10,9 @@ public interface RoomtypeService {
 
 	public void add(Roomtype roomtype);
 
-	public void delete(int id);
+	public void delete(String name);
 
-	public Roomtype get(int id);
+	public Roomtype get(String name);
 
 	public void update(Roomtype roomtype);
 }

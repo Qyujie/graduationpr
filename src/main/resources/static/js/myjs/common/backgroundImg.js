@@ -6,7 +6,7 @@ $(function() {
 	var arr = new Array();
 	var imgSize = 11;
 	for(var i=0;i<imgSize;i++){
-		arr[i] = "../img/backgroundImg/img_"+i+".jpg";
+		arr[i] = "../images/backgroundImg/img_"+i+".jpg";
 	}
 	var tf = true;
 	

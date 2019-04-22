@@ -51,7 +51,17 @@ public class PageController {
 	public String index() {
 		return "index";
 	}
-
+	
+	@RequestMapping(value = "/settlement", method = RequestMethod.GET)
+	public String settlement() {
+		return "settlement";
+	}
+	
+	@RequestMapping(value = "/orderSubmission", method = RequestMethod.GET)
+	public String orderSubmission() {
+		return "orderSubmission";
+	}
+	
 	@RequestMapping("unauthorized")
 	public String noPerms() {
 		return "unauthorized";

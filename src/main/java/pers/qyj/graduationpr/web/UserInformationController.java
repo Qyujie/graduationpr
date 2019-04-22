@@ -113,6 +113,9 @@ public class UserInformationController {
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "上传失败," + e.getMessage();
+		}catch (NullPointerException e) {
+			e.printStackTrace();
+			return "-1";
 		}
 	}
 

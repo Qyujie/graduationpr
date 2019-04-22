@@ -1,5 +1,5 @@
 $(function(){
-var $img = $('<img alt="Top_arrow" class="top_arrow" id="top_arrow" src="/img/topButton.png" />');
+var $img = $('<img alt="Top_arrow" class="top_arrow" id="top_arrow" src="/images/topButton.png" />');
 $("body").append($img);
     $(window).scroll(
       function(){

@@ -21,7 +21,7 @@ public class RoomtypeServiceImpl implements RoomtypeService {
 	@Override
 	public List<Roomtype> list() {
 		RoomtypeExample example = new RoomtypeExample();
-		example.setOrderByClause("id");
+		example.setOrderByClause("name");
 		return roomtypeMapper.selectByExample(example);
 	}
 
@@ -31,13 +31,13 @@ public class RoomtypeServiceImpl implements RoomtypeService {
 	}
 
 	@Override
-	public void delete(int id) {
-		roomtypeMapper.deleteByPrimaryKey(id);
+	public void delete(String name) {
+		roomtypeMapper.deleteByPrimaryKey(name);
 	}
 
 	@Override
-	public Roomtype get(int id) {
-		return roomtypeMapper.selectByPrimaryKey(id);
+	public Roomtype get(String name) {
+		return roomtypeMapper.selectByPrimaryKey(name);
 	}
 
 	@Override

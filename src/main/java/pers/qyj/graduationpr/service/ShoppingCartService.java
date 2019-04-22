@@ -8,11 +8,11 @@ public interface ShoppingCartService {
 
 	public List<ShoppingCart> list();
 	
-	public List<ShoppingCart> list(Integer id);
+	public List<ShoppingCart> list(Long uid);
 
-	public int[] add(Long uid,Integer rid);
+	public List<Object> add(Long uid,Integer rid);
 
-	public void delete(Integer id);
+	public void delete(Long uid,Integer rid);
 
-	public void update(ShoppingCart shoppingCart);
+	public void update(Long uid,Integer rid,Integer num);
 }

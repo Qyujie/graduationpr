@@ -6,7 +6,7 @@ body {
     .navtop {
         width: 100%;
         height: 160px;
-        background-image: url("/img/navimg1.jpg");
+        background-image: url("/images/navimg1.jpg");
         background-size: cover;
     }
     

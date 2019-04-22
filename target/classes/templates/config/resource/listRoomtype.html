@@ -26,7 +26,6 @@
         
         <table class="table table-condensed table-striped">
           <tr>
-            <td>id</td>
             <td>房型</td>
             <td>床型</td>
             <td>入住人数</td>
@@ -38,7 +37,6 @@
             <td>删除</td>
           </tr>
             <tr th:each="roomtype:${page.list}">
-              <td th:text="${roomtype.id}"></td>
               <td th:text="${roomtype.name}"></td>
               <td th:text="${roomtype.bedtype}"></td>
               <td th:text="${roomtype.people}"></td>
@@ -46,8 +44,8 @@
               <td th:text="${roomtype.price}"></td>
               <td><a th:href="@{${roomtype.imgurl}}">查看</a></td>
               <td th:text="${roomtype.desc}"></td>
-              <td><a th:href="@{'editRoomtype?id='+${roomtype.id}}">编辑</a></td>
-          	  <td><a th:href="@{'deleteRoomtype?id='+${roomtype.id}}">删除</a></td>
+              <td><a th:href="@{'editRoomtype?id='+${roomtype.name}}">编辑</a></td>
+          	  <td><a th:href="@{'deleteRoomtype?id='+${roomtype.name}}">删除</a></td>
             </tr>
         </table>
 
