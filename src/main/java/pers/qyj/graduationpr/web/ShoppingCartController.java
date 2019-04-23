@@ -64,4 +64,22 @@ public class ShoppingCartController {
 			return -1;
 		}
 	}
+	
+	@RequestMapping("/checkedShopping")
+	@ResponseBody
+	public int checkedShopping(Integer[] rid) {
+		try {
+			if(rid.length>0){
+				Subject subject = SecurityUtils.getSubject();
+				String currentUser = subject.getPrincipal().toString();
+				Long uid = userService.getByName(currentUser).getId();
+				shoppingCartService.updateChecked(uid,rid);
+				return 0;
+			}else{
+				return -2;//未选择
+			}
+		} catch (NullPointerException e) {
+			return -1;
+		}
+	}
 }

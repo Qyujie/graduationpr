@@ -59,6 +59,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 			shoppingCart.setUid(uid);
 			shoppingCart.setRid(rid);
 			shoppingCart.setNumber(1);
+			shoppingCart.setChecked(false);
 			shoppingCartMapper.insert(shoppingCart);
 			
 			
@@ -95,6 +96,24 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 		ShoppingCart shoppingCart = shoppingCartMapper.selectByExample(example).get(0);
 		shoppingCart.setNumber(num);
 		shoppingCartMapper.updateByPrimaryKey(shoppingCart);
+	}
+
+	@Override
+	public void updateChecked(Long uid, Integer[] rid) {
+		ShoppingCartExample example = new ShoppingCartExample();
+		example.createCriteria().andUidEqualTo(uid);
+		
+		List<ShoppingCart> shoppingCarts = shoppingCartMapper.selectByExample(example);
+		
+		for(ShoppingCart shoppingCart:shoppingCarts){
+			for(int i=0;i<rid.length;i++){
+				if(rid[i]==shoppingCart.getRid()){
+					shoppingCart.setChecked(true);
+					shoppingCartMapper.updateByPrimaryKey(shoppingCart);
+					break;
+				}
+			}
+		}
 	}
 
 }

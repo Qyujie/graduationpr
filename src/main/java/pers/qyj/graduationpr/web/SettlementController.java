@@ -2,14 +2,14 @@ package pers.qyj.graduationpr.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class SettlementController {
 	
-	@RequestMapping(value = "/settlements", method = RequestMethod.GET)
-	public String settlements() {
+	@RequestMapping("/settlement")
+	public String settlement() {
 		
-			return "settlements";
+		return "settlement";
 	}
 }

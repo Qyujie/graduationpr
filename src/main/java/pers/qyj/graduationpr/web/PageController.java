@@ -52,12 +52,7 @@ public class PageController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/settlement", method = RequestMethod.GET)
-	public String settlement() {
-		return "settlement";
-	}
-	
-	@RequestMapping(value = "/orderSubmission", method = RequestMethod.GET)
+	@RequestMapping("/orderSubmission")
 	public String orderSubmission() {
 		return "orderSubmission";
 	}

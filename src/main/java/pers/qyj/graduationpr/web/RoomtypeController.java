@@ -31,7 +31,7 @@ public class RoomtypeController {
 			           @RequestParam(value = "start", defaultValue = "0") int start,
 			           @RequestParam(value = "size", defaultValue = "10") int size) 
 			        		   throws Exception {
-		PageHelper.startPage(start,size,"id");
+		PageHelper.startPage(start,size,"name");
 		List<Roomtype> roomtypes = roomtypeService.list();
 		PageInfo<Roomtype> page = new PageInfo<>(roomtypes);
 		model.addAttribute("page", page);  

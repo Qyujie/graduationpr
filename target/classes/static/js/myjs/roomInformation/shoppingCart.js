@@ -151,7 +151,36 @@ $(function() {
 	
 	//结算
 	$(".div-btn-Settlement").click(function() {
-		console.log("结算");
+		var rid = [];
+		for (var i = 0; i < $("#resultData li").length; i++) {
+			if($($("#resultData li").children(".checkbox_c")[i]).prop("checked")){
+				rid.push($($("#resultData li")[i]).attr("value")); 
+			}
+		}
+		if(rid.length>0){
+			var page = "checkedShopping";
+			$.ajax({
+				url : page,
+				type : "GET",
+				data : {
+					"rid" : rid,
+				},
+				traditional : true,// 这里设置为true，不然传不了数组
+				success : function(message) {
+					if(message==-1){
+						console.log("未登录");
+					}
+					if(message==-2){
+						console.log("未选择");
+					}
+					if(message==0){
+						console.log("跳转");
+					}
+				}
+			});
+		}else{
+			console.log("未选择");
+		}
     });
 	
 	//计算选中的物品以及总共有多少物品

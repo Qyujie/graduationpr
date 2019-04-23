@@ -15,4 +15,6 @@ public interface ShoppingCartService {
 	public void delete(Long uid,Integer rid);
 
 	public void update(Long uid,Integer rid,Integer num);
+	
+	public void updateChecked(Long uid,Integer[] rid);
 }
