@@ -394,7 +394,7 @@ em {
 .checkout-goods-box .xm-box {
 	margin-bottom:0
 }
-.checkout-goods-box .xm-box .box-hd {
+.checkout-goods-box{
 	border-bottom:none;
 	margin-bottom:5px
 }

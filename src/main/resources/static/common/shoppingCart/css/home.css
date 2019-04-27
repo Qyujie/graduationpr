@@ -870,7 +870,9 @@ div.more {
 .spinner .error, .spinner .invalid {
 	background: #aa0000
 }
-
+#shop_cart h4 a{
+	cursor: pointer;
+}
 .div-btn-Settlement {
 	background-color: #e50000;
 	border-color: #e50000;

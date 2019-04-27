@@ -6,8 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>右侧购物车</title>
 	
-	<link rel="stylesheet" href="/common/shoppingCart/css/base.css">
-	<link rel="stylesheet" href="/common/shoppingCart/css/home.css">
+	<link rel="stylesheet" href="/common/shoppingCart/css/base.css"/>
+	<link rel="stylesheet" href="/common/shoppingCart/css/home.css"/>
 	
 </head>
 <body>
@@ -31,7 +31,7 @@
 					</i>
 				</samp>
 				<em>
-					<i>购物车</i>
+					<i>预订列表</i>
 				</em>
 				<span id="lmliCount" style="display: none;">0</span>
 			</a>
@@ -69,7 +69,7 @@
 		<div class="toolbar_content">
 			<div class="css_column cart_column js_column" id="shop_cart">
 				<h4>
-					购物车<a href="javascript:void(0)" class="icon-close ">X</a>
+					预订列表<a class="icon-close ">X</a>
 				</h4>
 				<div id="resultData">
 					<ul style="height: auto;">
@@ -85,9 +85,9 @@
 							</div>
 							<div class="amount_btn clearfix">
 								<div class="spinner">
-									<button class="decrease" th:disabled="${shoppingCart.number}<=1?'true':'false'">-</button>
+									<button type="button" class="decrease" th:disabled="${shoppingCart.number}<=1?'true':'false'">-</button>
 									<input type="text" class="spinnerExample value" maxlength="2" th:value="${shoppingCart.number}" />
-									<button class="increase">+</button>
+									<button type="button" class="increase">+</button>
 								</div>
 							</div>
 						</li>
@@ -105,7 +105,7 @@
 						个产品
 					</p>
 				</div>
-				<div class="div-btn-Settlement">结算</div>
+				<div class="div-btn-Settlement">预订</div>
 				<div class="more shop-more clearfix">
 					<a href="#" target="">购买更多产品</a>
 				</div>

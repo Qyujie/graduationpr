@@ -117,7 +117,7 @@ $(function() {
 			},
 			traditional : true,// 这里设置为true，不然传不了数组
 			success : function(list) {
-				$("tbody").empty();
+				$(".roomInformation-tbody").empty();
 				
 				for(var resource of list[0]){
 					var id = resource.id;
@@ -146,7 +146,7 @@ $(function() {
 					var price = resource.price;
 					
 					
-					$("tbody").append(
+					$(".roomInformation-tbody").append(
 							'<tr>'+
 							'<td>'+
 							'	<img width="250px" src="'+ imgurl +'" alt=""/>'+
@@ -157,7 +157,7 @@ $(function() {
 							'<td>'+ $facility +'</td>'+
 							'<td>'+ $policy +'</td>'+
 		  					'<td>'+ remain +'</td>'+
-							'<td>'+ price +'</td> '+
+							'<td>¥'+ price +'</td> '+
 							'<td>'+
 		                	'	<div class="btn-group-vertical" data-toggle="buttons">'+
 							'			<div class="div-btn-reserve" value="'+ id +'">预订</div>'+

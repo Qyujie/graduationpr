@@ -174,7 +174,7 @@ $(function() {
 						console.log("未选择");
 					}
 					if(message==0){
-						console.log("跳转");
+						window.location.href = "settlement";
 					}
 				}
 			});

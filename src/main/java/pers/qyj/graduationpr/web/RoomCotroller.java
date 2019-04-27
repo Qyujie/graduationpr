@@ -123,7 +123,7 @@ public class RoomCotroller {
 			model.addAttribute("id_roomtype", id_roomtype);
 			
 		} catch (NullPointerException e) {
-			System.out.println("未登录");
+			System.out.println("-1");
 		}
 		
 		

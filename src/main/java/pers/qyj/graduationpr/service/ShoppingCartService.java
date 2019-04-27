@@ -9,6 +9,8 @@ public interface ShoppingCartService {
 	public List<ShoppingCart> list();
 	
 	public List<ShoppingCart> list(Long uid);
+	
+	public List<ShoppingCart> list(Long uid,boolean checked);
 
 	public List<Object> add(Long uid,Integer rid);
 

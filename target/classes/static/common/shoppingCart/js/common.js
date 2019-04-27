@@ -374,7 +374,7 @@ function closeContact() {
 }
 function closeCompare() {
     var e = $("#compare_column");
-    winW > 768 ? e.animate({
+    $(window).width() > 768 ? e.animate({
         right: -335
     }, 300) : e.animate({
         right: "-100%"
@@ -383,11 +383,11 @@ function closeCompare() {
         $(".compare_btn").removeClass("open")
 }
 function closeCart() {
-    0 == $(".shopping_all").length ? winW > 768 ? $("#shopping_cart").animate({
+    0 == $(".shopping_all").length ? $(window).width() > 768 ? $("#shopping_cart").animate({
         right: -335
     }, 300) : $("#shopping_cart").animate({
         right: "-100%"
-    }, 300) : winW > 980 ? $("#shopping_cart").animate({
+    }, 300) : $(window).width() > 980 ? $("#shopping_cart").animate({
         right: -335
     }, 300) : $("#shopping_cart").animate({
         right: "-100%"

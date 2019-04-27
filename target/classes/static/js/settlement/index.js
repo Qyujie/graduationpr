@@ -12,7 +12,6 @@ $(document).ready(function(){
     SetFixedButtonsAction(); //设置回到顶部动作及微信动画显示
     SetFloorLunBo();//楼层广告轮播
     SetFixedSearch();//固定顶部搜索
-	SetClassify();//设置顶部商品分类菜单的显示与隐藏
 });
 
 function SetShortCutEffect(){

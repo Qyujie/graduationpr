@@ -803,7 +803,6 @@ a:hover,a:focus {
 	width:308px
 }
 .xm-box {
-	border:1px solid #dfdfdf;
 	background:#fff;
 	_zoom:1
 }
@@ -918,7 +917,76 @@ a:hover,a:focus {
 }
 .xm-plain-box .box-bd {
 	border:1px solid #dfdfdf;
-	background:#fff
+	background:#fff;
+}
+.box-bd {
+	position: relative;
+	}
+.box-bd-item{
+	position: relative;
+	padding: 12px 10px 12px 30px;
+	line-height: 24px;
+	min-height: 24px;
+	font-size: 15px;
+}
+.box-bd-tit{
+	position: absolute;
+	left: 10px;
+	top: 16px;
+}
+.box-bd-item-tit{
+	width: 100px;
+	text-align: right;
+	display: inline-block;
+	float: left;
+}
+.box-bd-item-cont{
+	margin-left: 20px;
+	display: inline-block;
+}
+.spinner{
+	position: relative;
+	top:6px;
+}
+.box-bd-people{
+	position: relative;
+}
+.form_item{
+	display: inline-block;
+}
+.form_item input {
+    padding: 5px 40px 10px 0;
+    height: auto;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ddd;
+}
+.form_item input:focus {
+    animation: input-border-bottom .5s forwards;
+}
+@keyframes input-border-bottom {
+    to {
+        border-bottom: 1px solid #5bc0de;
+    }
+}
+.input-textarea{
+	resize: none;
+	width: 406px;
+}
+.input-textarea:focus{
+	animation: input-textarea .5s forwards;
+}
+@keyframes input-textarea {
+    to {
+        border: 1px solid #5bc0de;
+    }
+}
+.checkout-goods-box .box-hd{
+	border-bottom: none;
+	margin-bottom: 5px;
+}
+.checkout-option-list{
+	margin-top: 20px; 
 }
 .xm-plain-box .box-ft {
 	border-top:1px solid #dfdfdf

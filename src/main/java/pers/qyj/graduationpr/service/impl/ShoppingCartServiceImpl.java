@@ -39,6 +39,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	}
 
 	@Override
+	public List<ShoppingCart> list(Long uid, boolean checked) {
+		ShoppingCartExample example = new ShoppingCartExample();
+		example.createCriteria().andUidEqualTo(uid).andCheckedEqualTo(checked);
+		return shoppingCartMapper.selectByExample(example);
+	}
+
+	@Override
 	public List<Object> add(Long uid, Integer rid) {
 		List<Object> message = new ArrayList<>();
 		ShoppingCartExample example = new ShoppingCartExample();
@@ -77,7 +84,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 			message.add(roomtype);
 		}
 
-		
 		return message;
 	}
 
@@ -113,6 +119,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 					break;
 				}
 			}
+			
 		}
 	}
 
