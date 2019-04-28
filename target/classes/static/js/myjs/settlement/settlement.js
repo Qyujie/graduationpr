@@ -7,7 +7,7 @@ $(function() {
 
 		var num =Number($(this).next().val());
 		if(isNaN(num)){
-			num = 0;
+			num = 1;
 		}else{
 			num--;
 		}
@@ -18,7 +18,7 @@ $(function() {
 		
 		//设置数量改变后的总价
 		$price.text(unitPrice*num);
-		//ajax(num,$(this));
+		updateAjax(num,$(this));
 	});
 	
 	//+
@@ -29,7 +29,7 @@ $(function() {
 
 		var num =Number($(this).prev().val());
 		if(isNaN(num)){
-			num = 0;
+			num = 1;
 		}else{
 			num++;
 		}
@@ -39,7 +39,7 @@ $(function() {
 		
 		//设置数量改变后的总价
 		$price.text(unitPrice*num);
-		//ajax(num,$(this));
+		updateAjax(num,$(this));
 	});
 	
 	//input
@@ -50,7 +50,9 @@ $(function() {
 
 		var num =Number($(this).val());
 		if(isNaN(num)){
-			num = 0;
+			num = 1;
+			$(".spinnerExample").val(num);
+			$(this).prev().prop("disabled",true);
 		}else if(num<=1){
 			$(this).prev().prop("disabled",true);
 		}else{
@@ -59,7 +61,7 @@ $(function() {
 
 		//设置数量改变后的总价
 		$price.text(unitPrice*num);
-		//ajax(Number(num),$(this));
+		updateAjax(num,$(this));
 	});
 
 	 $(".J_optionInvoice").children(".item").on("click", function() {
@@ -87,9 +89,24 @@ $(function() {
 		 $(this).siblings().removeClass("selected");
      });
 	 
-	 function account(num) {
-		 var text = $price.text() * num;
-		 $price.text(text);
+	 function updateAjax(num,object) {
+		 if(typeof num == "number"){
+				var page = "updateShopping";
+				var rid = object.parents(".shoppingId").attr("value");
+				$.ajax({
+					url : page,
+					type : "GET",
+					data : {
+						"num" : num ,
+						"rid" : rid,
+					},
+					success : function(message) {
+						if(message==-1){
+							console.log("未登录");
+						}
+					}
+				});
+			}
 		}
 	 
 });

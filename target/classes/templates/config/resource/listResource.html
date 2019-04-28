@@ -39,10 +39,10 @@
           <td th:text="${resource.roomtype}"></td>
           <td th:text="${resource.breakfast}"></td>
           <td>
-			<div th:each="facility:${resource_facilities[resource.id+'']}" th:text="${facility.name}"></div>
+			<div th:each="facility:${resource_facilities[resource.id]}" th:text="${facility.name}"></div>
           </td>
           <td>
-			<div th:each="policy:${resource_policies[resource.id+'']}" th:text="${policy.name}"></div>
+			<div th:each="policy:${resource_policies[resource.id]}" th:text="${policy.name}"></div>
           </td>
           <td th:text="${resource.price}"></td>
           <td><a th:href="@{'editResource?id='+${resource.id}}">编辑</a></td>

@@ -1,6 +1,7 @@
 package pers.qyj.graduationpr.pojo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ResourceSignExample {
@@ -264,6 +265,76 @@ public class ResourceSignExample {
             return (Criteria) this;
         }
 
+        public Criteria andOsignIsNull() {
+            addCriterion("osign is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOsignIsNotNull() {
+            addCriterion("osign is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOsignEqualTo(String value) {
+            addCriterion("osign =", value, "osign");
+            return (Criteria) this;
+        }
+
+        public Criteria andOsignNotEqualTo(String value) {
+            addCriterion("osign <>", value, "osign");
+            return (Criteria) this;
+        }
+
+        public Criteria andOsignGreaterThan(String value) {
+            addCriterion("osign >", value, "osign");
+            return (Criteria) this;
+        }
+
+        public Criteria andOsignGreaterThanOrEqualTo(String value) {
+            addCriterion("osign >=", value, "osign");
+            return (Criteria) this;
+        }
+
+        public Criteria andOsignLessThan(String value) {
+            addCriterion("osign <", value, "osign");
+            return (Criteria) this;
+        }
+
+        public Criteria andOsignLessThanOrEqualTo(String value) {
+            addCriterion("osign <=", value, "osign");
+            return (Criteria) this;
+        }
+
+        public Criteria andOsignLike(String value) {
+            addCriterion("osign like", value, "osign");
+            return (Criteria) this;
+        }
+
+        public Criteria andOsignNotLike(String value) {
+            addCriterion("osign not like", value, "osign");
+            return (Criteria) this;
+        }
+
+        public Criteria andOsignIn(List<String> values) {
+            addCriterion("osign in", values, "osign");
+            return (Criteria) this;
+        }
+
+        public Criteria andOsignNotIn(List<String> values) {
+            addCriterion("osign not in", values, "osign");
+            return (Criteria) this;
+        }
+
+        public Criteria andOsignBetween(String value1, String value2) {
+            addCriterion("osign between", value1, value2, "osign");
+            return (Criteria) this;
+        }
+
+        public Criteria andOsignNotBetween(String value1, String value2) {
+            addCriterion("osign not between", value1, value2, "osign");
+            return (Criteria) this;
+        }
+
         public Criteria andReidIsNull() {
             addCriterion("reid is null");
             return (Criteria) this;
@@ -321,6 +392,186 @@ public class ResourceSignExample {
 
         public Criteria andReidNotBetween(Integer value1, Integer value2) {
             addCriterion("reid not between", value1, value2, "reid");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateIsNull() {
+            addCriterion("arrival_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateIsNotNull() {
+            addCriterion("arrival_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateEqualTo(Date value) {
+            addCriterion("arrival_date =", value, "arrivalDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateNotEqualTo(Date value) {
+            addCriterion("arrival_date <>", value, "arrivalDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateGreaterThan(Date value) {
+            addCriterion("arrival_date >", value, "arrivalDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("arrival_date >=", value, "arrivalDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateLessThan(Date value) {
+            addCriterion("arrival_date <", value, "arrivalDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateLessThanOrEqualTo(Date value) {
+            addCriterion("arrival_date <=", value, "arrivalDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateIn(List<Date> values) {
+            addCriterion("arrival_date in", values, "arrivalDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateNotIn(List<Date> values) {
+            addCriterion("arrival_date not in", values, "arrivalDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateBetween(Date value1, Date value2) {
+            addCriterion("arrival_date between", value1, value2, "arrivalDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateNotBetween(Date value1, Date value2) {
+            addCriterion("arrival_date not between", value1, value2, "arrivalDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateIsNull() {
+            addCriterion("depature_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateIsNotNull() {
+            addCriterion("depature_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateEqualTo(Date value) {
+            addCriterion("depature_date =", value, "depatureDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateNotEqualTo(Date value) {
+            addCriterion("depature_date <>", value, "depatureDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateGreaterThan(Date value) {
+            addCriterion("depature_date >", value, "depatureDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("depature_date >=", value, "depatureDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateLessThan(Date value) {
+            addCriterion("depature_date <", value, "depatureDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateLessThanOrEqualTo(Date value) {
+            addCriterion("depature_date <=", value, "depatureDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateIn(List<Date> values) {
+            addCriterion("depature_date in", values, "depatureDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateNotIn(List<Date> values) {
+            addCriterion("depature_date not in", values, "depatureDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateBetween(Date value1, Date value2) {
+            addCriterion("depature_date between", value1, value2, "depatureDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateNotBetween(Date value1, Date value2) {
+            addCriterion("depature_date not between", value1, value2, "depatureDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIsNull() {
+            addCriterion("status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIsNotNull() {
+            addCriterion("status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusEqualTo(Integer value) {
+            addCriterion("status =", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotEqualTo(Integer value) {
+            addCriterion("status <>", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThan(Integer value) {
+            addCriterion("status >", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("status >=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThan(Integer value) {
+            addCriterion("status <", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("status <=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIn(List<Integer> values) {
+            addCriterion("status in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotIn(List<Integer> values) {
+            addCriterion("status not in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusBetween(Integer value1, Integer value2) {
+            addCriterion("status between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("status not between", value1, value2, "status");
             return (Criteria) this;
         }
     }

@@ -1,6 +1,11 @@
 package pers.qyj.graduationpr.web;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,12 +23,14 @@ import pers.qyj.graduationpr.pojo.Breakfast;
 import pers.qyj.graduationpr.pojo.Facility;
 import pers.qyj.graduationpr.pojo.Policy;
 import pers.qyj.graduationpr.pojo.Resource;
+import pers.qyj.graduationpr.pojo.ResourceSign;
 import pers.qyj.graduationpr.pojo.Roomtype;
 import pers.qyj.graduationpr.pojo.ShoppingCart;
 import pers.qyj.graduationpr.service.BreakfastService;
 import pers.qyj.graduationpr.service.FacilityService;
 import pers.qyj.graduationpr.service.PolicyService;
 import pers.qyj.graduationpr.service.ResourceService;
+import pers.qyj.graduationpr.service.ResourceSignService;
 import pers.qyj.graduationpr.service.RoomtypeService;
 import pers.qyj.graduationpr.service.ShoppingCartService;
 import pers.qyj.graduationpr.service.UserService;
@@ -44,6 +51,8 @@ public class RoomCotroller {
 	UserService userService;
 	@Autowired
 	ShoppingCartService shoppingCartService;
+	@Autowired
+	ResourceSignService resourceSignService;
 	
 	@RequestMapping("/room")
 	public String room(Model model){
@@ -60,7 +69,7 @@ public class RoomCotroller {
 	
 	@RequestMapping("/roomInformation")
 	public String roomInformation(Model model,
-			 @RequestParam(value = "roomName", defaultValue = "") String roomName){
+			 @RequestParam(value = "roomName", defaultValue = "") String roomName) throws Exception{
 		
 		List<Roomtype> roomtypes = roomtypeService.list();
 		List<Breakfast> breakfasts = breakfastService.list();
@@ -80,31 +89,55 @@ public class RoomCotroller {
 			resources = resourceService.list(roomName);
 		}
 
-		Map<String, List<Facility>> resource_facilities = new HashMap<>();
+		Map<Integer, List<Facility>> resource_facilities = new HashMap<>();
 		for (Resource resource : resources) {
 			List<Facility> rfacilities = facilityService.listFacilities(resource);
-			resource_facilities.put(resource.getId() + "", rfacilities);
+			resource_facilities.put(resource.getId(), rfacilities);
 		}
 
-		Map<String, List<Policy>> resource_policies = new HashMap<>();
+		Map<Integer, List<Policy>> resource_policies = new HashMap<>();
 		for (Resource resource : resources) {
 			List<Policy> rpolicies = policyService.listPolicies(resource);
-			resource_policies.put(resource.getId() + "", rpolicies);
+			resource_policies.put(resource.getId(), rpolicies);
 		}
 		
-		Map<String, Roomtype> resource_roomtype = new HashMap<>();
+		Map<Integer, Roomtype> resource_roomtype = new HashMap<>();
 		for (Resource resource : resources) {
 			for(Roomtype roomtype:roomtypes)
 			if(resource.getRoomtype().equals(roomtype.getName())){
-				resource_roomtype.put(resource.getId() + "", roomtype);
+				resource_roomtype.put(resource.getId(), roomtype);
 				break;
 			}
+		}
+		
+		Map<Integer, Integer> resource_remain = new HashMap<>();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+		Date arrivalDate = sdf.parse(sdf.format(new Date()));
+		
+		Calendar calendar = new GregorianCalendar();
+		calendar.setTime(new Date());
+		calendar.add(Calendar.DATE,1);
+		Date depatureDate = sdf.parse(sdf2.format(calendar.getTime())+" 12:00:00");
+		
+		List<ResourceSign> resourceSigns = resourceSignService.listOccupy((java.sql.Date)arrivalDate,(java.sql.Date) depatureDate);
+		
+		for (Resource resource : resources) {
+			int tatal = resource.getTotal();
+			for(ResourceSign resourceSign : resourceSigns){
+				if(resource.getId()==resourceSign.getReid()){
+					tatal--;
+				}
+			}
+			resource_remain.put(resource.getId(), tatal);
 		}
 		
 		model.addAttribute("resources", resources);
 		model.addAttribute("resource_facilities", resource_facilities);
 		model.addAttribute("resource_policies", resource_policies);
 		model.addAttribute("resource_roomtype", resource_roomtype);
+		model.addAttribute("resource_remain", resource_remain);
 		
 		try {
 			Subject subject = SecurityUtils.getSubject();
@@ -138,24 +171,24 @@ public class RoomCotroller {
 		
 		resources = resourceService.list(arrive,departure,adults,children,roomtype,breakfast,facility,policy);
 		
-		Map<String, List<Facility>> resource_facilities = new HashMap<>();
+		Map<Integer, List<Facility>> resource_facilities = new HashMap<>();
 		for (Resource resource : resources) {
 			List<Facility> rfacilities = facilityService.listFacilities(resource);
-			resource_facilities.put(resource.getId() + "", rfacilities);
+			resource_facilities.put(resource.getId(), rfacilities);
 		}
 
-		Map<String, List<Policy>> resource_policies = new HashMap<>();
+		Map<Integer, List<Policy>> resource_policies = new HashMap<>();
 		for (Resource resource : resources) {
 			List<Policy> rpolicies = policyService.listPolicies(resource);
-			resource_policies.put(resource.getId() + "", rpolicies);
+			resource_policies.put(resource.getId(), rpolicies);
 		}
 
 		List<Roomtype> roomtypes = roomtypeService.list();
-		Map<String, Roomtype> resource_roomtype = new HashMap<>();
+		Map<Integer, Roomtype> resource_roomtype = new HashMap<>();
 		for (Resource resource : resources) {
 			for(Roomtype rroomtype:roomtypes)
 			if(resource.getRoomtype().equals(rroomtype.getName())){
-				resource_roomtype.put(resource.getId() + "", rroomtype);
+				resource_roomtype.put(resource.getId(), rroomtype);
 				break;
 			}
 		}

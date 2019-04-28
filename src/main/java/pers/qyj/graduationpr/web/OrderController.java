@@ -32,16 +32,16 @@ public class OrderController {
 		model.addAttribute("orders", orders);
 
 		Map<String, List<Resource>> order_resources = new HashMap<>();
-		Map<String, String> resource_number = new HashMap<>();
+		Map<Integer, Integer> resource_number = new HashMap<>();
 
 		for (Order order : orders) {
 			List<Resource> resources = resourceService.list(order);
 			List<ResourceOrder> resourceOrders = resourceOrderService.list(order);
-			order_resources.put(order.getId() + "", resources);
+			order_resources.put(order.getSign(), resources);
 			for (Resource resource : resources) {
 				for (ResourceOrder resourceOrder : resourceOrders) {
 					if (resource.getId().equals(resourceOrder.getReid())) {
-						resource_number.put(resource.getId() + "", resourceOrder.getNumber() + "");
+						resource_number.put(resource.getId(), resourceOrder.getNumber());
 					}
 				}
 			}

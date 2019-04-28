@@ -25,7 +25,6 @@
     <div class="workingroom">
       <table class="table table-condensed table-striped">
       	<tr>
-          <td>id</td>
           <td>订单号</td>
           <td>订单详情</td>
           <td>交易状态</td>
@@ -36,18 +35,17 @@
           <td>删除</td>
         </tr>
         <tr th:each="order:${orders}">
-          <td th:text="${order.id}"></td>
           <td th:text="${order.sign}"></td>
           <td>
-			<div th:each="order_resource:${order_resources[order.id+'']}" 
-				 th:text="${order_resource.roomtype + '*' + resource_number[order_resource.id+'']}"></div>
+			<div th:each="order_resource:${order_resources[order.sign]}" 
+				 th:text="${order_resource.roomtype + '*' + resource_number[order_resource.id]}"></div>
           </td>
           <td th:text="${order.tradeStatus}"></td>
           <td th:text="${order.payStatus}"></td>
           <td th:text="${order.userName}"></td>
           <td th:text="${order.date}"></td>
-          <td><a th:href="@{'editOrder?id='+${order.id}}">处理</a></td>
-          <td><a th:href="@{'deleteOrder?id='+${order.id}}">删除</a></td>
+          <td><a th:href="@{'editOrder?id='+${order.sign}}">处理</a></td>
+          <td><a th:href="@{'deleteOrder?id='+${order.sign}}">删除</a></td>
         </tr>
       </table>
 

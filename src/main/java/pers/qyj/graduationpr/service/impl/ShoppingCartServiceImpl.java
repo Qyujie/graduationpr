@@ -112,14 +112,18 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 		List<ShoppingCart> shoppingCarts = shoppingCartMapper.selectByExample(example);
 		
 		for(ShoppingCart shoppingCart:shoppingCarts){
+			boolean have = false;
 			for(int i=0;i<rid.length;i++){
 				if(rid[i]==shoppingCart.getRid()){
 					shoppingCart.setChecked(true);
-					shoppingCartMapper.updateByPrimaryKey(shoppingCart);
+					have = true;
 					break;
 				}
 			}
-			
+			if(!have){
+				shoppingCart.setChecked(false);
+			}
+			shoppingCartMapper.updateByPrimaryKey(shoppingCart);
 		}
 	}
 

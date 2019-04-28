@@ -131,18 +131,18 @@
   					<tbody class="roomInformation-tbody">
      					<tr th:each="resource:${resources}">
         					<td>
-        						<img width="250px" th:src="@{${resource_roomtype[resource.id+''].imgurl}}" alt=""/>
+        						<img width="250px" th:src="@{${resource_roomtype[resource.id].imgurl}}" alt=""/>
         						<div th:text="${resource.roomtype}"></div>
         					</td> 
         					<td th:text="${resource.breakfast}"></td> 
-        					<td th:text="${resource_roomtype[resource.id+''].people}"></td>
+        					<td th:text="${resource_roomtype[resource.id].people}"></td>
         					<td>
-								<div th:each="facility:${resource_facilities[resource.id+'']}" th:text="${facility.name}"></div>
+								<div th:each="facility:${resource_facilities[resource.id]}" th:text="${facility.name}"></div>
           					</td>
           					<td>
-								<div th:each="policy:${resource_policies[resource.id+'']}" th:text="${policy.name}"></div>
+								<div th:each="policy:${resource_policies[resource.id]}" th:text="${policy.name}"></div>
           					</td>
-          					<td th:text="${resource.remain}"></td>
+          					<td th:text="${resource_remain[resource.id]}"></td>
         					<td th:text="'¥'+${resource.price}"></td> 
         					<td>
                         		<div class="btn-group-vertical" data-toggle="buttons">

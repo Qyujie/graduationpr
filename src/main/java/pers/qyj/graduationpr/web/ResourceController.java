@@ -59,17 +59,17 @@ public class ResourceController {
 		List<Resource> resources = resourceService.list();
 		model.addAttribute("resources", resources);
 
-		Map<String, List<Facility>> resource_facilities = new HashMap<>();
+		Map<Integer, List<Facility>> resource_facilities = new HashMap<>();
 		for (Resource resource : resources) {
 			List<Facility> facilities = facilityService.listFacilities(resource);
-			resource_facilities.put(resource.getId() + "", facilities);
+			resource_facilities.put(resource.getId(), facilities);
 		}
 		model.addAttribute("resource_facilities", resource_facilities);
 
-		Map<String, List<Policy>> resource_policies = new HashMap<>();
+		Map<Integer, List<Policy>> resource_policies = new HashMap<>();
 		for (Resource resource : resources) {
 			List<Policy> policies = policyService.listPolicies(resource);
-			resource_policies.put(resource.getId() + "", policies);
+			resource_policies.put(resource.getId(), policies);
 		}
 		model.addAttribute("resource_policies", resource_policies);
 		

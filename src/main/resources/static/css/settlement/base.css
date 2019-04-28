@@ -932,13 +932,15 @@ a:hover,a:focus {
 .box-bd-tit{
 	position: absolute;
 	left: 10px;
-	top: 16px;
+	top: 14px;
+	color: #999;
 }
 .box-bd-item-tit{
 	width: 100px;
 	text-align: right;
 	display: inline-block;
 	float: left;
+	color: #999;
 }
 .box-bd-item-cont{
 	margin-left: 20px;
@@ -955,7 +957,7 @@ a:hover,a:focus {
 	display: inline-block;
 }
 .form_item input {
-    padding: 5px 40px 10px 0;
+    padding: 0 40px 10px 0;
     height: auto;
     width: 100%;
     border: none;

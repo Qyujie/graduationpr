@@ -454,63 +454,63 @@ public class ResourceExample {
             return (Criteria) this;
         }
 
-        public Criteria andRemainIsNull() {
-            addCriterion("remain is null");
+        public Criteria andTotalIsNull() {
+            addCriterion("total is null");
             return (Criteria) this;
         }
 
-        public Criteria andRemainIsNotNull() {
-            addCriterion("remain is not null");
+        public Criteria andTotalIsNotNull() {
+            addCriterion("total is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRemainEqualTo(Integer value) {
-            addCriterion("remain =", value, "remain");
+        public Criteria andTotalEqualTo(Integer value) {
+            addCriterion("total =", value, "total");
             return (Criteria) this;
         }
 
-        public Criteria andRemainNotEqualTo(Integer value) {
-            addCriterion("remain <>", value, "remain");
+        public Criteria andTotalNotEqualTo(Integer value) {
+            addCriterion("total <>", value, "total");
             return (Criteria) this;
         }
 
-        public Criteria andRemainGreaterThan(Integer value) {
-            addCriterion("remain >", value, "remain");
+        public Criteria andTotalGreaterThan(Integer value) {
+            addCriterion("total >", value, "total");
             return (Criteria) this;
         }
 
-        public Criteria andRemainGreaterThanOrEqualTo(Integer value) {
-            addCriterion("remain >=", value, "remain");
+        public Criteria andTotalGreaterThanOrEqualTo(Integer value) {
+            addCriterion("total >=", value, "total");
             return (Criteria) this;
         }
 
-        public Criteria andRemainLessThan(Integer value) {
-            addCriterion("remain <", value, "remain");
+        public Criteria andTotalLessThan(Integer value) {
+            addCriterion("total <", value, "total");
             return (Criteria) this;
         }
 
-        public Criteria andRemainLessThanOrEqualTo(Integer value) {
-            addCriterion("remain <=", value, "remain");
+        public Criteria andTotalLessThanOrEqualTo(Integer value) {
+            addCriterion("total <=", value, "total");
             return (Criteria) this;
         }
 
-        public Criteria andRemainIn(List<Integer> values) {
-            addCriterion("remain in", values, "remain");
+        public Criteria andTotalIn(List<Integer> values) {
+            addCriterion("total in", values, "total");
             return (Criteria) this;
         }
 
-        public Criteria andRemainNotIn(List<Integer> values) {
-            addCriterion("remain not in", values, "remain");
+        public Criteria andTotalNotIn(List<Integer> values) {
+            addCriterion("total not in", values, "total");
             return (Criteria) this;
         }
 
-        public Criteria andRemainBetween(Integer value1, Integer value2) {
-            addCriterion("remain between", value1, value2, "remain");
+        public Criteria andTotalBetween(Integer value1, Integer value2) {
+            addCriterion("total between", value1, value2, "total");
             return (Criteria) this;
         }
 
-        public Criteria andRemainNotBetween(Integer value1, Integer value2) {
-            addCriterion("remain not between", value1, value2, "remain");
+        public Criteria andTotalNotBetween(Integer value1, Integer value2) {
+            addCriterion("total not between", value1, value2, "total");
             return (Criteria) this;
         }
 
@@ -581,66 +581,6 @@ public class ResourceExample {
 
         public Criteria andDescNotBetween(String value1, String value2) {
             addCriterion("desc_ not between", value1, value2, "desc");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusIsNull() {
-            addCriterion("status is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusIsNotNull() {
-            addCriterion("status is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusEqualTo(Integer value) {
-            addCriterion("status =", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusNotEqualTo(Integer value) {
-            addCriterion("status <>", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusGreaterThan(Integer value) {
-            addCriterion("status >", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
-            addCriterion("status >=", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusLessThan(Integer value) {
-            addCriterion("status <", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusLessThanOrEqualTo(Integer value) {
-            addCriterion("status <=", value, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusIn(List<Integer> values) {
-            addCriterion("status in", values, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusNotIn(List<Integer> values) {
-            addCriterion("status not in", values, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusBetween(Integer value1, Integer value2) {
-            addCriterion("status between", value1, value2, "status");
-            return (Criteria) this;
-        }
-
-        public Criteria andStatusNotBetween(Integer value1, Integer value2) {
-            addCriterion("status not between", value1, value2, "status");
             return (Criteria) this;
         }
     }

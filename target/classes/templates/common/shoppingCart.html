@@ -73,7 +73,7 @@
 				</h4>
 				<div id="resultData">
 					<ul style="height: auto;">
-						<li class="clearfix" th:each="shoppingCart:${shoppingCarts}" th:value=${id_resource[shoppingCart.id].id}>
+						<li class="clearfix" th:each="shoppingCart:${shoppingCarts}" th:value="${id_resource[shoppingCart.id].id}">
 							<input type="checkbox" class="checkbox_c " name="checkbox_c_Name" data-url="" checked="checked"/>
 							<span class="check"></span>
 							<div class="img_con">
