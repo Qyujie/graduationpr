@@ -1,6 +1,7 @@
 package pers.qyj.graduationpr.pojo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ShoppingCartExample {
@@ -371,6 +372,126 @@ public class ShoppingCartExample {
 
         public Criteria andRidNotBetween(Integer value1, Integer value2) {
             addCriterion("rid not between", value1, value2, "rid");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateIsNull() {
+            addCriterion("arrival_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateIsNotNull() {
+            addCriterion("arrival_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateEqualTo(Date value) {
+            addCriterion("arrival_date =", value, "arrivalDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateNotEqualTo(Date value) {
+            addCriterion("arrival_date <>", value, "arrivalDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateGreaterThan(Date value) {
+            addCriterion("arrival_date >", value, "arrivalDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("arrival_date >=", value, "arrivalDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateLessThan(Date value) {
+            addCriterion("arrival_date <", value, "arrivalDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateLessThanOrEqualTo(Date value) {
+            addCriterion("arrival_date <=", value, "arrivalDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateIn(List<Date> values) {
+            addCriterion("arrival_date in", values, "arrivalDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateNotIn(List<Date> values) {
+            addCriterion("arrival_date not in", values, "arrivalDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateBetween(Date value1, Date value2) {
+            addCriterion("arrival_date between", value1, value2, "arrivalDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andArrivalDateNotBetween(Date value1, Date value2) {
+            addCriterion("arrival_date not between", value1, value2, "arrivalDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateIsNull() {
+            addCriterion("depature_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateIsNotNull() {
+            addCriterion("depature_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateEqualTo(Date value) {
+            addCriterion("depature_date =", value, "depatureDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateNotEqualTo(Date value) {
+            addCriterion("depature_date <>", value, "depatureDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateGreaterThan(Date value) {
+            addCriterion("depature_date >", value, "depatureDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("depature_date >=", value, "depatureDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateLessThan(Date value) {
+            addCriterion("depature_date <", value, "depatureDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateLessThanOrEqualTo(Date value) {
+            addCriterion("depature_date <=", value, "depatureDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateIn(List<Date> values) {
+            addCriterion("depature_date in", values, "depatureDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateNotIn(List<Date> values) {
+            addCriterion("depature_date not in", values, "depatureDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateBetween(Date value1, Date value2) {
+            addCriterion("depature_date between", value1, value2, "depatureDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepatureDateNotBetween(Date value1, Date value2) {
+            addCriterion("depature_date not between", value1, value2, "depatureDate");
             return (Criteria) this;
         }
 

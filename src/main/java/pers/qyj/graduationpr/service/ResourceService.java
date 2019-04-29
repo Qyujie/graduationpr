@@ -24,6 +24,6 @@ public interface ResourceService {
 
 	public void update(Resource resource);
 
-	public List<Resource> list(String arrive, String departure, Integer adults, Integer children, String roomtype,
+	public List<Resource> list(Integer adults, Integer children, String roomtype,
 			String breakfast, Integer[] facility, Integer[] policy);
 }

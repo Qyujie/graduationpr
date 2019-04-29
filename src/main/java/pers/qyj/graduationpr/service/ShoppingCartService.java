@@ -1,5 +1,6 @@
 package pers.qyj.graduationpr.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import pers.qyj.graduationpr.pojo.ShoppingCart;
@@ -12,11 +13,16 @@ public interface ShoppingCartService {
 	
 	public List<ShoppingCart> list(Long uid,boolean checked);
 
-	public List<Object> add(Long uid,Integer rid);
+	public List<Object> add(Long uid,Integer rid,Date arrivalDate,Date depatureDate);
 
-	public void delete(Long uid,Integer rid);
+	public void delete(Integer rid);
 
-	public void update(Long uid,Integer rid,Integer num);
+	public void updateNumber(Integer id,Integer num);
 	
-	public void updateChecked(Long uid,Integer[] rid);
+	public void updateChecked(Long uid,Integer[] id);
+
+	public void updateDate(Integer id, Date arrivalDate, Date depatureDate);
+
+	public Integer getRidByid(Integer id);
+
 }

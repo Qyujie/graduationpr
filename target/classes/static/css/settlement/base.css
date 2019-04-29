@@ -496,10 +496,12 @@ a:hover,a:focus {
 }
 .modal {
 	position:fixed !important;
-	top:50%;
+	top:70%;
 	left:50%;
 	z-index:1050;
+	height:250px;
 	width:590px;
+	padding-left: 0px !important;
 	margin-left:-295px;
 	margin-top:-260px;
 	_position:absolute;
@@ -509,7 +511,8 @@ a:hover,a:focus {
 	-webkit-background-clip:padding-box;
 	-moz-background-clip:padding-box;
 	background-clip:padding-box;
-	outline:none
+	outline:none;
+	border: 5px solid #cfd8dc;
 }
 .modal.fade {
 	-webkit-transition:opacity .3s linear,top .3s ease-out;
@@ -527,10 +530,9 @@ a:hover,a:focus {
 	width:60px;
 	height:60px;
 	line-height:60px;
-	background-color:#8c8c8c;
 	position:absolute;
 	top:0;
-	right:-60px;
+	right:0px;
 	text-align:center;
 	cursor:pointer
 }
@@ -539,15 +541,12 @@ a:hover,a:focus {
 	font-size:26px;
 	font-weight:normal
 }
-.modal .close:hover {
-	background-color:#6d6d6d
-}
 .modal-header {
-	height:58px;
-	padding-top:2px;
-	margin:0 30px;
-	border-bottom:1px solid #ddd;
-	position:relative
+	height: 58px;
+	padding: 20px;
+	margin: 0 30px;
+	border-bottom: 1px solid #ddd;
+	position: relative;
 }
 .modal-header h3 {
 	margin:0;
@@ -555,9 +554,7 @@ a:hover,a:focus {
 	font-size:18px;
 	color:#333
 }
-.modal-header .close {
-	right:-90px
-}
+
 .modal-body {
 	position:relative;
 	max-height:400px;
@@ -2526,4 +2523,21 @@ a:hover,a:focus {
 }
 }
 
-.yHeader{ display:none;}
+.yHeader{ 
+	display:none;
+}
+.f-to-line{
+	color: #b0bec5;
+}
+.f-to span{
+	color: #999;
+}
+.f-to-btn{
+	margin-left:5px;
+	font-size:12px;
+	color: #ff4646;
+	cursor: pointer;
+}
+.availability-form{
+	text-align: center;
+}

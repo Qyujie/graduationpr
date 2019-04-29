@@ -1,5 +1,6 @@
 package pers.qyj.graduationpr.service.impl;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,10 +47,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	}
 
 	@Override
-	public List<Object> add(Long uid, Integer rid) {
+	public List<Object> add(Long uid, Integer rid ,Date arrivalDate,Date depatureDate) {
 		List<Object> message = new ArrayList<>();
 		ShoppingCartExample example = new ShoppingCartExample();
-		example.createCriteria().andUidEqualTo(uid).andRidEqualTo(rid);
+		example.createCriteria().andUidEqualTo(uid)
+								.andRidEqualTo(rid)
+								.andArrivalDateEqualTo(arrivalDate)
+								.andDepatureDateEqualTo(depatureDate);
 		List<ShoppingCart> shoppingCarts = shoppingCartMapper.selectByExample(example);
 		
 		ShoppingCart shoppingCart = new ShoppingCart();
@@ -60,11 +64,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 			shoppingCart.setNumber(total);
 			shoppingCartMapper.updateByPrimaryKey(shoppingCart);
 			
-			message.add(0);
-			message.add(rid);
+			message.add(0);//表示没有增加数据，而只是修改了数据
+			message.add(shoppingCart);
 		}else{
 			shoppingCart.setUid(uid);
 			shoppingCart.setRid(rid);
+			shoppingCart.setArrivalDate(arrivalDate);
+			shoppingCart.setDepatureDate(depatureDate);
 			shoppingCart.setNumber(1);
 			shoppingCart.setChecked(false);
 			shoppingCartMapper.insert(shoppingCart);
@@ -79,8 +85,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 			Roomtype roomtype = new Roomtype();
 			roomtype = roomtypeMapper.selectByExample(roomtypeExample).get(0);
 			
-			message.add(1);
-			message.add(rid);
+			message.add(1);//表示增加了一条数据
+			message.add(shoppingCart);
 			message.add(roomtype);
 		}
 
@@ -88,24 +94,19 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	}
 
 	@Override
-	public void delete(Long uid,Integer rid) {
-		ShoppingCartExample example = new ShoppingCartExample();
-		example.createCriteria().andUidEqualTo(uid).andRidEqualTo(rid);
-		ShoppingCart shoppingCart = shoppingCartMapper.selectByExample(example).get(0);
-		shoppingCartMapper.deleteByPrimaryKey(shoppingCart.getId());
+	public void delete(Integer id) {
+		shoppingCartMapper.deleteByPrimaryKey(id);
 	}
 
 	@Override
-	public void update(Long uid,Integer rid,Integer num) {
-		ShoppingCartExample example = new ShoppingCartExample();
-		example.createCriteria().andUidEqualTo(uid).andRidEqualTo(rid);
-		ShoppingCart shoppingCart = shoppingCartMapper.selectByExample(example).get(0);
+	public void updateNumber(Integer id,Integer num) {
+		ShoppingCart shoppingCart = shoppingCartMapper.selectByPrimaryKey(id);
 		shoppingCart.setNumber(num);
 		shoppingCartMapper.updateByPrimaryKey(shoppingCart);
 	}
 
 	@Override
-	public void updateChecked(Long uid, Integer[] rid) {
+	public void updateChecked(Long uid ,Integer[] id) {
 		ShoppingCartExample example = new ShoppingCartExample();
 		example.createCriteria().andUidEqualTo(uid);
 		
@@ -113,8 +114,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 		
 		for(ShoppingCart shoppingCart:shoppingCarts){
 			boolean have = false;
-			for(int i=0;i<rid.length;i++){
-				if(rid[i]==shoppingCart.getRid()){
+			for(int i=0;i<id.length;i++){
+				if(id[i]==shoppingCart.getId()){
 					shoppingCart.setChecked(true);
 					have = true;
 					break;
@@ -125,6 +126,20 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 			}
 			shoppingCartMapper.updateByPrimaryKey(shoppingCart);
 		}
+	}
+
+	@Override
+	public void updateDate(Integer id, Date arrivalDate, Date depatureDate) {
+		ShoppingCart shoppingCart = shoppingCartMapper.selectByPrimaryKey(id);
+		shoppingCart.setArrivalDate(arrivalDate);
+		shoppingCart.setDepatureDate(depatureDate);
+		shoppingCartMapper.updateByPrimaryKey(shoppingCart);
+	}
+
+	@Override
+	public Integer getRidByid(Integer id) {
+		ShoppingCart shoppingCart = shoppingCartMapper.selectByPrimaryKey(id);
+		return shoppingCart.getRid();
 	}
 
 }

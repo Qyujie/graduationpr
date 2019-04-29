@@ -109,20 +109,23 @@ public class ResourceServiceImpl implements ResourceService {
 	}
 
 	@Override
-	public List<Resource> list(String arrive, String departure, Integer adults, Integer children, String roomtype,
+	public List<Resource> list(Integer adults, Integer children, String roomtype,
 			String breakfast, Integer[] facility, Integer[] policy) {
 
 		ResourceExample resourceExample = new ResourceExample();
 		Criteria resourceCriteria = resourceExample.createCriteria();
 
+		// roomtype 房型
 		if (!roomtype.equals("")) {
 			resourceCriteria.andRoomtypeEqualTo(roomtype);
 		}
 
+		// breakfast 早餐
 		if (!breakfast.equals("")) {
 			resourceCriteria.andBreakfastEqualTo(breakfast);
 		}
 
+		// adults children 人数
 		if (adults != null || children != null ) {
 			float cpeople = 0;
 			float apeople = 0;
@@ -156,7 +159,8 @@ public class ResourceServiceImpl implements ResourceService {
 			}
 		}
 		
-		
+
+		// facility 设施
 		/**
 		 * 获取设施与资源的映射表，得到映射数据
 		 * andFidIn()可以获得的数据为
@@ -187,9 +191,9 @@ public class ResourceServiceImpl implements ResourceService {
 			}
 		}
 		
-		
+
+		// policy 退订政策
 		/**
-		 * 退订政策
 		 * (原理同上)
 		 **/
 		if (policy != null) {

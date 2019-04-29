@@ -1,4 +1,45 @@
 $(function() {
+	var dateId = "";//需要购物车id
+	var number = 0;
+	var arrival = $(".from").val();// 入住时间
+	var depature = $(".to").val();// 退房时间
+	
+	//修改日期
+	$(".f-to-btn").click(function (){
+		dateId = $(this).parents(".shoppingId").attr("value");
+		number = $(this).parents(".shoppingId").find(".spinnerExample").val();
+		
+		$(".from").val($(this).parents(".shoppingId").find(".f-to-arrival").text());
+		$(".to").val($(this).parents(".shoppingId").find(".f-to-depature").text());
+	});
+	
+	//ok
+	$(".ok").click(function (){
+		var page = "updateShoppingDate";
+		arrival = $(".from").val();
+		depature = $(".to").val();
+		$.ajax({
+			url : page,
+			type : "GET",
+			data : {
+				"arrival" : arrival ,
+				"depature" : depature ,
+				"number" : number,
+				"id" : dateId,
+			},
+			success : function(message) {
+				if(message==-1){
+					console.log("未登录");
+				}else if(message==-2){
+					console.log("剩余不足");
+				}else if(message==0){
+					$(".shoppingId[value='"+ dateId +"']").find(".f-to-arrival").text(arrival);
+					$(".shoppingId[value='"+ dateId +"']").find(".f-to-depature").text(depature);
+				}
+			}
+		});
+	});
+	
 	//-
 	$(".box-bd-item-cont").delegate('.decrease ','click',function (){
 		//获取改变之前的数量以此来计算单价
@@ -33,7 +74,6 @@ $(function() {
 		}else{
 			num++;
 		}
-		console.log(num);
 		$(this).prev().val(num);
 		$(this).siblings('.decrease').prop("disabled",false);
 		
@@ -89,16 +129,16 @@ $(function() {
 		 $(this).siblings().removeClass("selected");
      });
 	 
-	 function updateAjax(num,object) {
-		 if(typeof num == "number"){
-				var page = "updateShopping";
-				var rid = object.parents(".shoppingId").attr("value");
+	 function updateAjax(number,object) {
+		 if(typeof number == "number"){
+				var page = "updateShoppingNumber";
+				var id = object.parents(".shoppingId").attr("value");
 				$.ajax({
 					url : page,
 					type : "GET",
 					data : {
-						"num" : num ,
-						"rid" : rid,
+						"number" : number ,
+						"id" : id,
 					},
 					success : function(message) {
 						if(message==-1){

@@ -9,6 +9,8 @@
     <script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
     <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
+    <link rel="stylesheet" type="text/css" href="css/lib/font-lotusicon.css">
+    <link rel="stylesheet" type="text/css" href="css/lib/jquery-ui.min.css">
     <link href="/css/settlement/public.css" type="text/css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="/css/settlement/base.css" />
     <script type="text/javascript" src="/js/settlement/jquery_cart.js"></script>
@@ -37,7 +39,7 @@
                     <div class="box-hd ">
                         <h2 class="title">预订信息</h2>
                     </div>
-                    <div class="box-bd shoppingId" th:each="shoppingCart:${shoppingCarts}"  th:value="${id_resource[shoppingCart.id].id}">
+                    <div class="box-bd shoppingId" th:each="shoppingCart:${shoppingCarts}"  th:value="${shoppingCart.id}">
                     	<span class="box-bd-tit">房间<span th:text="${shoppingCartStat.count}"></span></span>
                  		<div class="box-bd-item">
                  			<span class="box-bd-item-tit">房型信息</span>
@@ -45,7 +47,15 @@
                  		</div>
                  		<div class="box-bd-item">
                  			<span class="box-bd-item-tit">入离日期</span>
-                 			<div class="box-bd-item-cont"></div>
+                 			<div class="box-bd-item-cont f-to">
+                 				<b class="f-to-arrival" th:text="${#dates.format(shoppingCart.arrivalDate, 'yyyy-MM-dd')}"></b>
+                 				<span th:text="${#strings.substring(arrivalTime,0,5)}+' 之后 '"></span>
+                 				<b class="f-to-line">——</b>
+                 				<b class="f-to-depature" th:text="${#dates.format(shoppingCart.depatureDate, 'yyyy-MM-dd')}"></b>
+                 				<span th:text="${#strings.substring(depatureTime,0,5)}+' 之前 '"></span>
+                 				<span class="f-to-number"></span><span>晚</span>
+                 				<a class="f-to-btn" data-target="#Modal" data-toggle="modal" >修改日期</a>
+                 			</div>
                  		</div>
                  		<div class="box-bd-item">
                  			<span class="box-bd-item-tit">房间数量</span>
@@ -66,6 +76,28 @@
                     </div>
                 </div>
                 <!-- 预订信息 END-->
+                
+                <!-- Modal -->
+                <div class="modal " id="Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-header">
+		            	<button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+		           		<h4 class="modal-title">修改入离日期</h4>
+		          	</div>
+			      	<div class="modal-body">
+			        	<div class="availability-form">
+			        		<span>入住</span>
+                        	<input type="text" name="arrive" class="awe-calendar from" placeholder="入住日期">
+                        	<span>&#12288;&#12288;</span>
+                        	<span>退房</span>
+                        	<input type="text" name="departure" class="awe-calendar to" placeholder="退房日期">
+                    	</div>
+			       	</div>
+			     	<div class="modal-footer">
+			        	<button data-dismiss="modal" class="btn btn-primary ok" type="button">确定</button>
+			       		<button data-dismiss="modal" class="btn btn-default no" type="button">取消</button>
+			     	</div>
+				</div>
+                <!-- Modal END-->
                 
                 <!-- 入住信息 -->
                 <div class="xm-box">
@@ -220,6 +252,7 @@
     </p>
     <!-- LOAD JQUERY -->
     <script type="text/javascript" src="js/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/lib/bootstrap-select.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
 
     <script type="text/javascript" src="/js/myjs/settlement/settlement.js"></script>

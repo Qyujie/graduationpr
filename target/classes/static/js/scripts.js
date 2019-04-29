@@ -1,4 +1,5 @@
 (function ($) {
+	
     "use strict";
     /*==============================
      Is mobile
@@ -39,10 +40,11 @@
             nextText: '<i class="lotus-icon-right-arrow"></i>',
             buttonImageOnly: false,
             minDate: 0,
+            dateFormat:"yy-mm-dd",
             onClose: function (selectedDate) {
                 var newDate = new Date(selectedDate),
                     tomorrow = new Date(newDate.getTime() + 24 * 60 * 60 * 1000),
-                    nextDate = (tomorrow.getMonth() + 1) + '/' + tomorrow.getDate() + '/' + tomorrow.getFullYear();
+                    nextDate = tomorrow.getFullYear() + '-' + (tomorrow.getMonth() + 1) + '-' + tomorrow.getDate();
                 $(".awe-calendar.to").datepicker("option", "minDate", nextDate).focus();
             }
         });
@@ -51,6 +53,7 @@
             nextText: '<i class="lotus-icon-right-arrow"></i>',
             buttonImageOnly: false,
             minDate: 0,
+            dateFormat:"yy-mm-dd",
             onClose: function (selectedDate) {
                 //$(".awe-calendar.from").datepicker( "option", "maxDate", selectedDate );
             }
@@ -781,3 +784,10 @@ function sendBooking() {
     $('#ajax-form-search-send').submit();
     return false;
 }
+
+/*设置默认预订日期为明天到后天*/
+var date = new Date();
+date.setDate(date.getDate()+1);
+$(".from").datepicker('setDate',date);
+date.setDate(date.getDate()+1);
+$(".to").datepicker('setDate',date);

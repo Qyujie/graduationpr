@@ -1,25 +1,25 @@
 $(function() {
 	var page = "searchRoomInformation";
-	var arrive = null;// 入住时间
-	var departure = null;// 退房时间
+	var arrival = $(".from").val();// 入住时间
+	var depature = $(".to").val();// 退房时间
 	var adults = null;// 成人人数
 	var children = null;// 儿童人数
 	var roomtype = "";
 	var breakfast = "";
 	var facility = [];
 	var policy = [];
-
+	
 	/* 入住时间 */
 	$(".from").change(function() {
-		arrive = $(".from").val();
-		console.log(arrive);
+		arrival = $(".from").val();
+		console.log(arrival);
 		ajax();
 	});
 
 	/* 退房时间 */
 	$(".to").change(function() {
-		departure = $(".to").val();
-		console.log(departure);
+		depature = $(".to").val();
+		console.log(depature);
 		ajax();
 	});
 
@@ -106,8 +106,8 @@ $(function() {
 			url : page,
 			type : "POST",
 			data : {
-				"arrive" : arrive,
-				"departure" : departure,
+				"arrival" : arrival,
+				"depature" : depature,
 				"adults" : adults,
 				"children" : children,
 				"roomtype" : roomtype,
@@ -141,7 +141,7 @@ $(function() {
 					for(var policy of policies){
 						$policy += "<div>"+ policy.name +"</div>";
 					}
-					var remain = resource.remain;
+					var remain = list[4][id];
 					
 					var price = resource.price;
 					

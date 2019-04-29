@@ -1,6 +1,5 @@
 package pers.qyj.graduationpr.web;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -26,6 +25,7 @@ import pers.qyj.graduationpr.pojo.Resource;
 import pers.qyj.graduationpr.pojo.ResourceSign;
 import pers.qyj.graduationpr.pojo.Roomtype;
 import pers.qyj.graduationpr.pojo.ShoppingCart;
+import pers.qyj.graduationpr.pojo.SystemConfiguration;
 import pers.qyj.graduationpr.service.BreakfastService;
 import pers.qyj.graduationpr.service.FacilityService;
 import pers.qyj.graduationpr.service.PolicyService;
@@ -33,6 +33,7 @@ import pers.qyj.graduationpr.service.ResourceService;
 import pers.qyj.graduationpr.service.ResourceSignService;
 import pers.qyj.graduationpr.service.RoomtypeService;
 import pers.qyj.graduationpr.service.ShoppingCartService;
+import pers.qyj.graduationpr.service.SystemConfigurationService;
 import pers.qyj.graduationpr.service.UserService;
 
 @Controller
@@ -110,28 +111,18 @@ public class RoomCotroller {
 			}
 		}
 		
-		Map<Integer, Integer> resource_remain = new HashMap<>();
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-		Date arrivalDate = sdf.parse(sdf.format(new Date()));
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
 		Calendar calendar = new GregorianCalendar();
 		calendar.setTime(new Date());
 		calendar.add(Calendar.DATE,1);
-		Date depatureDate = sdf.parse(sdf2.format(calendar.getTime())+" 12:00:00");
+		java.sql.Date arrivalDate = new java.sql.Date(sdf.parse(sdf.format(calendar.getTime())).getTime());
 		
-		List<ResourceSign> resourceSigns = resourceSignService.listOccupy((java.sql.Date)arrivalDate,(java.sql.Date) depatureDate);
+		calendar.add(Calendar.DATE,1);
+		java.sql.Date depatureDate = new java.sql.Date(sdf.parse(sdf.format(calendar.getTime())).getTime());
 		
-		for (Resource resource : resources) {
-			int tatal = resource.getTotal();
-			for(ResourceSign resourceSign : resourceSigns){
-				if(resource.getId()==resourceSign.getReid()){
-					tatal--;
-				}
-			}
-			resource_remain.put(resource.getId(), tatal);
-		}
+		Map<Integer, Integer> resource_remain = resourceSignService.listRemain(resources,arrivalDate, depatureDate);
 		
 		model.addAttribute("resources", resources);
 		model.addAttribute("resource_facilities", resource_facilities);
@@ -165,11 +156,11 @@ public class RoomCotroller {
 	
 	@RequestMapping("/searchRoomInformation")
 	@ResponseBody
-	public List<Object> searchRoomInformation(Model model,String arrive,String departure,Integer adults,Integer children,
-			String roomtype,String breakfast,Integer[] facility,Integer[] policy){
+	public List<Object> searchRoomInformation(Model model,String arrival,String depature,Integer adults,Integer children,
+			String roomtype,String breakfast,Integer[] facility,Integer[] policy) throws Exception{
 		List<Resource> resources = new ArrayList<>();
-		
-		resources = resourceService.list(arrive,departure,adults,children,roomtype,breakfast,facility,policy);
+
+		resources = resourceService.list(adults,children,roomtype,breakfast,facility,policy);
 		
 		Map<Integer, List<Facility>> resource_facilities = new HashMap<>();
 		for (Resource resource : resources) {
@@ -193,11 +184,19 @@ public class RoomCotroller {
 			}
 		}
 		
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		java.sql.Date arrivalDate = new java.sql.Date(sdf.parse(arrival).getTime());
+		java.sql.Date depatureDate = new java.sql.Date(sdf.parse(depature).getTime());
+
+		Map<Integer, Integer> resource_remain = resourceSignService.listRemain(resources,arrivalDate, depatureDate);
+		
 		ArrayList<Object> list = new ArrayList<>();
 		list.add(resources);
 		list.add(resource_facilities);
 		list.add(resource_policies);
 		list.add(resource_roomtype);
+		list.add(resource_remain);
 		
 		return list;
 	} 

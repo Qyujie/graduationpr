@@ -430,8 +430,7 @@ div.more {
 .cart_column li .product_name span {
 	font-size: 16px;
 	display: block;
-	margin-bottom: 3px;
-	padding-top: 8px;
+	margin-bottom: 10px;
 	cursor: pointer;
 	color: #666
 }

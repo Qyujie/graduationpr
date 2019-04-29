@@ -73,7 +73,7 @@
 				</h4>
 				<div id="resultData">
 					<ul style="height: auto;">
-						<li class="clearfix" th:each="shoppingCart:${shoppingCarts}" th:value="${id_resource[shoppingCart.id].id}">
+						<li class="clearfix" th:each="shoppingCart:${shoppingCarts}" th:value="${shoppingCart.id}">
 							<input type="checkbox" class="checkbox_c " name="checkbox_c_Name" data-url="" checked="checked"/>
 							<span class="check"></span>
 							<div class="img_con">
@@ -81,6 +81,7 @@
 							</div>
 							<div class="product_name">
 								<span>[[${id_resource[shoppingCart.id].roomtype}+${id_resource[shoppingCart.id].id}]]</span>
+								<span th:text="${#dates.format(shoppingCart.arrivalDate, 'yyyy-MM-dd')+ '/' +#dates.format(shoppingCart.depatureDate, 'yyyy-MM-dd')}"></span>
 								<a class="del_pro_btn">删除</a>
 							</div>
 							<div class="amount_btn clearfix">
