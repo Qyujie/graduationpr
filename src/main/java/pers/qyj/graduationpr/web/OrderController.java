@@ -10,11 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import pers.qyj.graduationpr.pojo.Resource;
-import pers.qyj.graduationpr.pojo.ResourceOrder;
+import pers.qyj.graduationpr.pojo.Sign;
 import pers.qyj.graduationpr.pojo.Order;
 import pers.qyj.graduationpr.service.ResourceService;
+import pers.qyj.graduationpr.service.SignService;
 import pers.qyj.graduationpr.service.OrderService;
-import pers.qyj.graduationpr.service.ResourceOrderService;
 
 @Controller
 @RequestMapping("config/order")
@@ -22,7 +22,7 @@ public class OrderController {
 	@Autowired
 	OrderService orderService;
 	@Autowired
-	ResourceOrderService resourceOrderService;
+	SignService signService;
 	@Autowired
 	ResourceService resourceService;
 
@@ -36,12 +36,12 @@ public class OrderController {
 
 		for (Order order : orders) {
 			List<Resource> resources = resourceService.list(order);
-			List<ResourceOrder> resourceOrders = resourceOrderService.list(order);
+			List<Sign> signs = signService.list(order);
 			order_resources.put(order.getSign(), resources);
 			for (Resource resource : resources) {
-				for (ResourceOrder resourceOrder : resourceOrders) {
-					if (resource.getId().equals(resourceOrder.getReid())) {
-						resource_number.put(resource.getId(), resourceOrder.getNumber());
+				for (Sign sign : signs) {
+					if (resource.getId().equals(sign.getReid())) {
+						resource_number.put(resource.getId(), sign.getNumber());
 					}
 				}
 			}

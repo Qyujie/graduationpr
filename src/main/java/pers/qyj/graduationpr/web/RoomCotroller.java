@@ -22,18 +22,15 @@ import pers.qyj.graduationpr.pojo.Breakfast;
 import pers.qyj.graduationpr.pojo.Facility;
 import pers.qyj.graduationpr.pojo.Policy;
 import pers.qyj.graduationpr.pojo.Resource;
-import pers.qyj.graduationpr.pojo.ResourceSign;
 import pers.qyj.graduationpr.pojo.Roomtype;
 import pers.qyj.graduationpr.pojo.ShoppingCart;
-import pers.qyj.graduationpr.pojo.SystemConfiguration;
 import pers.qyj.graduationpr.service.BreakfastService;
 import pers.qyj.graduationpr.service.FacilityService;
 import pers.qyj.graduationpr.service.PolicyService;
 import pers.qyj.graduationpr.service.ResourceService;
-import pers.qyj.graduationpr.service.ResourceSignService;
+import pers.qyj.graduationpr.service.SignService;
 import pers.qyj.graduationpr.service.RoomtypeService;
 import pers.qyj.graduationpr.service.ShoppingCartService;
-import pers.qyj.graduationpr.service.SystemConfigurationService;
 import pers.qyj.graduationpr.service.UserService;
 
 @Controller
@@ -53,7 +50,7 @@ public class RoomCotroller {
 	@Autowired
 	ShoppingCartService shoppingCartService;
 	@Autowired
-	ResourceSignService resourceSignService;
+	SignService signService;
 	
 	@RequestMapping("/room")
 	public String room(Model model){
@@ -122,7 +119,7 @@ public class RoomCotroller {
 		calendar.add(Calendar.DATE,1);
 		java.sql.Date depatureDate = new java.sql.Date(sdf.parse(sdf.format(calendar.getTime())).getTime());
 		
-		Map<Integer, Integer> resource_remain = resourceSignService.listRemain(resources,arrivalDate, depatureDate);
+		Map<Integer, Integer> resource_remain = signService.listRemain(resources,arrivalDate, depatureDate);
 		
 		model.addAttribute("resources", resources);
 		model.addAttribute("resource_facilities", resource_facilities);
@@ -189,7 +186,7 @@ public class RoomCotroller {
 		java.sql.Date arrivalDate = new java.sql.Date(sdf.parse(arrival).getTime());
 		java.sql.Date depatureDate = new java.sql.Date(sdf.parse(depature).getTime());
 
-		Map<Integer, Integer> resource_remain = resourceSignService.listRemain(resources,arrivalDate, depatureDate);
+		Map<Integer, Integer> resource_remain = signService.listRemain(resources,arrivalDate, depatureDate);
 		
 		ArrayList<Object> list = new ArrayList<>();
 		list.add(resources);

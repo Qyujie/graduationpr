@@ -9,50 +9,51 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pers.qyj.graduationpr.mapper.ResourceMapper;
-import pers.qyj.graduationpr.mapper.ResourceSignMapper;
+import pers.qyj.graduationpr.mapper.SignMapper;
+import pers.qyj.graduationpr.pojo.Order;
 import pers.qyj.graduationpr.pojo.Resource;
-import pers.qyj.graduationpr.pojo.ResourceSign;
-import pers.qyj.graduationpr.pojo.ResourceSignExample;
-import pers.qyj.graduationpr.pojo.ResourceSignExample.Criteria;
-import pers.qyj.graduationpr.service.ResourceSignService;
+import pers.qyj.graduationpr.pojo.Sign;
+import pers.qyj.graduationpr.pojo.SignExample;
+import pers.qyj.graduationpr.pojo.SignExample.Criteria;
+import pers.qyj.graduationpr.service.SignService;
 @Service
-public class ResourceSignServiceImpl implements ResourceSignService {
+public class SignServiceImpl implements SignService {
 	@Autowired
-	ResourceSignMapper resourceSignMapper;
+	SignMapper signMapper;
 	@Autowired
 	ResourceMapper resourceMapper;
 	
 	@Override
-	public List<ResourceSign> listFree(Date arrivalDate, Date depatureDate) {
-		ResourceSignExample example = new ResourceSignExample();
+	public List<Sign> listFree(Date arrivalDate, Date depatureDate) {
+		SignExample example = new SignExample();
 		example.or().andDepatureDateLessThanOrEqualTo(arrivalDate);
 		example.or().andArrivalDateGreaterThanOrEqualTo(depatureDate);
-		List<ResourceSign> resourceSigns = resourceSignMapper.selectByExample(example);
-		return resourceSigns;
+		List<Sign> Signs = signMapper.selectByExample(example);
+		return Signs;
 	}
 
 	@Override
-	public List<ResourceSign> listOccupy(Date arrivalDate, Date depatureDate) {
-		ResourceSignExample example = new ResourceSignExample();
+	public List<Sign> listOccupy(Date arrivalDate, Date depatureDate) {
+		SignExample example = new SignExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andDepatureDateGreaterThan(arrivalDate);
 		criteria.andArrivalDateLessThan(depatureDate);
-		List<ResourceSign> resourceSigns = resourceSignMapper.selectByExample(example);
-		return resourceSigns;
+		List<Sign> Signs = signMapper.selectByExample(example);
+		return Signs;
 	}
 
 	@Override
 	public Map<Integer, Integer> listRemain(List<Resource> resources, Date arrivalDate, Date depatureDate) {
-		ResourceSignExample example = new ResourceSignExample();
+		SignExample example = new SignExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andDepatureDateGreaterThan(arrivalDate);
 		criteria.andArrivalDateLessThan(depatureDate);
 		
-		List<ResourceSign> resourceSigns = resourceSignMapper.selectByExample(example);
+		List<Sign> Signs = signMapper.selectByExample(example);
 		
 		Map<Integer, Integer> resource_remain = new HashMap<>();
 		
-		if(resourceSigns.isEmpty()){
+		if(Signs.isEmpty()){
 			for (Resource resource : resources) {
 				int tatal = resource.getTotal();
 				resource_remain.put(resource.getId(), tatal);
@@ -60,8 +61,8 @@ public class ResourceSignServiceImpl implements ResourceSignService {
 		}else{
 			for (Resource resource : resources) {
 				int tatal = resource.getTotal();
-				for(ResourceSign resourceSign : resourceSigns){
-					if(resource.getId()==resourceSign.getReid()){
+				for(Sign Sign : Signs){
+					if(resource.getId()==Sign.getReid()){
 						tatal--;
 					}
 				}
@@ -75,15 +76,21 @@ public class ResourceSignServiceImpl implements ResourceSignService {
 	public Integer getRemainByReid(Integer Reid, Date arrivalDate, Date depatureDate) {
 		int total = resourceMapper.selectByPrimaryKey(Reid).getTotal();
 		
-		ResourceSignExample example = new ResourceSignExample();
+		SignExample example = new SignExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andDepatureDateGreaterThan(arrivalDate);
 		criteria.andArrivalDateLessThan(depatureDate);
 		criteria.andReidEqualTo(Reid);
-		List<ResourceSign> resourceSigns = resourceSignMapper.selectByExample(example);
+		List<Sign> Signs = signMapper.selectByExample(example);
 		
-		int remain = total - resourceSigns.size();
+		int remain = total - Signs.size();
 		return remain;
+	}
+
+	@Override
+	public List<Sign> list(Order order) {
+		
+		return null;
 	}
 
 }

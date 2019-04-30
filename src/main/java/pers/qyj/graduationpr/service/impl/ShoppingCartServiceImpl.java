@@ -28,8 +28,14 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	
 	@Override
 	public List<ShoppingCart> list() {
-		
-		return null;
+		ShoppingCartExample example = new ShoppingCartExample();
+		example.setOrderByClause("id");
+		return shoppingCartMapper.selectByExample(example);
+	}
+
+	@Override
+	public ShoppingCart getById(Integer id) {
+		return shoppingCartMapper.selectByPrimaryKey(id);
 	}
 
 	@Override

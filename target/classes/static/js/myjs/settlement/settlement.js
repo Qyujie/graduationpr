@@ -28,13 +28,16 @@ $(function() {
 				"id" : dateId,
 			},
 			success : function(message) {
-				if(message==-1){
+				if(message[0]==-1){
 					console.log("未登录");
-				}else if(message==-2){
-					console.log("剩余不足");
-				}else if(message==0){
+				}else if(message[0]==-2||message[0]==0||message[0]==1){
 					$(".shoppingId[value='"+ dateId +"']").find(".f-to-arrival").text(arrival);
 					$(".shoppingId[value='"+ dateId +"']").find(".f-to-depature").text(depature);
+					if(message[0]==-2||message[0]==1){
+						$(".remain").text(message[1]);
+						$(".tip-failed").css("display","inline-block");
+						remain(message[1],$(".shoppingId[value='"+ dateId +"']").find(".spinnerExample"));
+					}
 				}
 			}
 		});
@@ -57,9 +60,12 @@ $(function() {
 			$(this).prop("disabled",true);
 		}
 		
-		//设置数量改变后的总价
-		$price.text(unitPrice*num);
-		updateAjax(num,$(this));
+		//超过剩余不做或大于6处理
+		if(remain(num,$(this))){
+			//设置数量改变后的总价
+			$price.text(unitPrice*num);
+			updateAjax(num,$(this));
+		}
 	});
 	
 	//+
@@ -77,9 +83,12 @@ $(function() {
 		$(this).prev().val(num);
 		$(this).siblings('.decrease').prop("disabled",false);
 		
-		//设置数量改变后的总价
-		$price.text(unitPrice*num);
-		updateAjax(num,$(this));
+		//超过剩余不做或大于6处理
+		if(remain(num,$(this))){
+			//设置数量改变后的总价
+			$price.text(unitPrice*num);
+			updateAjax(num,$(this));
+		}
 	});
 	
 	//input
@@ -99,9 +108,12 @@ $(function() {
 			$(this).prev().prop("disabled",false);
 		}
 
-		//设置数量改变后的总价
-		$price.text(unitPrice*num);
-		updateAjax(num,$(this));
+		//超过剩余不做或大于6处理
+		if(remain(num,$(this))){
+			//设置数量改变后的总价
+			$price.text(unitPrice*num);
+			updateAjax(num,$(this));
+		}
 	});
 
 	 $(".J_optionInvoice").children(".item").on("click", function() {
@@ -109,6 +121,9 @@ $(function() {
 		 if(text=="电子发票"){
 			 $("#checkoutInvoiceElectronic").css("display","block");
 			 $("#checkoutInvoiceDetail").css("display","none");
+			 $(".invoiceGroupItem1 input").prop("checked",true);
+			 $(".invoiceGroupItem2 input").prop("checked",false);
+			 $(".invoice-title input").val("");
 			 
 		 }else if(text=="普通发票"){
 			 $("#checkoutInvoiceDetail").css("display","block");
@@ -116,6 +131,14 @@ $(function() {
 		 }
 		 $(this).addClass("selected");
 		 $(this).siblings().removeClass("selected");
+
+		 $(this).find("input").prop("checked",true);
+		 $(this).siblings().find("input").prop("checked",false);
+     });
+	 
+	 $(".J_invoiceType").children("li").on("click", function() {
+		 $(this).find("input").prop("checked",true);
+		 $(this).siblings().find("input").prop("checked",false);
      });
 	 
 	 $(".type li").on("click", function() {
@@ -149,4 +172,20 @@ $(function() {
 			}
 		}
 	 
+	 function remain(num,object) {
+		 var remain = Number(object.parents(".box-bd-item-cont").find(".remain").text());
+		 if(num>remain || num>6){
+			 if(remain>6){
+				 object.parents(".spinner").find(".spinnerExample").val(6);
+			 }else{
+				 object.parents(".spinner").find(".spinnerExample").val(remain);
+			 }
+			 return false;
+		 }else{
+			 return true;
+		 }
+	 }
+	 
+	 $("[data-toggle='tooltip']").tooltip();
+
 });

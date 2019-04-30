@@ -4,16 +4,19 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
+import pers.qyj.graduationpr.pojo.Order;
 import pers.qyj.graduationpr.pojo.Resource;
-import pers.qyj.graduationpr.pojo.ResourceSign;
+import pers.qyj.graduationpr.pojo.Sign;
 
-public interface ResourceSignService {
-	public List<ResourceSign> listFree(Date arrivalDate, Date depatureDate);
+public interface SignService {
+	public List<Sign> listFree(Date arrivalDate, Date depatureDate);
 
-	public List<ResourceSign> listOccupy(Date arrivalDate, Date depatureDate);
+	public List<Sign> listOccupy(Date arrivalDate, Date depatureDate);
 	
 	public Map<Integer, Integer> listRemain(List<Resource> resources,Date arrivalDate, Date depatureDate);
 	
 	public Integer getRemainByReid(Integer Reid,Date arrivalDate, Date depatureDate);
+
+	public List<Sign> list(Order order);
 	
 }

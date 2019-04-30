@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import pers.qyj.graduationpr.mapper.ResourceFacilityMapper;
 import pers.qyj.graduationpr.mapper.ResourceMapper;
-import pers.qyj.graduationpr.mapper.ResourceOrderMapper;
+import pers.qyj.graduationpr.mapper.SignMapper;
 import pers.qyj.graduationpr.mapper.ResourcePolicyMapper;
 import pers.qyj.graduationpr.mapper.RoomtypeMapper;
 import pers.qyj.graduationpr.pojo.Order;
@@ -20,8 +20,8 @@ import pers.qyj.graduationpr.pojo.ResourceExample;
 import pers.qyj.graduationpr.pojo.ResourceExample.Criteria;
 import pers.qyj.graduationpr.pojo.ResourceFacility;
 import pers.qyj.graduationpr.pojo.ResourceFacilityExample;
-import pers.qyj.graduationpr.pojo.ResourceOrder;
-import pers.qyj.graduationpr.pojo.ResourceOrderExample;
+import pers.qyj.graduationpr.pojo.Sign;
+import pers.qyj.graduationpr.pojo.SignExample;
 import pers.qyj.graduationpr.pojo.ResourcePolicy;
 import pers.qyj.graduationpr.pojo.ResourcePolicyExample;
 import pers.qyj.graduationpr.pojo.Roomtype;
@@ -41,7 +41,7 @@ public class ResourceServiceImpl implements ResourceService {
 	@Autowired
 	RoomtypeMapper roomtypeMapper;
 	@Autowired
-	ResourceOrderMapper resourceOrderMapper;
+	SignMapper signMapper;
 	@Autowired
 	ResourceFacilityMapper resourceFacilityMapper;
 	@Autowired
@@ -91,11 +91,11 @@ public class ResourceServiceImpl implements ResourceService {
 	@Override
 	public List<Resource> list(Order order) {
 		List<Resource> resources = new ArrayList<>();
-		ResourceOrderExample example = new ResourceOrderExample();
+		SignExample example = new SignExample();
 		example.createCriteria().andOidEqualTo(order.getId());
-		List<ResourceOrder> ros = resourceOrderMapper.selectByExample(example);
-		for (ResourceOrder resourceOrder : ros) {
-			resources.add(resourceMapper.selectByPrimaryKey(resourceOrder.getReid()));
+		List<Sign> ros = signMapper.selectByExample(example);
+		for (Sign sign : ros) {
+			resources.add(resourceMapper.selectByPrimaryKey(sign.getReid()));
 		}
 		return resources;
 	}

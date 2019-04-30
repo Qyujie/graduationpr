@@ -11,6 +11,8 @@ public interface ShoppingCartService {
 	
 	public List<ShoppingCart> list(Long uid);
 	
+	public ShoppingCart getById(Integer id);
+	
 	public List<ShoppingCart> list(Long uid,boolean checked);
 
 	public List<Object> add(Long uid,Integer rid,Date arrivalDate,Date depatureDate);

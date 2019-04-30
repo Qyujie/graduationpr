@@ -942,10 +942,11 @@ a:hover,a:focus {
 .box-bd-item-cont{
 	margin-left: 20px;
 	display: inline-block;
+	position: relative;
 }
 .spinner{
 	position: relative;
-	top:6px;
+	float: left;
 }
 .box-bd-people{
 	position: relative;
@@ -2540,4 +2541,40 @@ a:hover,a:focus {
 }
 .availability-form{
 	text-align: center;
+}
+
+.tip-failed {
+    margin-left: 10px;
+    font-size: 12px;
+    display: none;
+}
+
+.tip-failed>div:first-child {
+    margin: 0 3px;
+    width: 15px;
+    height: 15px;
+    color: #DB4437;
+    line-height: 12px;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid #ffb027;
+    display: inline-block;
+}
+.tip-number{
+	position:absolute;
+	left: 45px;
+	top: 16px;
+	margin: 0 3px;
+    width: 15px;
+    height: 15px;
+    color: #3399ff;
+    line-height: 12px;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid #3399ff;
+    display: inline-block;
+    cursor: default;
+}
+.tip-maxpeople{
+	margin-left: 10px;
 }

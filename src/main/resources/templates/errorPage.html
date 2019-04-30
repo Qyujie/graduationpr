@@ -20,3 +20,9 @@
 </body>
 
 </html>
+
+<div class="list">
+	    <div class="correct-order" th:each="map:${answerList}"  th:style="'backgroundColor:' + @{(${map.get('judgeAnswer')} ? 'green' : 'red')}">
+	    	<a th:href="@{'getCommentAndAnalysis?id='+${map.get('questionID')}}" ></a>
+	    </div>
+</div>

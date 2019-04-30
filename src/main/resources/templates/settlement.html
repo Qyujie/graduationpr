@@ -32,7 +32,7 @@
     <!--信息填写部分开始-->
     <div class="container">
         <div class="checkout-box">
-            <form id="checkoutForm" action="#" method="post">
+            <form id="checkoutForm" action="generateOrder" method="post">
             
             	<!-- 预订信息 -->
                 <div class="xm-box">
@@ -58,6 +58,7 @@
                  			</div>
                  		</div>
                  		<div class="box-bd-item">
+                 			<div class="tip-number" data-toggle="tooltip" data-placement="bottom" title="大于6间或剩余数请致电客服">!</div>
                  			<span class="box-bd-item-tit">房间数量</span>
                  			<div class="box-bd-item-cont">
 								<div class="spinner">
@@ -65,6 +66,16 @@
 									<input type="text" class="spinnerExample value" maxlength="2" th:value="${shoppingCart.number}" />
 									<button type="button" class="increase">+</button>
 								</div>
+								<span class="tip-failed" th:style="'display:' + @{(${id_remain[shoppingCart.id]>6} ? 'none' : 'inline-block')}">
+				                    <div>!</div>
+				                    <span> 仅剩<span class="remain" th:text="${id_remain[shoppingCart.id]}"></span>间！</span>
+				                </span>
+				                <span class="tip-maxpeople">
+				                	<span>每间最多入住</span>
+				                	<span th:text="${id_roomtype[shoppingCart.id].people}"></span>
+				                	<span>人</span>
+				                </span>
+								
 							</div>
                  		</div>
                  		<div class="box-bd-item">
@@ -106,15 +117,16 @@
                     </div>
                     <div class="box-bd">
                     	<div class="box-bd-people" th:each="shoppingCart:${shoppingCarts}">
+                    		<input name="shoppingCartId" th:value="${shoppingCart.id}" style="display:none"/>
 		                	<span class="box-bd-tit">房间<span th:text="${shoppingCartStat.count}"></span></span>
 		             		<div class="box-bd-item" th:each="i:${#numbers.sequence(1,id_roomtype[shoppingCart.id].people)}">
 		             			<span class="box-bd-item-tit">住客<span th:text="${i}"></span></span>
 		             			<div class="box-bd-item-cont">
 		             				<div class="form_item form-lastname">
-		             					<input name="" placeholder="姓 Last Name"/>
+		             					<input name="userLastname" placeholder="姓 Last Name"/>
 		             				</div>
 		             				<div class="form_item form-firstname">
-		             					<input name="" placeholder="名  First Name"/>
+		             					<input name="userFirstname" placeholder="名  First Name"/>
 		             				</div>
 		             			</div>
 		             			</div>
@@ -124,7 +136,7 @@
                  			<span class="box-bd-item-tit">手机号</span>
                  			<div class="box-bd-item-cont">
                  				<div class="form_item form-firstname">
-		             					<input name="" placeholder="当地手机号码"/>
+		             					<input name="userPhone" placeholder="当地手机号码"/>
 		             			</div>
                  			</div>
                  		</div>
@@ -132,7 +144,7 @@
                  			<span class="box-bd-item-tit">Email</span>
                  			<div class="box-bd-item-cont">
                  				<div class="form_item form-firstname">
-		             				<input name="" placeholder="接收确认邮件，获得出行资讯" style="width: 406px;"/>
+		             				<input name="userEmail" placeholder="接收确认邮件，获得出行资讯" style="width: 406px;"/>
 		             			</div>
 		             		</div>
                  		</div>
@@ -143,7 +155,7 @@
                  		<div class="box-bd-item">
                  			<span class="box-bd-item-tit">住宿偏好</span>
                  			<div class="box-bd-item-cont">
-                 				<textarea cols="30" rows="10" name="" class="input-textarea" placeholder="您的入住偏好，酒店将视当天入住情况尽量为您安排。"></textarea>
+                 				<textarea cols="30" rows="10" name="partiality" class="input-textarea" placeholder="您的入住偏好，酒店将视当天入住情况尽量为您安排。"></textarea>
                  			</div>
                  		</div>
                     </div>
@@ -157,12 +169,12 @@
                 	</div>
                  	<div class="box-bd">
                     	<ul class="checkout-option-list checkout-option-invoice clearfix J_optionList J_optionInvoice">
-                        	<li class="item selected"  value="电子发票">
-                            	<input type="radio" checked="checked" value="4" name="">
-                                	<p>电子发票（非纸质）</p>
+                        	<li class="item selected" value="电子发票">
+                            	<input type="radio" checked="checked" value="1" name="invoiceType">
+                                <p>电子发票（非纸质）</p>
                          	</li>
-                        	<li class="item "   value="普通发票">
-                            	<input type="radio" value="1" name="Checkout[invoice]">
+                        	<li class="item " value="普通发票">
+                            	<input type="radio" value="2" name="invoiceType">
                             	<p>普通发票（纸质）</p>
                         	</li>
                     	</ul>
@@ -176,7 +188,7 @@
 	                        <p>发票内容：预订房间明细</p>
 	                        <p>发票抬头：个人</p>
 	                        <p>
-	                        	<span class="hide"><input type="radio" value="4" name="Checkout[invoice_type]"   checked="checked"   id="electronicPersonal" class="invoiceType"></span>
+	                        	<span class="hide"><input type="radio" value="1" name="invoiceGroup"   checked="checked"   id="electronicPersonal" class="invoiceType"></span>
 	                            <dl>
 	                            	<dt>什么是电子发票?</dt>
 	                            	<dd>&#903; 电子发票是纸质发票的映像，是税务局认可的有效凭证，与传统纸质发票具有同等法律效力，可作为售后维权凭据。</dd>
@@ -192,16 +204,16 @@
 	                            发票抬头：请确认单位名称正确,以免因名称错误耽搁您的报销。
 	                        </p>
 	                        <ul class="type clearfix J_invoiceType">
-	                            <li value="个人">
-	                                <input class="invoiceType" type="radio" id="commonPersonal" name="Checkout[invoice_type]" value="1"> 个人
+	                            <li value="个人" class="selected invoiceGroupItem1">
+	                                <input class="invoiceType" type="radio" checked="checked" id="commonPersonal" name="invoiceGroup" value="1"> 个人
 	                            </li>
-	                            <li value="单位">
-	                                <input class="invoiceType" type="radio" name="Checkout[invoice_type]" value="2"> 单位
+	                            <li value="单位" class="invoiceGroupItem2">
+	                                <input class="invoiceType" type="radio" name="invoiceGroup" value="2"> 单位
 	                            </li>
 	                        </ul>
-	                        <div id='CheckoutInvoiceTitle' class=" hide  invoice-title">
-	                            <label for="Checkout[invoice_title]">单位名称：</label>
-	                            <input name="Checkout[invoice_title]" type="text" maxlength="49" value="" class="input"> <span class="tip-msg J_tipMsg"></span>
+	                        <div id='CheckoutInvoiceTitle' class=" hide invoice-title">
+	                            <label>单位名称：</label>
+	                            <input name="invoiceTitle" type="text" maxlength="49" value="" class="input"> <span class="tip-msg J_tipMsg"></span>
 	                       	</div>
 	                       	
 	                    </div>
@@ -219,7 +231,7 @@
                     <div class="box-bd">
                  		<ul id="checkoutPaymentList" class="checkout-option-list clearfix J_optionList">
                  			<li class="item selected">
-                 				<input type="radio" checked="checked" name="" value="">
+                 				<input type="radio" checked="checked" name="payment" value="1" />
                  				<p>在线支付</p>
                    			 </li>
                 		 </ul>

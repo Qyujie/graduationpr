@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import pers.qyj.graduationpr.service.ResourceSignService;
+import pers.qyj.graduationpr.service.SignService;
 import pers.qyj.graduationpr.service.ShoppingCartService;
 import pers.qyj.graduationpr.service.UserService;
 
@@ -24,7 +24,7 @@ public class ShoppingCartController {
 	@Autowired
 	UserService userService;
 	@Autowired
-	ResourceSignService resourceSignService;
+	SignService resourceSignService;
 
 	@RequestMapping("/addShopping")
 	@ResponseBody
@@ -94,7 +94,8 @@ public class ShoppingCartController {
 
 	@RequestMapping("/updateShoppingDate")
 	@ResponseBody
-	public int updateShoppingDate(String arrival, String depature, Integer number, Integer id) throws Exception {
+	public List<Object> updateShoppingDate(String arrival, String depature, Integer number, Integer id) throws Exception {
+		List<Object> message = new ArrayList<>();
 		try {
 			Subject subject = SecurityUtils.getSubject();
 			String currentUser = subject.getPrincipal().toString();
@@ -108,13 +109,21 @@ public class ShoppingCartController {
 			int remain = resourceSignService.getRemainByReid(rid, arrivalDate, depatureDate);
 			if (remain >= number) {
 				shoppingCartService.updateDate(id, arrivalDate, depatureDate);
-				return 0;
+				if(remain>=6){
+					message.add(0);
+					message.add(remain);
+				}else{
+					message.add(1);
+					message.add(remain);
+				}
 			} else {
-				return -2;// 剩余不足
+				message.add(-2);// 剩余不足
+				message.add(remain);
 			}
-
+			return message;
 		} catch (NullPointerException e) {
-			return -1;
+			message.add(-1);
+			return message;
 		}
 	}
 }
