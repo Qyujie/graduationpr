@@ -60,9 +60,10 @@ $(function() {
 							'</li>'
 					);
 				}else if(message[0]==0){
-					var num = message[1].num;
-					$(".clearfix[value='"+ message[1].rid +"'] .spinnerExample").val(num);
-					$(".clearfix[value='"+ message[1].rid +"'] .spinnerExample").siblings('.decrease').prop("disabled",false);
+					console.log(message[1].number);
+					var num = message[1].number;
+					$(".clearfix[value='"+ message[1].id +"'] .spinnerExample").val(num);
+					$(".clearfix[value='"+ message[1].id +"'] .spinnerExample").siblings('.decrease').prop("disabled",false);
 				}
 
 				countAll();
@@ -132,6 +133,7 @@ $(function() {
 		if(typeof number == "number"){
 			var page = "updateShoppingNumber";
 			var id = object.parents("li").attr("value");
+			//console.log(number);
 			$.ajax({
 				url : page,
 				type : "GET",
@@ -140,8 +142,13 @@ $(function() {
 					"id" : id,
 				},
 				success : function(message) {
-					if(message==-1){
+					//console.log(message);
+					if(message[0]==-1){
 						console.log("未登录");
+					}else if(message[0]==-2){
+						object.parents("li").find(".value").val(message[1].number);
+						console.log("余量不足");
+						//console.log(message[1].number);
 					}
 				}
 			});
@@ -154,13 +161,13 @@ $(function() {
 	});
 	
 	function deleteajax(object){
-		var rid = object.parents("li").attr("value");
+		var id = object.parents("li").attr("value");
 		var page = "deleteShopping";
 		$.ajax({
 			url : page,
 			type : "GET",
 			data : {
-				"rid" : rid,
+				"id" : id,
 			},
 			success : function(message) {
 				if(message==-1){

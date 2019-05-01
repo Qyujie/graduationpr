@@ -19,7 +19,7 @@ public interface ShoppingCartService {
 
 	public void delete(Integer rid);
 
-	public void updateNumber(Integer id,Integer num);
+	public List<Object> updateNumber(Integer id,Integer num);
 	
 	public void updateChecked(Long uid,Integer[] id);
 

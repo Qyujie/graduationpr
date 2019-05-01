@@ -16,24 +16,19 @@ import pers.qyj.graduationpr.service.SignUserService;
 
 @Service
 public class SignUserServiceImpl implements SignUserService {
-
+	@Autowired
+	SignUserMapper signUserMapper;
+	
 	@Override
 	public List<SignUser> list() {
-		
-		return null;
+		SignUserExample example = new SignUserExample();
+		example.setOrderByClause("id");
+		return signUserMapper.selectByExample(example);
 	}
 
 	@Override
-	public List<SignUser> list(Order order) {
-		
-		return null;
+	public void add(SignUser signUser) {
+		signUserMapper.insert(signUser);
 	}
 
-	@Override
-	public List<SignUser> list(Resource resource) {
-		
-		return null;
-	}
-
-	
 }

@@ -63,14 +63,16 @@ public class ShoppingCartController {
 
 	@RequestMapping("/updateShoppingNumber")
 	@ResponseBody
-	public int updateShoppingNumber(Integer number, Integer id) {
+	public List<Object> updateShoppingNumber(Integer number, Integer id) {
 		try {
 			Subject subject = SecurityUtils.getSubject();
 			String currentUser = subject.getPrincipal().toString();
-			shoppingCartService.updateNumber(id, number);
-			return 0;
+			
+			return shoppingCartService.updateNumber(id, number);
 		} catch (NullPointerException e) {
-			return -1;
+			List<Object> message = new ArrayList<>();
+			message.add(-1);
+			return message;
 		}
 	}
 

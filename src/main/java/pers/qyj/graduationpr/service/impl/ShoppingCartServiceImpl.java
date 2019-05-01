@@ -17,6 +17,7 @@ import pers.qyj.graduationpr.pojo.RoomtypeExample;
 import pers.qyj.graduationpr.pojo.ShoppingCart;
 import pers.qyj.graduationpr.pojo.ShoppingCartExample;
 import pers.qyj.graduationpr.service.ShoppingCartService;
+import pers.qyj.graduationpr.service.SignService;
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
 	@Autowired
@@ -25,6 +26,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	ResourceMapper resourceMapper;
 	@Autowired
 	RoomtypeMapper roomtypeMapper;
+	@Autowired
+	SignService signService;
 	
 	@Override
 	public List<ShoppingCart> list() {
@@ -66,7 +69,18 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 		if(shoppingCarts.size()>0){
 			shoppingCart = shoppingCarts.get(0);
 			int total = shoppingCart.getNumber();
-			total++;
+			
+			int remain = signService.getRemainByReid(rid,arrivalDate,depatureDate);
+			if(remain>total && 6>total){
+				total++;
+			}else{
+				if(remain>6){
+					total = 6;
+				}else{
+					total = remain;
+				}
+			}
+
 			shoppingCart.setNumber(total);
 			shoppingCartMapper.updateByPrimaryKey(shoppingCart);
 			
@@ -105,10 +119,26 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	}
 
 	@Override
-	public void updateNumber(Integer id,Integer num) {
+	public List<Object> updateNumber(Integer id,Integer num) {
 		ShoppingCart shoppingCart = shoppingCartMapper.selectByPrimaryKey(id);
+		List<Object> message = new ArrayList<>(); 
+		
+		int remain = signService.getRemainByReid(shoppingCart.getRid(),new java.sql.Date(shoppingCart.getArrivalDate().getTime()),new java.sql.Date(shoppingCart.getDepatureDate().getTime()));
+		if(remain<num || 6<num){
+			if(remain>6){
+				num = 6;
+			}else{
+				num = remain;
+			}
+			message.add(-2);
+		}else{
+			message.add(0);
+		}
 		shoppingCart.setNumber(num);
 		shoppingCartMapper.updateByPrimaryKey(shoppingCart);
+		
+		message.add(shoppingCart);
+		return  message;
 	}
 
 	@Override

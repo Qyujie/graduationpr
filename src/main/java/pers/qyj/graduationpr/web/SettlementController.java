@@ -23,12 +23,14 @@ import pers.qyj.graduationpr.pojo.Resource;
 import pers.qyj.graduationpr.pojo.Roomtype;
 import pers.qyj.graduationpr.pojo.ShoppingCart;
 import pers.qyj.graduationpr.pojo.Sign;
+import pers.qyj.graduationpr.pojo.SignUser;
 import pers.qyj.graduationpr.pojo.SystemConfiguration;
 import pers.qyj.graduationpr.service.OrderService;
 import pers.qyj.graduationpr.service.ResourceService;
 import pers.qyj.graduationpr.service.RoomtypeService;
 import pers.qyj.graduationpr.service.ShoppingCartService;
 import pers.qyj.graduationpr.service.SignService;
+import pers.qyj.graduationpr.service.SignUserService;
 import pers.qyj.graduationpr.service.SystemConfigurationService;
 import pers.qyj.graduationpr.service.UserService;
 import pers.qyj.graduationpr.util.ReflectUtil;
@@ -51,6 +53,8 @@ public class SettlementController {
 	OrderService orderService;
 	@Autowired
 	SignMapper signMapper;
+	@Autowired
+	SignUserService signUserService;
 
 	@RequestMapping("/settlement")
 	public String settlement(Model model) {
@@ -85,6 +89,16 @@ public class SettlementController {
 			String depatureTime = systemConfigurationService.getDepatureTime();
 			model.addAttribute("arrivalTime", arrivalTime);
 			model.addAttribute("depatureTime", depatureTime);
+
+			List<ShoppingCart> newShoppingCarts = new ArrayList<>();
+			for(ShoppingCart shoppingCart : shoppingCarts){
+				if(shoppingCart.getNumber()>1){
+					for(int i=0;i<shoppingCart.getNumber();i++){
+						newShoppingCarts.add(shoppingCart);
+					}
+				}
+			}
+			model.addAttribute("newShoppingCarts", newShoppingCarts);
 
 		} catch (NullPointerException e) {
 			return "login";
@@ -122,22 +136,36 @@ public class SettlementController {
 			//插入数据库Orders
 			orderService.add(order);
 			
-			
+			//插入数据库Signs
+			int k =0;
 			for(int i=0;i<shoppingCartId.length;i++){
 				ShoppingCart shoppingCart = shoppingCartService.getById(shoppingCartId[i]);
+				int signNumber = shoppingCart.getNumber();
+				int reid = shoppingCart.getRid();
+				
 				Sign sign = new Sign();
 				sign.setOid(order.getId());
-				sign.setReid(shoppingCart.getRid());
+				sign.setReid(reid);
 				sign.setArrivalDate(shoppingCart.getArrivalDate());
 				sign.setDepatureDate(shoppingCart.getDepatureDate());
-				sign.setNumber(shoppingCart.getNumber());
+				sign.setNumber(signNumber);
 				sign.setStatus(1);
-				
 				//资源号
-				String ssign = getSignSign(uid,sign.getReid(),sign.getNumber());
+				String ssign = getSignSign(uid,reid,signNumber);
 				sign.setSign(ssign);
 				
 				signMapper.insert(sign);
+				
+				//插入数据库Sign_user
+				int peopleNumber = roomtypeService.get(resourceService.get(reid).getRoomtype()).getPeople();
+				for(int j=0;j<peopleNumber;j++){
+					SignUser signUser = new SignUser();
+					signUser.setSign(ssign);
+					signUser.setUserLastname(userLastname[k]);
+					signUser.setUserFirstname(userFirstname[k]);
+					k++;
+					signUserService.add(signUser);
+				}
 			}
 			
 			
@@ -156,36 +184,44 @@ public class SettlementController {
 	}
 	
 	private String getOrderSign(Long uid,Integer invoiceType,Integer invoiceGroup){
-		String uidStr = "000"+uid;
-		uidStr = uidStr.substring(uidStr.length()-4);
+		String uidStr = "0"+uid;
+		uidStr = uidStr.substring(uidStr.length()-2);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		Date nowDate = new Date();
 		String dateStr = sdf.format(nowDate);//订单号的一部分
+		dateStr = dateStr.substring(dateStr.length()-6);
 		
 		String invoiceTypeStr = "0"+invoiceType;
-		invoiceTypeStr = invoiceTypeStr.substring(invoiceTypeStr.length()-2);
+		invoiceTypeStr = invoiceTypeStr.substring(invoiceTypeStr.length()-1);
 		
 		String invoiceGroupStr = "0"+invoiceGroup;
-		invoiceGroupStr = invoiceGroupStr.substring(invoiceGroupStr.length()-2);
+		invoiceGroupStr = invoiceGroupStr.substring(invoiceGroupStr.length()-1);
 		
-		return uidStr+dateStr+invoiceTypeStr+invoiceGroupStr;
+		String timeMillisStr = System.currentTimeMillis()+"";
+		timeMillisStr = timeMillisStr.substring(timeMillisStr.length()-6);
+		
+		return uidStr+dateStr+invoiceTypeStr+invoiceGroupStr+timeMillisStr;
 	}
 	
 	private String getSignSign(Long uid,Integer reid,Integer number){
-		String uidStr = "000"+uid;
-		uidStr = uidStr.substring(uidStr.length()-4);
+		String uidStr = "0"+uid;
+		uidStr = uidStr.substring(uidStr.length()-2);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		Date nowDate = new Date();
 		String dateStr = sdf.format(nowDate);//订单号的一部分
+		dateStr = dateStr.substring(dateStr.length()-6);
 		
 		String reidStr = "0"+reid;
-		reidStr = reidStr.substring(uidStr.length()-2);
+		reidStr = reidStr.substring(reidStr.length()-1);
 		
 		String numberStr = "0"+number;
-		numberStr = numberStr.substring(numberStr.length()-2);
+		numberStr = numberStr.substring(numberStr.length()-1);
 		
-		return uidStr+dateStr+reidStr+numberStr;
+		String timeMillisStr = System.currentTimeMillis()+"";
+		timeMillisStr = timeMillisStr.substring(timeMillisStr.length()-6);
+		
+		return uidStr+dateStr+reidStr+numberStr+timeMillisStr;
 	}
 }

@@ -116,7 +116,7 @@
                         <h2 class="title">入住信息</h2>
                     </div>
                     <div class="box-bd">
-                    	<div class="box-bd-people" th:each="shoppingCart:${shoppingCarts}">
+                    	<div class="box-bd-people" th:each="shoppingCart:${newShoppingCarts}">
                     		<input name="shoppingCartId" th:value="${shoppingCart.id}" style="display:none"/>
 		                	<span class="box-bd-tit">房间<span th:text="${shoppingCartStat.count}"></span></span>
 		             		<div class="box-bd-item" th:each="i:${#numbers.sequence(1,id_roomtype[shoppingCart.id].people)}">

@@ -10,8 +10,5 @@ public interface SignUserService {
 
 	List<SignUser> list();
 
-	List<SignUser> list(Order order);
-
-	List<SignUser> list(Resource resource);
-
+	void add(SignUser signUser);
 }

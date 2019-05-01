@@ -61,11 +61,12 @@ $(function() {
 		}
 		
 		//超过剩余不做或大于6处理
-		if(remain(num,$(this))){
-			//设置数量改变后的总价
-			$price.text(unitPrice*num);
-			updateAjax(num,$(this));
-		}
+		num = remain(num,$(this));
+		//设置数量改变后的总价
+		$price.text(unitPrice*num);
+		updateAjax(num,$(this));
+		changePeopleInput(num,$(this));
+		
 	});
 	
 	//+
@@ -83,12 +84,13 @@ $(function() {
 		$(this).prev().val(num);
 		$(this).siblings('.decrease').prop("disabled",false);
 		
-		//超过剩余不做或大于6处理
-		if(remain(num,$(this))){
-			//设置数量改变后的总价
-			$price.text(unitPrice*num);
-			updateAjax(num,$(this));
-		}
+		//超过剩余或大于6不做处理
+		num = remain(num,$(this));
+		//设置数量改变后的总价
+		$price.text(unitPrice*num);
+		updateAjax(num,$(this));
+		changePeopleInput(num,$(this));
+		
 	});
 	
 	//input
@@ -109,11 +111,12 @@ $(function() {
 		}
 
 		//超过剩余不做或大于6处理
-		if(remain(num,$(this))){
-			//设置数量改变后的总价
-			$price.text(unitPrice*num);
-			updateAjax(num,$(this));
-		}
+		num = remain(num,$(this));
+		//设置数量改变后的总价
+		$price.text(unitPrice*num);
+		updateAjax(num,$(this));
+		changePeopleInput(num,$(this));
+		
 	});
 
 	 $(".J_optionInvoice").children(".item").on("click", function() {
@@ -156,6 +159,7 @@ $(function() {
 		 if(typeof number == "number"){
 				var page = "updateShoppingNumber";
 				var id = object.parents(".shoppingId").attr("value");
+				console.log(number);
 				$.ajax({
 					url : page,
 					type : "GET",
@@ -167,6 +171,7 @@ $(function() {
 						if(message==-1){
 							console.log("未登录");
 						}
+						console.log(message[1].number);
 					}
 				});
 			}
@@ -177,12 +182,36 @@ $(function() {
 		 if(num>remain || num>6){
 			 if(remain>6){
 				 object.parents(".spinner").find(".spinnerExample").val(6);
+				 num = 6;
 			 }else{
 				 object.parents(".spinner").find(".spinnerExample").val(remain);
+				 num = remain;
 			 }
-			 return false;
-		 }else{
-			 return true;
+		 }
+			 return num;
+	 }
+	 
+	 function changePeopleInput(num,object) {
+		 if(num>0){
+			 var id = object.parents(".shoppingId").attr("value");
+			 while(true){
+				 var $boxBdPsById = $(".box-bd-people input[value='"+ id +"']").parent();
+				 var $boxBdP = $boxBdPsById.last();
+				 var length = $boxBdPsById.length;
+				 if(num>length){
+					 var $newBoxBdP = $boxBdP.clone(true);
+					 $boxBdP.after($newBoxBdP);
+				 }else if(num<length){
+					 $boxBdP.remove();
+				 }else{
+					 break;
+				 }
+			 }
+			 
+			 var $numbers = $boxBdP.parents(".xm-box").children(".box-bd").find(".box-bd-tit span");
+			 for(var i=0; i<$numbers.length;i++){
+				 $($numbers[i]).text(i+1);
+			 }
 		 }
 	 }
 	 
