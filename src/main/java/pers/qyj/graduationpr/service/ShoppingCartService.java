@@ -27,4 +27,6 @@ public interface ShoppingCartService {
 
 	public Integer getRidByid(Integer id);
 
+	public void delete(Long uid, Integer reid, Date arrivalDate, Date depatureDate);
+
 }

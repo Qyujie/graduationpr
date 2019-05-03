@@ -40,4 +40,14 @@ public class User {
 	public void setSalt(String salt) {
 		this.salt = salt == null ? null : salt.trim();
 	}
+	
+	@Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ",name='" + name + '\'' +
+                ", password=" + password +
+                ", birthday=" + salt +
+                '}';
+    }
 }

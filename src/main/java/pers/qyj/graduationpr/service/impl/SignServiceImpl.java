@@ -89,8 +89,31 @@ public class SignServiceImpl implements SignService {
 
 	@Override
 	public List<Sign> list(Order order) {
-		
-		return null;
+		SignExample example = new SignExample();
+		example.createCriteria().andOidEqualTo(order.getId());
+		return signMapper.selectByExample(example);
+	}
+
+	@Override
+	public void add(Sign sign) {
+		signMapper.insert(sign);
+	}
+
+	@Override
+	public void deleteByOid(Integer orderId) {
+		SignExample example = new SignExample();
+		example.createCriteria().andOidEqualTo(orderId);
+		List<Sign> signs = signMapper.selectByExample(example);
+		for(Sign sign : signs){
+			signMapper.deleteByPrimaryKey(sign.getId());
+		}
+	}
+
+	@Override
+	public List<Sign> list() {
+		SignExample example = new SignExample();
+		example.setOrderByClause("id");
+		return signMapper.selectByExample(example);
 	}
 
 }

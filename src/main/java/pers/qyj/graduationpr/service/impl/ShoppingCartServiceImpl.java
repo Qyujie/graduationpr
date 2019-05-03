@@ -178,4 +178,19 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 		return shoppingCart.getRid();
 	}
 
+	@Override
+	public void delete(Long uid, Integer reid, Date arrivalDate, Date depatureDate) {
+		ShoppingCartExample example = new ShoppingCartExample();
+		example.createCriteria().andUidEqualTo(uid)
+								.andRidEqualTo(reid)
+								.andArrivalDateEqualTo(arrivalDate)
+								.andDepatureDateEqualTo(depatureDate);
+		
+		List<ShoppingCart> ShoppingCarts =  shoppingCartMapper.selectByExample(example);
+		if(ShoppingCarts.size()!=0){
+			shoppingCartMapper.deleteByPrimaryKey(ShoppingCarts.get(0).getId());
+		}
+		
+	}
+
 }

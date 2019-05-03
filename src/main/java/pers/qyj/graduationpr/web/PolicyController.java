@@ -6,7 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
+import pers.qyj.graduationpr.pojo.Facility;
 import pers.qyj.graduationpr.pojo.Policy;
 import pers.qyj.graduationpr.service.PolicyService;
 
@@ -17,9 +22,15 @@ public class PolicyController {
 	PolicyService policyService;
 	
 	@RequestMapping("listPolicy")
-	public String list(Model model) {
+	public String list(Model model,
+	           @RequestParam(value = "start", defaultValue = "0") int start,
+	           @RequestParam(value = "size", defaultValue = "10") int size) {
+		PageHelper.startPage(start,size,"id");
 		List<Policy> policies = policyService.list();
 		model.addAttribute("policies", policies);
+		
+		PageInfo<Policy> page = new PageInfo<>(policies);
+		model.addAttribute("page", page); 
 		
 		model.addAttribute("requestUrl", "listPolicy");
 		

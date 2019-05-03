@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import pers.qyj.graduationpr.service.SignService;
+import pers.qyj.graduationpr.pojo.ShoppingCart;
 import pers.qyj.graduationpr.service.ShoppingCartService;
 import pers.qyj.graduationpr.service.UserService;
 
@@ -25,7 +26,30 @@ public class ShoppingCartController {
 	UserService userService;
 	@Autowired
 	SignService resourceSignService;
+	
+	@RequestMapping("/book")
+	@ResponseBody
+	public String book(Integer rid, String arrival, String depature) throws Exception {
+		try {
+			Subject subject = SecurityUtils.getSubject();
+			String currentUser = subject.getPrincipal().toString();
+			Long uid = userService.getByName(currentUser).getId();
 
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date arrivalDate = new Date(sdf.parse(arrival).getTime());
+			Date depatureDate = new Date(sdf.parse(depature).getTime());
+			
+			List<Object> message = shoppingCartService.add(uid, rid, arrivalDate, depatureDate);
+			ShoppingCart shoppingCart = (ShoppingCart) message.get(1);
+			Integer[] id = {shoppingCart.getId()};
+			shoppingCartService.updateChecked(uid,id);
+			return "1";
+		} catch (NullPointerException e) {
+			return "-1";
+		}
+	}
+	
+	
 	@RequestMapping("/addShopping")
 	@ResponseBody
 	public List<Object> addShopping(Integer rid, String arrival, String depature) throws Exception {

@@ -11,12 +11,12 @@ $(function() {
         var page = "verificationUser";
         var uservalue = $("#user-value").val();
         var passwordvalue = $("#password-value").val();
-        var remenberme = $(".checkbox input[type='checkbox']").is(':checked');
+        var rememberme = $(".checkbox input[type='checkbox']").is(':checked');
         $.post(
             page, {
                 "name": uservalue,
                 "password": passwordvalue,
-                "remenberme": remenberme
+                "rememberme": rememberme
             },
             function(result) {
                 console.log(result);

@@ -19,6 +19,32 @@ $(function() {
 	  return fmt;   
 	} 
 	
+	
+	$("tbody").delegate('.div-btn-reserve','click',function (){
+		var page = "book";
+		var rid = $(this).attr("value"); 
+		var arrival = $(".from").val();// 入住时间
+		var depature = $(".to").val();// 退房时间
+		$.ajax({
+			url : page,
+			type : "POST",
+			data : {
+				"rid" : rid ,
+				"arrival" : arrival ,
+				"depature" : depature ,
+			},
+			success : function(message) {
+				if(message==-1){
+					console.log("未登录");
+					window.location.href = "login";
+				}else if(message==1){
+					window.location.href = "settlement";
+				}
+			}
+		});
+	});
+	
+	
 	$("tbody").delegate('.div-btn-add','click',function (){
 		var page = "addShopping";
 		var rid = $(this).attr("value"); 

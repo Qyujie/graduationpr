@@ -6,8 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 import pers.qyj.graduationpr.pojo.Facility;
+import pers.qyj.graduationpr.pojo.Permission;
 import pers.qyj.graduationpr.service.FacilityService;
 
 @Controller
@@ -17,9 +22,15 @@ public class FacilityController {
 	FacilityService facilityService;
 	
 	@RequestMapping("listFacility")
-	public String list(Model model) {
+	public String list(Model model,
+	           @RequestParam(value = "start", defaultValue = "0") int start,
+	           @RequestParam(value = "size", defaultValue = "10") int size) {
+		PageHelper.startPage(start,size,"id");
 		List<Facility> facilities = facilityService.list();
 		model.addAttribute("facilities", facilities);
+		
+		PageInfo<Facility> page = new PageInfo<>(facilities);
+		model.addAttribute("page", page); 
 		
 		model.addAttribute("requestUrl", "listFacility");
 		

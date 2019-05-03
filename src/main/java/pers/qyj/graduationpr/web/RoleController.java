@@ -9,8 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 import pers.qyj.graduationpr.pojo.Permission;
+import pers.qyj.graduationpr.pojo.Policy;
 import pers.qyj.graduationpr.pojo.Role;
 import pers.qyj.graduationpr.service.PermissionService;
 import pers.qyj.graduationpr.service.RolePermissionService;
@@ -27,9 +32,15 @@ public class RoleController {
 	PermissionService permissionService;
 
 	@RequestMapping("listRole")
-	public String list(Model model) {
+	public String list(Model model,
+	           @RequestParam(value = "start", defaultValue = "0") int start,
+	           @RequestParam(value = "size", defaultValue = "10") int size) {
+		PageHelper.startPage(start,size,"id");
 		List<Role> roles = roleService.list();
 		model.addAttribute("roles", roles);
+		
+		PageInfo<Role> page = new PageInfo<>(roles);
+		model.addAttribute("page", page); 
 
 		Map<String, List<Permission>> role_permissions = new HashMap<>();
 

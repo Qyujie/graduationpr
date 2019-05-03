@@ -26,4 +26,26 @@ public class OrderServiceImpl implements OrderService {
 	public void add(Order order) {
 		orderMapper.insert(order);
 	}
+
+	@Override
+	public Order getById(Integer orderId) {
+		return orderMapper.selectByPrimaryKey(orderId);
+	}
+
+	@Override
+	public Order getBySign(String out_trade_no) {
+		OrderExample example = new OrderExample();
+		example.createCriteria().andSignEqualTo(out_trade_no);
+		return orderMapper.selectByExample(example).get(0);
+	}
+
+	@Override
+	public void updat(Order order) {
+		orderMapper.updateByPrimaryKey(order);
+	}
+
+	@Override
+	public void delete(Integer id) {
+		orderMapper.deleteByPrimaryKey(id);
+	}
 }

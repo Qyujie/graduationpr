@@ -79,7 +79,7 @@ select {
 
 #div-userInformationBindingList div {
     width: 30%;
-    float: left;
+    display: inline-block;
     margin: 20px 40px 20px 90px;
     /* background-color:rgba(255,0,255,0.1); */
 }

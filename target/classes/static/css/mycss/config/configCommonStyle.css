@@ -37,3 +37,15 @@ div.workingroom div.addOrEdit{
 .panel-group .panel + .panel {
     margin-top: 0px;
 }
+
+.yellowTip{
+	color:#23cdd1;
+}
+
+.redTip{
+	color:red;
+}
+
+.greenTip{
+	color:green;
+}

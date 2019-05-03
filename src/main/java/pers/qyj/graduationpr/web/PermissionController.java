@@ -24,7 +24,7 @@ public class PermissionController {
 	@RequestMapping("listPermission")
 	public String list(Model model,
 	           @RequestParam(value = "start", defaultValue = "0") int start,
-	           @RequestParam(value = "size", defaultValue = "30") int size) 
+	           @RequestParam(value = "size", defaultValue = "10") int size) 
 	        		   throws Exception {
 		PageHelper.startPage(start,size,"id");
 		List<Permission> permissions = permissionService.list();

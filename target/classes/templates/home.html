@@ -86,22 +86,22 @@
                             <h2>CHECK AVAILABILITY</h2>
                         </div>
                         <div class="col-lg-9">
-                            <form id="ajax-form-search-room" action="search_step_2.php" method="post">
+                            <form id="ajax-form-search-room" action="roomInformation" method="get">
                                 <div class="availability-form">
-                                    <input type="text" name="arrive" class="awe-calendar from" placeholder="入住日期">
-                                    <input type="text" name="departure" class="awe-calendar to" placeholder="退房日期">
+                                    <input type="text" name="arrival" class="awe-calendar from" placeholder="入住日期">
+                                    <input type="text" name="depature" class="awe-calendar to" placeholder="退房日期">
 
                                     <select class="awe-select" name="adults">
-                                        <option>成人</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
+                                        <option value="0">成人</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
                                     </select>
                                     <select class="awe-select" name="children">
-                                        <option>儿童</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
+                                        <option value="0">儿童</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
                                     </select>
                                     <div class="vailability-submit">
                                         <button class="awe-btn awe-btn-13">搜索</button>

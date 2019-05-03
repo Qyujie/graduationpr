@@ -18,5 +18,11 @@ public interface SignService {
 	public Integer getRemainByReid(Integer Reid,Date arrivalDate, Date depatureDate);
 
 	public List<Sign> list(Order order);
+
+	public void add(Sign sign);
+
+	public void deleteByOid(Integer orderId);
+
+	public List<Sign> list();
 	
 }

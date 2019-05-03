@@ -40,12 +40,20 @@
 			<div th:each="order_resource:${order_resources[order.sign]}" 
 				 th:text="${order_resource.roomtype + '*' + resource_number[order_resource.id]}"></div>
           </td>
-          <td th:text="${order.tradeStatus}"></td>
-          <td th:text="${order.payStatus}"></td>
+          <td th:switch="${order.tradeStatus}">
+          	<span th:case="0" class="yellowTip">交易中</span>
+          	<span th:case="-1" class="redTip">交易失败</span>
+          	<span th:case="1" class="greenTip">交易完成</span>
+          </td>
+          <td th:switch="${order.payStatus}">
+          	<span th:case="0" class="yellowTip">支付中</span>
+          	<span th:case="-1" class="redTip">未支付</span>
+          	<span th:case="1" class="greenTip">已支付</span>
+          </td>
           <td th:text="${order.userName}"></td>
-          <td th:text="${order.date}"></td>
-          <td><a th:href="@{'editOrder?id='+${order.sign}}">处理</a></td>
-          <td><a th:href="@{'deleteOrder?id='+${order.sign}}">删除</a></td>
+          <td th:text="${#dates.format(order.date, 'yyyy-MM-dd')}"></td>
+          <td><a th:href="@{'editOrder?id='+${order.id}}">处理</a></td>
+          <td><a th:href="@{'deleteOrder?id='+${order.id}}">删除</a></td>
         </tr>
       </table>
 

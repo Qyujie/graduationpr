@@ -9,6 +9,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+
 import pers.qyj.graduationpr.mapper.ResourceFacilityMapper;
 import pers.qyj.graduationpr.mapper.ResourceMapper;
 import pers.qyj.graduationpr.mapper.SignMapper;
@@ -95,7 +97,19 @@ public class ResourceServiceImpl implements ResourceService {
 		example.createCriteria().andOidEqualTo(order.getId());
 		List<Sign> ros = signMapper.selectByExample(example);
 		for (Sign sign : ros) {
-			resources.add(resourceMapper.selectByPrimaryKey(sign.getReid()));
+			boolean isHave = false;
+			Resource resource = resourceMapper.selectByPrimaryKey(sign.getReid());
+			
+			for (Resource re : resources) {
+				if(re.getId()==resource.getId()){
+					isHave = true;
+					break;
+				}
+			}
+			
+			if(!isHave){
+				resources.add(resource);
+			}
 		}
 		return resources;
 	}
@@ -110,7 +124,7 @@ public class ResourceServiceImpl implements ResourceService {
 
 	@Override
 	public List<Resource> list(Integer adults, Integer children, String roomtype,
-			String breakfast, Integer[] facility, Integer[] policy) {
+			String breakfast, Integer[] facility, Integer[] policy,Integer start,Integer size) {
 
 		ResourceExample resourceExample = new ResourceExample();
 		Criteria resourceCriteria = resourceExample.createCriteria();
@@ -218,7 +232,7 @@ public class ResourceServiceImpl implements ResourceService {
 			}
 		}
 		
-		
+		PageHelper.startPage(start,size,"id");
 		List<Resource> resources = resourceMapper.selectByExample(resourceExample);
 		return resources;
 	}

@@ -129,7 +129,7 @@
           				<th> </th>
   					</thead>
   					<tbody class="roomInformation-tbody">
-     					<tr th:each="resource:${resources}">
+     					<tr th:each="resource:${resources}" th:if="${resource_remain[resource.id]>0}">
         					<td>
         						<img width="250px" th:src="@{${resource_roomtype[resource.id].imgurl}}" alt=""/>
         						<div th:text="${resource.roomtype}"></div>

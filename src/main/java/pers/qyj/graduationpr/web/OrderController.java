@@ -8,8 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 import pers.qyj.graduationpr.pojo.Resource;
+import pers.qyj.graduationpr.pojo.Roomtype;
 import pers.qyj.graduationpr.pojo.Sign;
 import pers.qyj.graduationpr.pojo.Order;
 import pers.qyj.graduationpr.service.ResourceService;
@@ -27,10 +32,17 @@ public class OrderController {
 	ResourceService resourceService;
 
 	@RequestMapping("listOrder")
-	public String list(Model model) {
+	public String list(Model model,
+	           @RequestParam(value = "start", defaultValue = "0") int start,
+	           @RequestParam(value = "size", defaultValue = "10") int size) {
+		PageHelper.startPage(start,size,"id");
+		
 		List<Order> orders = orderService.list();
 		model.addAttribute("orders", orders);
-
+		
+		PageInfo<Order> page = new PageInfo<>(orders);
+		model.addAttribute("page", page);  
+		
 		Map<String, List<Resource>> order_resources = new HashMap<>();
 		Map<Integer, Integer> resource_number = new HashMap<>();
 
@@ -39,10 +51,14 @@ public class OrderController {
 			List<Sign> signs = signService.list(order);
 			order_resources.put(order.getSign(), resources);
 			for (Resource resource : resources) {
+				int num = 0;
 				for (Sign sign : signs) {
-					if (resource.getId().equals(sign.getReid())) {
-						resource_number.put(resource.getId(), sign.getNumber());
+					if(resource.getId().equals(sign.getReid())){
+						num++;
 					}
+				}
+				if(num>0){
+					resource_number.put(resource.getId(), num);
 				}
 			}
 		}
@@ -51,6 +67,12 @@ public class OrderController {
 
 		return "config/order/listOrder";
 	}
+	
+	 @RequestMapping("deleteOrder")
+	 public String delete(Model model, Integer id) {
+	 orderService.delete(id);
+	 return "redirect:listOrder";
+	 }
 	
 	@RequestMapping("addOrder")
 	public String add(Model model, Order order) {

@@ -14,6 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 import pers.qyj.graduationpr.pojo.Bedtype;
 import pers.qyj.graduationpr.pojo.Breakfast;
@@ -55,9 +59,15 @@ public class ResourceController {
 	ResourcePolicyService resourcePolicyService;
 
 	@RequestMapping("listResource")
-	public String list(Model model) {
+	public String list(Model model,
+	           @RequestParam(value = "start", defaultValue = "0") int start,
+	           @RequestParam(value = "size", defaultValue = "10") int size) {
+		PageHelper.startPage(start,size,"id");
 		List<Resource> resources = resourceService.list();
 		model.addAttribute("resources", resources);
+		
+		PageInfo<Resource> page = new PageInfo<>(resources);
+		model.addAttribute("page", page); 
 
 		Map<Integer, List<Facility>> resource_facilities = new HashMap<>();
 		for (Resource resource : resources) {

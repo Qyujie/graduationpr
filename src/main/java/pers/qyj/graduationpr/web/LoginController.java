@@ -1,5 +1,11 @@
 package pers.qyj.graduationpr.web;
 
+
+import java.net.URLEncoder;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -7,10 +13,14 @@ import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.servlet.SimpleCookie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pers.qyj.graduationpr.mapper.UserInformationMapper;
 import pers.qyj.graduationpr.mapper.UserMapper;
@@ -66,18 +76,21 @@ public class LoginController {
 	
 	@RequestMapping("/verificationUser")
 	@ResponseBody
-	public String verificationUser(User c) {
+	public String verificationUser(User user,HttpServletResponse  res,boolean rememberme) {
 		
 		Subject subject = SecurityUtils.getSubject();
 		try {
-			UsernamePasswordToken token = new UsernamePasswordToken(c.getName(), c.getPassword());
+			UsernamePasswordToken token = new UsernamePasswordToken(user.getName(), user.getPassword());
+			token.setRememberMe(rememberme);
 			subject.login(token);
 			System.out.println("登陆成功");
-			subject.getSession().setAttribute("id", c.getId());
+			System.out.println("rememberme:"+rememberme);
+			subject.getSession().setAttribute("id", user.getId());
+	        	
 			return "登录成功";
 			
-
-		} catch (Exception e) {
+		}catch (Exception e) {
+        	System.out.println(e.getMessage());
 			return "登录失败";
 		}
 	}

@@ -14,8 +14,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 import pers.qyj.graduationpr.pojo.Role;
+import pers.qyj.graduationpr.pojo.Roomtype;
 import pers.qyj.graduationpr.pojo.User;
 import pers.qyj.graduationpr.service.RoleService;
 import pers.qyj.graduationpr.service.UserRoleService;
@@ -32,8 +37,15 @@ public class UserController {
 	RoleService roleService;
 
 	@RequestMapping("listUser")
-	public String list(Model model) {
+	public String list(Model model,
+	           @RequestParam(value = "start", defaultValue = "0") int start,
+	           @RequestParam(value = "size", defaultValue = "10") int size) {
+		PageHelper.startPage(start,size,"id");
 		List<User> users = userService.list();
+		
+		PageInfo<User> page = new PageInfo<>(users);
+		model.addAttribute("page", page); 
+		
 		model.addAttribute("users", users);
 		Map<String, List<Role>> user_roles = new HashMap<>();
 		for (User user : users) {

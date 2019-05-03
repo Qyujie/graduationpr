@@ -12,6 +12,7 @@ import pers.qyj.graduationpr.pojo.Resource;
 import pers.qyj.graduationpr.pojo.SignUser;
 import pers.qyj.graduationpr.pojo.SignUserExample;
 import pers.qyj.graduationpr.pojo.RoleExample;
+import pers.qyj.graduationpr.pojo.Sign;
 import pers.qyj.graduationpr.service.SignUserService;
 
 @Service
@@ -29,6 +30,16 @@ public class SignUserServiceImpl implements SignUserService {
 	@Override
 	public void add(SignUser signUser) {
 		signUserMapper.insert(signUser);
+	}
+
+	@Override
+	public void deleteBySign(Sign sign) {
+		SignUserExample example = new SignUserExample();
+		example.createCriteria().andSignEqualTo(sign.getSign());
+		List<SignUser> signUsers = signUserMapper.selectByExample(example);
+		for (SignUser signUser : signUsers) {
+			signUserMapper.deleteByPrimaryKey(signUser.getId());
+		}
 	}
 
 }

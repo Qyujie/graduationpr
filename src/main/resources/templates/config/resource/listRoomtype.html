@@ -44,8 +44,8 @@
               <td th:text="${roomtype.price}"></td>
               <td><a th:href="@{${roomtype.imgurl}}">查看</a></td>
               <td th:text="${roomtype.desc}"></td>
-              <td><a th:href="@{'editRoomtype?id='+${roomtype.name}}">编辑</a></td>
-          	  <td><a th:href="@{'deleteRoomtype?id='+${roomtype.name}}">删除</a></td>
+              <td><a th:href="@{'editRoomtype?name='+${roomtype.name}}">编辑</a></td>
+          	  <td><a th:href="@{'deleteRoomtype?name='+${roomtype.name}}">删除</a></td>
             </tr>
         </table>
 

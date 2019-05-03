@@ -1,11 +1,22 @@
 package pers.qyj.graduationpr.web;
 
-import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
+import javax.servlet.http.Cookie;
+
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import pers.qyj.graduationpr.pojo.User;
 
 //专门用于显示页面的控制器
 @Controller
@@ -13,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class PageController {
 
 	@RequestMapping("/login")
-	public String login() {
+	public String login(HttpServletRequest req) throws Exception {
 		return "login";
 	}
 

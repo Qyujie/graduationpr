@@ -48,7 +48,7 @@ public class ShiroConfiguration {
 		// 必须设置 SecurityManager
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
 		// 设置登录路径,被拦截到的请求会跳转到该页面,如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
-		shiroFilterFactoryBean.setLoginUrl("/home");
+		shiroFilterFactoryBean.setLoginUrl("/login");
         // 登录成功后要跳转的链接
         shiroFilterFactoryBean.setSuccessUrl("/index");
 		// 未授权界面;
@@ -70,7 +70,7 @@ public class ShiroConfiguration {
 		
 		//用户注销
 		filterChainDefinitionMap.put("/exit", "logout");
-		
+
 		// 静态资源
 		filterChainDefinitionMap.put("/common/**", "anon");
 		filterChainDefinitionMap.put("/css/**", "anon");
@@ -80,6 +80,12 @@ public class ShiroConfiguration {
 		//权限验证
 		filterChainDefinitionMap.put("/config/**", "user");
 		filterChainDefinitionMap.put("/config/**", "url");
+
+		filterChainDefinitionMap.put("/roomInformation", "user");
+		filterChainDefinitionMap.put("/settlement", "user");
+		filterChainDefinitionMap.put("/pay", "user");
+		filterChainDefinitionMap.put("/userInformation", "user");
+		
 		
 		shiroFilterFactoryBean.setFilters(customisedFilter);
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
