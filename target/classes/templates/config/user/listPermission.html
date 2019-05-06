@@ -42,7 +42,10 @@
             </tr>
           </c:forEach>
         </table>
-
+        
+    	<!-- 分页组件 -->
+        <div th:include="common/pagination"></div>
+        
         <div class="addOrEdit" >
           <form action="addPermission" method="post">
             权限名称:

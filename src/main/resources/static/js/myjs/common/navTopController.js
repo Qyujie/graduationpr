@@ -3,10 +3,10 @@
     var pageExit = "/exit";
     var $liLogin = $(
         '<li><a href="/home">主页</a></li>' +
-        '<li><a href="/userInformation">个人中心</a></li>' +
-        '<li><a href="/collections">收藏</a></li>' +
+        '<li><a href="/user/userInformation">个人中心</a></li>' +
+        '<li><a href="/user/userOrder">我的订单</a></li>' +
         '<li class="divider"></li>' +
-        '<li><a  id="login">注销</a></li>');
+        '<li><a href="/exit">注销</a></li>');
     var $liExit = $('<li ><a href="/login">登录</a></li>');
     $.get(
         pageGet,
@@ -32,15 +32,15 @@
     );
 
     $(".home").click(function() {
-        window.location.href = "home";
+        window.location.href = "/home";
     });
 
-    $(".original").click(function() {
-        window.location.href = "original";
+    $(".userInformation").click(function() {
+        window.location.href = "/user/userInformation";
     });
 
-    $(".creations").click(function() {
-        window.location.href = "creations";
+    $(".userOrder").click(function() {
+        window.location.href = "/user/userOrder";
     });
 
     $(".contribute").click(function() {

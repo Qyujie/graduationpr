@@ -49,3 +49,7 @@ div.workingroom div.addOrEdit{
 .greenTip{
 	color:green;
 }
+.panel-body-orders{
+	margin-top:20px;
+	text-align: center;
+}

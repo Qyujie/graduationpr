@@ -24,5 +24,13 @@ public interface SignService {
 	public void deleteByOid(Integer orderId);
 
 	public List<Sign> list();
+
+	public List<Sign> getBySign(String searchSign);
+
+	public List<Sign> getByOrderSign(String search);
+
+	public void delete(int id);
+
+	public Sign getById(int id);
 	
 }

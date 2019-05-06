@@ -18,4 +18,8 @@ public interface OrderService {
 
 	void delete(Integer id);
 
+	List<Order> getByUserName(String currentUser);
+
+	List<Order> getByOrderSign(String search);
+
 }

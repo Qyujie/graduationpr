@@ -31,7 +31,7 @@
             <td>编辑</td>
             <td>删除</td>
           </tr>
-            <tr th:each="policy:${policies}">
+            <tr th:each="policy:${page.list}">
               <td th:text="${policy.id}"></td>
               <td th:text="${policy.name}"></td>
               <td th:text="${policy.desc}"></td>
@@ -39,7 +39,10 @@
           	  <td><a th:href="@{'deletePolicy?id='+${policy.id}}">删除</a></td>
             </tr>
         </table>
-
+        
+		<!-- 分页组件 -->
+        <div th:include="common/pagination"></div>
+        
         <div class="addOrEdit" >
           <form action="addPolicy" method="post">
             政策名称:

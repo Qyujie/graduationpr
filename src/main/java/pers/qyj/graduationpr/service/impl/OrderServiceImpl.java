@@ -48,4 +48,18 @@ public class OrderServiceImpl implements OrderService {
 	public void delete(Integer id) {
 		orderMapper.deleteByPrimaryKey(id);
 	}
+
+	@Override
+	public List<Order> getByUserName(String currentUser) {
+		OrderExample example = new OrderExample();
+		example.createCriteria().andUserNameEqualTo(currentUser);
+		return orderMapper.selectByExample(example);
+	}
+
+	@Override
+	public List<Order> getByOrderSign(String search) {
+		OrderExample example = new OrderExample();
+		example.createCriteria().andSignEqualTo(search);
+		return orderMapper.selectByExample(example);
+	}
 }

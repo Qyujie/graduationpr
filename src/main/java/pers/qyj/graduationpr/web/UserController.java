@@ -22,9 +22,11 @@ import com.github.pagehelper.PageInfo;
 import pers.qyj.graduationpr.pojo.Role;
 import pers.qyj.graduationpr.pojo.Roomtype;
 import pers.qyj.graduationpr.pojo.User;
+import pers.qyj.graduationpr.pojo.Userinformation;
 import pers.qyj.graduationpr.service.RoleService;
 import pers.qyj.graduationpr.service.UserRoleService;
 import pers.qyj.graduationpr.service.UserService;
+import pers.qyj.graduationpr.service.UserinformationService;
 
 @Controller
 @RequestMapping("config/user")
@@ -35,6 +37,8 @@ public class UserController {
 	UserService userService;
 	@Autowired
 	RoleService roleService;
+	@Autowired
+	UserinformationService userinformationService;
 
 	@RequestMapping("listUser")
 	public String list(Model model,
@@ -190,6 +194,10 @@ public class UserController {
 		u.setPassword(encodedPassword);
 		u.setSalt(salt);
 		userService.add(u);
+		
+		Userinformation userinformation = new Userinformation();
+		userinformation.setName(u.getName());
+		userinformationService.saveUserInformation(userinformation);
 		
 		model.addAttribute("requestUrl", "listUser");
 		

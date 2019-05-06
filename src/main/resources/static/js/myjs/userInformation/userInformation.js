@@ -1,5 +1,6 @@
 $(function() {
     $("#uiSubmit").click(function() {
+    	console.log("++");
         var page = "updateUserInformation";
         var namevalue = $("#name-value").val();
         var sexvalue = $("#sex-value").val();
@@ -29,8 +30,8 @@ $(function() {
                 "sex": sexvalue,
                 "phone": phonevalue,
                 "prefecture": prefecturevalue,
-                "real_name": real_namevalue,
-                "id_card": id_cardvalue,
+                "realName": real_namevalue,
+                "idCard": id_cardvalue,
             },
             function(result) {
                 if (result == "Success") {

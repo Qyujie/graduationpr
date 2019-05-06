@@ -32,7 +32,7 @@
             <td>编辑</td>
             <td>删除</td>
           </tr>
-            <tr th:each="facility:${facilities}">
+            <tr th:each="facility:${page.list}">
               <td th:text="${facility.id}"></td>
               <td th:text="${facility.name}"></td>
               <td th:text="${facility.desc}"></td>
@@ -40,7 +40,10 @@
           	  <td><a th:href="@{'deleteFacility?id='+${facility.id}}">删除</a></td>
             </tr>
         </table>
-
+        
+		<!-- 分页组件 -->
+        <div th:include="common/pagination"></div>
+        
         <div class="addOrEdit" >
           <form action="addFacility" method="post">
             设施名称:

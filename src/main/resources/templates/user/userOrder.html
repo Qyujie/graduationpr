@@ -4,10 +4,6 @@
 <script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
 <!-- js -->
 <script src="/js/myjs/common/buttonTop.js"></script>
-<script src="/js/myjs/userInformation/select.js"></script>
-<script src="/js/myjs/userInformation/userInformation.js"></script>
-<script src="/js/myjs/userInformation/upload.js"></script>
-<script src="/js/myjs/userInformation/initialization.js"></script>
 <script src="/js/myjs/common/modelTip.js"></script>
 <!-- css -->
 <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -17,7 +13,7 @@
 <link href="/css/mycss/common.css" rel="stylesheet" type="text/css" />
 <link href="/css/mycss/loginStyle.css" rel="stylesheet" type="text/css" />
 <head>
-    <title>个人信息</title>
+    <title>我的订单</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 
@@ -29,67 +25,64 @@
     
     <!-- 这是个人信息编辑内容的div -->
     <div class="panel panel-info div-userInformation">
-        <div class="panel-heading">基本信息</div>
+        <div class="panel-heading">订单信息</div>
 
         <div class="panel-body">
-
-            <!-- 头像 -->
-            <div id="div-headPortrait" th:style="'background:url(' + @{${headPortrait}} + ');
-            background-size: cover;'">
-                <span class="iconfont icon-xiangji"></span>
-                <input type="file" name="file" accept="image/*" />
-            </div>
-
-            <!-- 基本信息输入框组 -->
-            <div class="input-login">
-                <div class="form-group">
-                    <div class="tip-txet">账号</div>
-                    <input id="name-value" maxlength="20" th:value="${name}"  readonly="readonly"/>
-                </div>
-                <div class="form-group">
-                    <div class="tip-txet">生日</div>
-                    <select id="select-year">
-                            <option th:value="${birthdayYear}">年</option>
-					    </select>
-                    <select id="select-month">
-						    <option th:value="${birthdayMonth}">月</option>
-					    </select>
-                    <select id="select-day">
-					    	<option th:value="${birthdayDay}">日</option>
-					    </select>
-                </div>
-                <div class="form-group">
-                    <div class="tip-txet">性别</div>
-                    <select id="sex-value">
-								<option>请选择</option>
-								<option th:selected="${sex =='男 '}">男</option>
-								<option th:selected="${sex =='女 '}">女</option>
-					</select>
-                </div>
-                <div class="form-group">
-                    <div class="tip-txet">手机号码</div>
-                    <input id="phone-value" maxlength="15" th:value="${phone}" />
-                </div>
-                <div class="form-group">
-                    <div class="tip-txet">地区</div>
-                    <select id="prefecture-value">
-								<option>请选择</option>
-								<option th:selected="${prefecture =='中国 '}">中国</option>
-								<option th:selected="${prefecture =='其它 '}">其它</option>
-					</select>
-                </div>
-                <div class="form-group">
-                    <div class="tip-txet">真实姓名</div>
-                    <input id="real_name-value" maxlength="15" th:value="${realName}" />
-                </div>
-                <div class="form-group">
-                    <div class="tip-txet">身份证号</div>
-                    <input id="id_card-value" maxlength="18" th:value="${idCard}" />
-                </div>
-            </div>
-
-            <div class="submit" id="uiSubmit">保存</div>
-        </div>
+        	<div th:each="order:${page.list}" class="panel-body-orders">
+        		<div>
+        			<span>订单号:</span>
+        			<span th:text="${order.sign}"></span>
+        		</div>
+        		<div>
+        			<span>创建时间:</span>
+        			<span th:text="${#dates.format(order.date, 'yyyy-MM-dd HH:mm:ss')}"></span>
+        		</div>
+        		<div>
+        			<span>订单内容:</span>
+        			<span th:each="order_resource:${order_resources[order.sign]}" 
+						  th:text="${order_resource.roomtype + '*' + resource_number[order_resource.id]}"></span>
+        		</div>
+        		<div th:switch="${order.tradeStatus}">
+        			<span>交易状态:</span>
+		          	<span th:case="0" class="yellowTip">交易中</span>
+		          	<span th:case="-1" class="redTip">交易失败</span>
+		          	<span th:case="1" class="greenTip">交易完成</span>
+		        </div>
+		        <div th:switch="${order.payStatus}">
+		        	<span>支付状态:</span>
+		         	<span th:case="0" class="yellowTip">支付中</span>
+		     		<span th:case="-1" class="redTip">未支付</span>
+		      		<span th:case="1" class="greenTip">已支付</span>
+		        </div>
+		        <div>
+		        	<span>电话:</span>
+		        	<span th:text="${order.userPhone}"></span>
+		        </div>
+		        <div>
+		        	<span>电子邮件:</span>
+		        	<span th:text="${order.userEmail}"></span>
+		        </div>
+		        <div>
+		        	<span>发票:</span>
+		        	<span th:switch="${order.invoiceType}">
+		        		<span th:case="1">电子</span>
+		        		<span th:case="2">纸质</span>
+		        	</span>
+		        	<span th:switch="${order.invoiceGroup}">
+		        		<span th:case="1">个人</span>
+		        		<span th:case="2">单位</span>
+		       		</span>
+		        </div>
+		        <div>
+		        	<span>发票抬头:</span>
+		        	<span th:text="${order.invoiceTitle}"></span>
+		        </div>
+        	</div>
+           
+			<!-- 分页组件 -->
+        	<div th:include="common/pagination"></div>
+            
+        </div><!-- panel-body END -->
 
     </div>
 

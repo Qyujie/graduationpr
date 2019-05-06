@@ -31,10 +31,9 @@
           <td>支付状态</td>
           <td>用户</td>
           <td>创建时间</td>
-          <td>处理</td>
           <td>删除</td>
         </tr>
-        <tr th:each="order:${orders}">
+        <tr th:each="order:${page.list}">
           <td th:text="${order.sign}"></td>
           <td>
 			<div th:each="order_resource:${order_resources[order.sign]}" 
@@ -51,15 +50,13 @@
           	<span th:case="1" class="greenTip">已支付</span>
           </td>
           <td th:text="${order.userName}"></td>
-          <td th:text="${#dates.format(order.date, 'yyyy-MM-dd')}"></td>
-          <td><a th:href="@{'editOrder?id='+${order.id}}">处理</a></td>
+          <td th:text="${#dates.format(order.date, 'yyyy-MM-dd HH:mm:ss')}"></td>
           <td><a th:href="@{'deleteOrder?id='+${order.id}}">删除</a></td>
         </tr>
       </table>
-
-      <div class="addOrEdit" >
-         <a href="addOrder">生成订单</a>
-      </div>
+      
+		<!-- 分页组件 -->
+        <div th:include="common/pagination"></div>
     </div>
   </body>
 <script src="/common/scroll/jquery.nicescroll.js"/></script>

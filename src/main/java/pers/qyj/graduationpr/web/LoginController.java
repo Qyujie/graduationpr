@@ -1,6 +1,5 @@
 package pers.qyj.graduationpr.web;
 
-
 import java.net.URLEncoder;
 
 import javax.servlet.http.Cookie;
@@ -22,12 +21,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import pers.qyj.graduationpr.mapper.UserInformationMapper;
+import pers.qyj.graduationpr.mapper.UserinformationMapper;
 import pers.qyj.graduationpr.mapper.UserMapper;
 import pers.qyj.graduationpr.pojo.User;
-import pers.qyj.graduationpr.pojo.UserInformation;
+import pers.qyj.graduationpr.pojo.Userinformation;
 import pers.qyj.graduationpr.service.UserRoleService;
-
+import pers.qyj.graduationpr.service.UserService;
+import pers.qyj.graduationpr.service.UserinformationService;
 
 @Controller
 @RequestMapping("")
@@ -36,10 +36,12 @@ public class LoginController {
 	@Autowired
 	UserMapper userMapper;
 	@Autowired
-	UserInformationMapper userInformationMapper;
+	UserinformationService userinformationService;
 	@Autowired
 	UserRoleService userRoleService;
-	
+	@Autowired
+	UserService userService;
+
 	@RequestMapping("/addUser")
 	@ResponseBody
 	public String listUser(User c) throws Exception {
@@ -58,41 +60,63 @@ public class LoginController {
 			u.setPassword(encodedPassword);
 			u.setSalt(salt);
 			userMapper.save(u);
-			
+
 			User user = userMapper.getUserByName(c.getName());
-					
-			long[] roleIds = {(long) 3};
+
+			long[] roleIds = { (long) 3 };
 			userRoleService.setRoles(user, roleIds);
-			
-			UserInformation userinformation = new UserInformation();
+
+			Userinformation userinformation = new Userinformation();
 			userinformation.setName(c.getName());
-			userInformationMapper.saveUserInformation(userinformation);
+			userinformationService.saveUserInformation(userinformation);
 			return "registerSuccess";
 		}
-		
-		
+
 	}
 
-	
 	@RequestMapping("/verificationUser")
 	@ResponseBody
-	public String verificationUser(User user,HttpServletResponse  res,boolean rememberme) {
-		
+	public String verificationUser(User user, HttpServletResponse res, boolean rememberme) {
+
 		Subject subject = SecurityUtils.getSubject();
 		try {
 			UsernamePasswordToken token = new UsernamePasswordToken(user.getName(), user.getPassword());
 			token.setRememberMe(rememberme);
 			subject.login(token);
 			System.out.println("登陆成功");
-			System.out.println("rememberme:"+rememberme);
+			System.out.println("rememberme:" + rememberme);
 			subject.getSession().setAttribute("id", user.getId());
-	        	
+
 			return "登录成功";
-			
-		}catch (Exception e) {
-        	System.out.println(e.getMessage());
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			return "登录失败";
 		}
+	}
+
+	@RequestMapping("/repasswordSubmit")
+	@ResponseBody
+	public String repasswordSubmit(String name, String phone, String password) {
+		Userinformation userinformation = userinformationService.getUserInformation(name);
+		System.out.println(phone);
+		System.out.println(userinformation.getPhone());
+		if (userinformation.getPhone().equals(phone)) {
+			User user = new User();
+			String salt = new SecureRandomNumberGenerator().nextBytes().toString();
+			int times = 2;
+			String algorithmName = "md5";
+			String encodedPassword = new SimpleHash(algorithmName, password, salt, times).toString();
+			user.setSalt(salt);
+			user.setPassword(encodedPassword);
+			Long id = userService.getId(name);
+			user.setId(id);
+			user.setName(name);
+			userService.update(user);
+		}else{
+			return "-1";
+		}
+		return "1";
 	}
 
 }

@@ -1,5 +1,6 @@
 package pers.qyj.graduationpr.web;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,11 +35,15 @@ public class OrderController {
 	@RequestMapping("listOrder")
 	public String list(Model model,
 	           @RequestParam(value = "start", defaultValue = "0") int start,
-	           @RequestParam(value = "size", defaultValue = "10") int size) {
+	           @RequestParam(value = "size", defaultValue = "10") int size,
+	           @RequestParam(value = "search", defaultValue = "") String search) {
+		List<Order> orders = new ArrayList<>();
 		PageHelper.startPage(start,size,"id");
-		
-		List<Order> orders = orderService.list();
-		model.addAttribute("orders", orders);
+		if(search.equals("")){
+			orders = orderService.list();
+		}else{
+			orders = orderService.getByOrderSign(search);
+		}
 		
 		PageInfo<Order> page = new PageInfo<>(orders);
 		model.addAttribute("page", page);  

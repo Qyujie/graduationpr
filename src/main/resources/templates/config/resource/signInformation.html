@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+  <script src="/js/jquery/2.0.0/jquery.min.js"/></script>
+  <script src="/js/bootstrap/3.3.6/bootstrap.min.js"/></script>
+  <script src="/js/myjs/common/navtop/navTopCreate.js"/></script>
+  
+  <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/css/lib/jquery-ui.min.css"/>
+  <link href="/css/mycss/common.css" rel="stylesheet" type="text/css" />
+  <link href="/css/mycss/config/configCommonStyle.css" rel="stylesheet" type="text/css" />
+
+  <head>
+    <title>
+      资源详情
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+
+  <body>
+  <!-- 顶部导航栏 -->
+  <div th:include="common/navtop"></div>
+  <!-- 菜单栏 -->
+  <div th:include="common/menu"></div>
+  
+  <!-- 表格 -->
+    <div class="workingroom">
+       	<div class="panel-body-orders">
+    		<div>
+    			<span>订单号:</span>
+    			<span th:text="${order.sign}"></span>
+    		</div>
+    		<div>
+    			<span>资源号:</span>
+    			<span th:text="${sign.sign}"></span>
+    		</div>
+    		<div>
+    			<span>创建时间:</span>
+    			<span th:text="${#dates.format(order.date, 'yyyy-MM-dd HH:mm:ss')}"></span>
+    		</div>
+	        <div>
+	        	<span>电话:</span>
+	        	<span th:text="${order.userPhone}"></span>
+	        </div>
+	        <div>
+	        	<span>电子邮件:</span>
+	        	<span th:text="${order.userEmail}"></span>
+	        </div>
+	        <div>
+	        	<span>发票:</span>
+	        	<span th:switch="${order.invoiceType}">
+	        		<span th:case="1">电子</span>
+	        		<span th:case="2">纸质</span>
+	        	</span>
+	        	<span th:switch="${order.invoiceGroup}">
+	        		<span th:case="1">个人</span>
+	        		<span th:case="2">单位</span>
+	       		</span>
+	        </div>
+	        <div>
+	        	<span>发票抬头:</span>
+	        	<span th:text="${order.invoiceTitle}"></span>
+	        </div>
+	        <div th:each="signUser:${signUsers}">
+	        	<div>
+	        		<span>Lastname(姓):</span>
+	        		<span th:text="${signUser.userLastname}"></span>
+	        		<span>Firstname(名):</span>
+	        		<span th:text="${signUser.userFirstname}"></span>
+	        	</div>
+	        	
+	        </div>
+    	</div>
+        
+    </body>
+    
+	<script src="/common/scroll/jquery.nicescroll.js"/></script>
+  	<script src="/common/scroll/scrollStyle.js"/></script>
+  </html>

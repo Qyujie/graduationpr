@@ -5,6 +5,7 @@
   <script src="/js/myjs/common/navtop/navTopCreate.js"/></script>
   
   <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/css/lib/jquery-ui.min.css"/>
   <link href="/css/mycss/common.css" rel="stylesheet" type="text/css" />
   <link href="/css/mycss/config/configCommonStyle.css" rel="stylesheet" type="text/css" />
 
@@ -23,7 +24,6 @@
   
   <!-- 表格 -->
     <div class="workingroom">
-        
         <table class="table table-condensed table-striped">
           <tr>
           	<td>id</td>
@@ -34,8 +34,8 @@
             <td>入住时间</td>
             <td>离店时间</td>
             <td>当前状态</td>
-            <td>编辑</td>
-            <td>删除</td>
+            <td></td>
+            <td></td>
           </tr>
             <tr th:each="sign:${page.list}">
               <td th:text="${sign.id}"></td>
@@ -46,15 +46,15 @@
               <td th:text="${#dates.format(sign.arrivalDate, 'yyyy-MM-dd')}"></td>
               <td th:text="${#dates.format(sign.depatureDate, 'yyyy-MM-dd')}"></td>
               <td th:text="${sign.status}==1?'占用':'空闲'"></td>
-              <td><a th:href="@{'editSign?name='+${sign.id}}">编辑</a></td>
-          	  <td><a th:href="@{'deleteSign?name='+${sign.id}}">删除</a></td>
+              <td><a th:href="@{'editSign?id='+${sign.id}}">查看</a></td>
+          	  <td><a th:href="@{'deleteSign?id='+${sign.id}}">空闲</a></td>
             </tr>
         </table>
-
-        <div class="addOrEdit" >
-         <a href="addRoomtype">添加</a>
-      </div>
+        
+		<!-- 分页组件 -->
+        <div th:include="common/pagination"></div>
     </body>
-<script src="/common/scroll/jquery.nicescroll.js"/></script>
-  <script src="/common/scroll/scrollStyle.js"/></script>
+    
+	<script src="/common/scroll/jquery.nicescroll.js"/></script>
+  	<script src="/common/scroll/scrollStyle.js"/></script>
   </html>

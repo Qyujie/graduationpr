@@ -48,7 +48,10 @@
           	  <td><a th:href="@{'deleteRoomtype?name='+${roomtype.name}}">删除</a></td>
             </tr>
         </table>
-
+        
+		<!-- 分页组件 -->
+        <div th:include="common/pagination"></div>
+        
         <div class="addOrEdit" >
          <a href="addRoomtype">添加</a>
       </div>

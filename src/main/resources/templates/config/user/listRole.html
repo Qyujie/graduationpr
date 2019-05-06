@@ -30,7 +30,7 @@
             	<td>编辑</td>
             	<td>删除</td>
         	</tr>
-          	<tr th:each="role:${roles}">
+          	<tr th:each="role:${page.list}">
             	<td th:text="${role.id}"></td>
             	<td th:text="${role.name}"></td>
             	<td th:text="${role.desc_}"></td>
@@ -43,7 +43,10 @@
             </tr>
           </c:forEach>
         </table>
-
+        
+		<!-- 分页组件 -->
+        <div th:include="common/pagination"></div>
+        
         <div class="addOrEdit" >
           <form action="addRole" method="post">
             角色名称:

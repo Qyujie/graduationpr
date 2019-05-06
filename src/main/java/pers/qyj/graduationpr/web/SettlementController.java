@@ -120,10 +120,10 @@ public class SettlementController {
 			order.setPayStatus(0);
 			order.setUserName(currentUser);
 
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 			Date nowDate = new Date();
-			java.sql.Date date = new java.sql.Date(sdf.parse(sdf.format(nowDate)).getTime());
+			Date date = sdf.parse(sdf.format(nowDate));
 			order.setDate(date);
 
 			// 生成订单号

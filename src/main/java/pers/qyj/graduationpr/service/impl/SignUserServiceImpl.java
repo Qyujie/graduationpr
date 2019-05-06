@@ -42,4 +42,12 @@ public class SignUserServiceImpl implements SignUserService {
 		}
 	}
 
+	@Override
+	public List<SignUser> getBySign(String sign) {
+		SignUserExample example = new SignUserExample();
+		example.createCriteria().andSignEqualTo(sign);
+		List<SignUser> SignUsers = signUserMapper.selectByExample(example);
+		return SignUsers;
+	}
+
 }

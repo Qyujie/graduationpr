@@ -14,4 +14,6 @@ public interface SignUserService {
 	void add(SignUser signUser);
 
 	void deleteBySign(Sign sign);
+
+	List<SignUser> getBySign(String sign);
 }

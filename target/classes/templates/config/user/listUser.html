@@ -39,7 +39,7 @@
         </tr>
       </thead>
         <tbody>
-        <tr th:each="user:${users}">
+        <tr th:each="user:${page.list}">
           <td th:text="${user.id}">
           </td>
           <td th:text="${user.name}">
@@ -65,7 +65,10 @@
         </tr>
         </tbody>
       </table>
-
+      
+      <!-- 分页组件 -->
+      <div th:include="common/pagination"></div>
+      
       <div class="addOrEdit" >
         <form action="addUser" method="post">
           用户名:

@@ -15,6 +15,7 @@ import pers.qyj.graduationpr.pojo.Resource;
 import pers.qyj.graduationpr.pojo.Sign;
 import pers.qyj.graduationpr.pojo.SignExample;
 import pers.qyj.graduationpr.pojo.SignExample.Criteria;
+import pers.qyj.graduationpr.service.OrderService;
 import pers.qyj.graduationpr.service.SignService;
 @Service
 public class SignServiceImpl implements SignService {
@@ -22,6 +23,8 @@ public class SignServiceImpl implements SignService {
 	SignMapper signMapper;
 	@Autowired
 	ResourceMapper resourceMapper;
+	@Autowired
+	OrderService orderService;
 	
 	@Override
 	public List<Sign> listFree(Date arrivalDate, Date depatureDate) {
@@ -114,6 +117,34 @@ public class SignServiceImpl implements SignService {
 		SignExample example = new SignExample();
 		example.setOrderByClause("id");
 		return signMapper.selectByExample(example);
+	}
+
+	@Override
+	public List<Sign> getBySign(String search) {
+		SignExample example = new SignExample();
+		example.createCriteria().andSignEqualTo(search);
+		return signMapper.selectByExample(example);
+	}
+
+	@Override
+	public List<Sign> getByOrderSign(String search) {
+		int oid = orderService.getBySign(search).getId();
+		SignExample example = new SignExample();
+		example.createCriteria().andOidEqualTo(oid);
+		
+		
+		return signMapper.selectByExample(example);
+	}
+
+	@Override
+	public void delete(int id) {
+		signMapper.deleteByPrimaryKey(id);
+	}
+
+	@Override
+	public Sign getById(int id) {
+		
+		return signMapper.selectByPrimaryKey(id);
 	}
 
 }

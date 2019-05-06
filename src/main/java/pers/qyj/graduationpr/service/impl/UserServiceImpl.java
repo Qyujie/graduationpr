@@ -67,4 +67,11 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	@Override
+	public Long getId(String name) {
+		UserExample example = new UserExample();
+		example.createCriteria().andNameEqualTo(name);
+		return userMapper.selectByExample(example).get(0).getId();
+	}
+
 }

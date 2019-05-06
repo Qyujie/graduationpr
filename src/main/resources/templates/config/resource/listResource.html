@@ -31,10 +31,11 @@
           <td>设施服务</td>
           <td>政策</td>
           <td>房价（含服务费）</td>
+          <td>剩余</td>
           <td>编辑</td>
           <td>删除</td>
         </tr>
-        <tr th:each="resource:${resources}">
+        <tr th:each="resource:${page.list}">
           <td th:text="${resource.id}"></td>
           <td th:text="${resource.roomtype}"></td>
           <td th:text="${resource.breakfast}"></td>
@@ -45,11 +46,15 @@
 			<div th:each="policy:${resource_policies[resource.id]}" th:text="${policy.name}"></div>
           </td>
           <td th:text="${resource.price}"></td>
+          <td></td>
           <td><a th:href="@{'editResource?id='+${resource.id}}">编辑</a></td>
           <td><a th:href="@{'deleteResource?id='+${resource.id}}">删除</a></td>
         </tr>
       </table>
-
+      
+		<!-- 分页组件 -->
+        <div th:include="common/pagination"></div>
+        
       <div class="addOrEdit" >
          <a href="addResource">添加</a>
       </div>

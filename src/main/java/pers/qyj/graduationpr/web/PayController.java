@@ -96,7 +96,8 @@ public class PayController {
 				String out_trade_no = order.getSign();// 订单号
 				String total_fee = price + ""; // 总金额
 				String seller_email = "942504986@qq.com";// 卖家邮箱
-				String return_url = "http://localhost/payResult";// 回调地址
+//				String return_url = "http://localhost/payResult";// 回调地址
+				String return_url = "http://119.23.50.158:8090/payResult";// 回调地址
 				String key = "123456";
 				String sign = DigestUtils.md5DigestAsHex((total_fee + partner + out_trade_no + subjects + key).getBytes());
 				// 重定向到支付的页面
