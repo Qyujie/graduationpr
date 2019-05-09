@@ -16,7 +16,7 @@ public class UserinformationServiceImpl implements UserinformationService {
 	
 	@Override
 	public void saveUserInformation(Userinformation userInformation) {
-		userinformationMapper.insert(userInformation);
+		userinformationMapper.insertSelective(userInformation);
 	}
 
 	@Override

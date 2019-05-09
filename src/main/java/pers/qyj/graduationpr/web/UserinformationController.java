@@ -102,7 +102,8 @@ public class UserinformationController {
 			// 当前用户
 			String currentUser = subject.getPrincipal().toString();
 
-			final String uplaodPath = "D:/uploadFiles/";
+			//final String uplaodPath = "D:/uploadFiles/";
+			final String uplaodPath = "/usr/local/uploadFiles/";
 			final String namePath = "/" + currentUser + "/";
 			String fileName = System.currentTimeMillis() + file.getOriginalFilename();
 			String filePath = namePath + fileName;
