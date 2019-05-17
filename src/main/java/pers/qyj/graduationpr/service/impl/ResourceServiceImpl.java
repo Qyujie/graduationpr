@@ -70,7 +70,7 @@ public class ResourceServiceImpl implements ResourceService {
 
 	@Override
 	public void add(Resource resource) {
-		resourceMapper.insert(resource);
+		resourceMapper.insertSelective(resource);
 	}
 
 	@Override

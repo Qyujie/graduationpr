@@ -16,6 +16,7 @@ G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\web\Ro
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\pojo\BedtypeExample.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\pojo\ResourceFacility.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\service\SystemConfigurationService.java
+G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\web\LogController.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\service\RolePermissionService.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\mapper\SignUserMapper.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\service\impl\UserServiceImpl.java
@@ -37,6 +38,7 @@ G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\mapper
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\pojo\RolePermissionExample.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\web\PermissionController.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\pojo\Userinformation.java
+G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\pojo\Log.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\web\PageController.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\web\PolicyController.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\service\ShoppingCartService.java
@@ -45,8 +47,10 @@ G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\util\O
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\service\ResourcePolicyService.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\shiro\ShiroConfiguration.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\mapper\ResourceFacilityMapper.java
+G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\mapper\LogMapper.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\service\BreakfastService.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\pojo\SystemConfiguration.java
+G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\pojo\LogExample.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\pojo\ShoppingCartExample.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\mapper\RoleMapper.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\mapper\ShoppingCartMapper.java
@@ -88,7 +92,9 @@ G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\servic
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\web\ShoppingCartController.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\pojo\Breakfast.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\pojo\SystemConfigurationExample.java
+G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\service\LogService.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\pojo\User.java
+G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\service\impl\LogServiceImpl.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\web\LoginController.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\pojo\Sign.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\mapper\RolePermissionMapper.java

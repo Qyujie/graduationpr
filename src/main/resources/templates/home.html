@@ -137,7 +137,7 @@
                                          th:if="${roomtypes.length>6*i+k}">
                                         <div class="accomd-modations-room">
                                             <div class="img">
-                                                <a th:href="@{${roomtypes[6*i+k].imgurl}}"><img th:src="@{${roomtypes[6*i+k].imgurl}}" alt=""></a>
+                                                <a th:href="@{'roomInformation?roomName='+${roomtypes[6*i+k].name}}"><img th:src="@{${roomtypes[6*i+k].imgurl}}" alt=""></a>
                                             </div>
                                             <div class="text">
                                                 <h2><a href="#" th:text="${roomtypes[6*i+k].name}"></a></h2>

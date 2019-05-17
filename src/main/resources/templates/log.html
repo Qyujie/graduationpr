@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
+<script src="/js/jquery/2.0.0/jquery.min.js"></script>
+<link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+
+<head>
+    <title>开发日志</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<style>
+#text_log{
+	width:100%;
+	height:500px;
+}
+.input-textarea{
+	width:100%;
+	height:200px;
+}
+pre {
+white-space: pre-wrap;
+word-wrap: break-word;
+}
+</style>
+
+<body>
+<div id="text_log">
+	<div th:each="log:${logs}">
+		<span th:text="${#dates.format(log.time, 'yyyy-MM-dd HH:mm:ss')}"></span><br/>
+		<pre th:text="${log.log}"></pre>
+	</div>
+</div>
+<form action="logSubmit" method="get"  shiro:hasPermission="logSubmit">
+	<textarea cols="100" rows="10" name="log" class="input-textarea" placeholder="更新日志"></textarea>
+	<input type="submit" value="提交"/>
+</form>
+</body>
+
+</html>

@@ -61,7 +61,7 @@ public class ResourceController {
 	@RequestMapping("listResource")
 	public String list(Model model,
 	           @RequestParam(value = "start", defaultValue = "0") int start,
-	           @RequestParam(value = "size", defaultValue = "10") int size) {
+	           @RequestParam(value = "size", defaultValue = "7") int size) {
 		PageHelper.startPage(start,size,"id");
 		List<Resource> resources = resourceService.list();
 		model.addAttribute("resources", resources);
@@ -82,6 +82,11 @@ public class ResourceController {
 			resource_policies.put(resource.getId(), policies);
 		}
 		model.addAttribute("resource_policies", resource_policies);
+		
+		Map<Integer, Integer> resource_remain = new HashMap<>();
+		for (Resource resource : resources) {
+		}
+		model.addAttribute("resource_remain", resource_remain);
 		
 		// 获取所有房型列表
 		List<Roomtype> roomtypes = roomtypeService.list();

@@ -40,6 +40,9 @@
           价格:
           <input type="text" name="price" th:value="${resource.price}"/>
           <br/>
+          数量:
+          <input type="text" name="total" th:value="${resource.total}"/>
+          <br/>
           设施:
           <div th:each="facility:${facilities}">
           <input type="checkbox" name="facilities" th:checked="${resource_hasFacility[facility.name]}" 
