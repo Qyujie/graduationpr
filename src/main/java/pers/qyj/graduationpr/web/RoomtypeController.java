@@ -19,9 +19,11 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import pers.qyj.graduationpr.pojo.Bedtype;
+import pers.qyj.graduationpr.pojo.Resource;
 import pers.qyj.graduationpr.pojo.Roomtype;
 import pers.qyj.graduationpr.pojo.Userinformation;
 import pers.qyj.graduationpr.service.BedtypeService;
+import pers.qyj.graduationpr.service.ResourceService;
 import pers.qyj.graduationpr.service.RoomtypeService;
 import pers.qyj.graduationpr.util.MyUtil;
 
@@ -32,6 +34,8 @@ public class RoomtypeController {
 	RoomtypeService roomtypeService;
 	@Autowired
 	BedtypeService bedtypeService;
+	@Autowired
+	ResourceService resourceService;
 
 	@RequestMapping("listRoomtype")
 	public String list(Model model, @RequestParam(value = "start", defaultValue = "0") int start,
@@ -59,7 +63,7 @@ public class RoomtypeController {
 			update = "update";
 			roomtype = roomtypeService.get(name);
 		}
-
+		System.out.println(update);
 		Subject subject = SecurityUtils.getSubject();
 		subject.getSession().setAttribute("update", update);
 
@@ -72,7 +76,8 @@ public class RoomtypeController {
 	public String update(Model model, Roomtype roomtype) {
 		Subject subject = SecurityUtils.getSubject();
 		String update = (String) subject.getSession().getAttribute("update");
-		if (update.equals("add")) {
+		if (update.equals("add")) {;
+		System.out.println(roomtype.getName());
 			roomtypeService.add(roomtype);
 		} else {
 			roomtypeService.update(roomtype);
@@ -91,9 +96,10 @@ public class RoomtypeController {
 	@RequestMapping("deleteRoomtype")
 	public String delete(Model model, String name) {
 		roomtypeService.delete(name);
-
+		resourceService.deleteByRoomtype(name);
+		
 		model.addAttribute("requestUrl", "listRoomtype");
-
+		
 		return "redirect:listRoomtype";
 	}
 

@@ -10,7 +10,7 @@
 
     <!-- MAIN STYLE -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    
+    <link rel="shortcut icon" href="images/favicon.png">
 </head>
 <body>
     <!-- PAGE WRAP -->
@@ -30,12 +30,12 @@
                     <div class="row">
                         
                         <!-- ITEM -->
-                        <div class="col-md-6" th:each="roomtype:${roomtypes}">
+                        <div class="col-md-6 item_img" th:each="roomtype:${roomtypes}">
                             <div class="room_item-1">
                             
                                 <h2><a href="#" th:text="${roomtype.name}"></a></h2>
                             
-                                <div class="img">
+                                <div class="img" >
                                     <a href="#"><img th:src="@{${roomtype.imgurl}}" alt=""></a>
                                 </div>
                             

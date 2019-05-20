@@ -27,7 +27,7 @@ public class RoomtypeServiceImpl implements RoomtypeService {
 
 	@Override
 	public void add(Roomtype roomtype) {
-		roomtypeMapper.insert(roomtype);
+		roomtypeMapper.insertSelective(roomtype);
 	}
 
 	@Override

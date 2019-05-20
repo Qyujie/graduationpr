@@ -81,11 +81,10 @@ public class ShiroConfiguration {
 		filterChainDefinitionMap.put("/config/**", "user");
 		filterChainDefinitionMap.put("/config/**", "url");
 
-		filterChainDefinitionMap.put("/roomInformation", "user");
 		filterChainDefinitionMap.put("/settlement", "user");
 		filterChainDefinitionMap.put("/pay", "user");
 		filterChainDefinitionMap.put("/userInformation", "user");
-		
+		filterChainDefinitionMap.put("/user/**", "user");
 		
 		shiroFilterFactoryBean.setFilters(customisedFilter);
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);

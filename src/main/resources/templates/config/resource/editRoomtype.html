@@ -33,7 +33,6 @@
             大小： <input type="text" name="size" th:value="${roomtype.size}"> <br/>
             参考价格: <input type="text" name="price" th:value="${roomtype.price}" oninput = "value=value.replace(/[^\d]/g,'')"> <br/>
             设施描述: <input type="text" name="desc" th:value="${roomtype.desc}"> <br/><br/>
-            <input type="hidden" name="name" th:value="${roomtype.name}">
             <input type="submit" value="修改">
         </form>  
     </div>

@@ -26,4 +26,6 @@ public interface ResourceService {
 
 	public List<Resource> list(Integer adults, Integer children, String roomtype,
 			String breakfast, Integer[] facility, Integer[] policy,Integer start,Integer size);
+
+	public void deleteByRoomtype(String name);
 }

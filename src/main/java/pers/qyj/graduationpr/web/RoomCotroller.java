@@ -77,7 +77,7 @@ public class RoomCotroller {
 			@RequestParam(value = "adults", defaultValue = "0") Integer adults,
 			@RequestParam(value = "children", defaultValue = "0") Integer children,
 			@RequestParam(value = "start", defaultValue = "0") int start,
-			@RequestParam(value = "size", defaultValue = "5") int size) throws Exception {
+			@RequestParam(value = "size", defaultValue = "10") int size) throws Exception {
 
 		List<Roomtype> roomtypes = roomtypeService.list();
 

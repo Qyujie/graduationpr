@@ -31,6 +31,7 @@ import pers.qyj.graduationpr.pojo.RoomtypeExample;
 import pers.qyj.graduationpr.service.ResourceFacilityService;
 import pers.qyj.graduationpr.service.ResourcePolicyService;
 import pers.qyj.graduationpr.service.ResourceService;
+import pers.qyj.graduationpr.service.RoomtypeService;
 
 @Service
 public class ResourceServiceImpl implements ResourceService {
@@ -266,5 +267,15 @@ public class ResourceServiceImpl implements ResourceService {
 		}
 		return reid;
 		
+	}
+
+	@Override
+	public void deleteByRoomtype(String name) {
+		ResourceExample example = new ResourceExample();
+		example.createCriteria().andRoomtypeEqualTo(name);
+		List<Resource> resources = resourceMapper.selectByExample(example);
+		for (Resource resource : resources) {
+			resourceMapper.deleteByPrimaryKey(resource.getId());
+		}
 	}
 }
