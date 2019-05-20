@@ -34,7 +34,7 @@ import pers.qyj.graduationpr.service.SignService;
 import pers.qyj.graduationpr.service.SignUserService;
 import pers.qyj.graduationpr.service.SystemConfigurationService;
 import pers.qyj.graduationpr.service.UserService;
-import pers.qyj.graduationpr.util.ReflectUtil;
+import pers.qyj.graduationpr.util.MyUtil;
 
 @Controller
 public class SettlementController {
@@ -184,7 +184,7 @@ public class SettlementController {
 			}
 
 			// 查看表单数据
-			ReflectUtil reflectUtil = new ReflectUtil();
+			MyUtil reflectUtil = new MyUtil();
 			reflectUtil.printltAttrAndValue("pers.qyj.graduationpr.pojo.Order", order);
 			System.out.println(Arrays.toString(userLastname));
 			System.out.println(Arrays.toString(userFirstname));

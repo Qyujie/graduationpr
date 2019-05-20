@@ -12,6 +12,7 @@ G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\web\Re
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\realm\DatabaseRealm.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\service\impl\ResourceFacilityServiceImpl.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\pojo\PermissionExample.java
+G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\util\MyUtil.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\web\RoomtypeController.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\pojo\BedtypeExample.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\pojo\ResourceFacility.java
@@ -102,7 +103,6 @@ G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\pojo\O
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\pojo\UserinformationExample.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\Application.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\service\FacilityService.java
-G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\util\ReflectUtil.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\web\PayController.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\util\MybatisGenerator.java
 G:\学习\Java\workspace\graduationpr\src\main\java\pers\qyj\graduationpr\pojo\SignUser.java

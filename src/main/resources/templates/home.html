@@ -10,15 +10,15 @@
 	<link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
     <!-- CSS LIBRARY -->
-    <link rel="stylesheet" type="text/css" href="css/lib/font-lotusicon.css">
-    <link rel="stylesheet" type="text/css" href="css/lib/owl.carousel.css">
-    <link rel="stylesheet" type="text/css" href="css/lib/jquery-ui.min.css">
-    <link rel="stylesheet" type="text/css" href="css/lib/magnific-popup.css">
-    <link rel="stylesheet" type="text/css" href="css/lib/settings.css">
-    <link rel="stylesheet" type="text/css" href="css/lib/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/lib/font-lotusicon.css">
+    <link rel="stylesheet" type="text/css" href="/css/lib/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="/css/lib/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/lib/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="/css/lib/settings.css">
+    <link rel="stylesheet" type="text/css" href="/css/lib/bootstrap-select.min.css">
 
     <!-- MAIN STYLE -->
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
 
 </head>
 
@@ -133,7 +133,7 @@
 
                                 <div class="row" th:each="i:${#numbers.sequence(0,roomtypes.length/6)}">
                                     <!-- ITEM -->
-                                    <div class="col-xs-4" th:each="k:${#numbers.sequence(0,5)}"
+                                    <div class="col-xs-4 room" th:each="k:${#numbers.sequence(0,5)}"
                                          th:if="${roomtypes.length>6*i+k}">
                                         <div class="accomd-modations-room">
                                             <div class="img">

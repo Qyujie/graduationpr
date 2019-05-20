@@ -33,6 +33,7 @@ import pers.qyj.graduationpr.service.OrderService;
 import pers.qyj.graduationpr.service.ResourceService;
 import pers.qyj.graduationpr.service.SignService;
 import pers.qyj.graduationpr.service.UserinformationService;
+import pers.qyj.graduationpr.util.MyUtil;
 
 @Controller
 @RequestMapping("user")
@@ -102,8 +103,12 @@ public class UserinformationController {
 			// 当前用户
 			String currentUser = subject.getPrincipal().toString();
 
-			//final String uplaodPath = "D:/uploadFiles/";
-			final String uplaodPath = "/usr/local/uploadFiles/";
+			String uplaodPath = "";
+			if (MyUtil.isOSLinux()) {
+				uplaodPath = "/usr/local/uploadFiles/";
+			} else {
+				uplaodPath = "D:/uploadFiles/";
+			}
 			final String namePath = "/" + currentUser + "/";
 			String fileName = System.currentTimeMillis() + file.getOriginalFilename();
 			String filePath = namePath + fileName;

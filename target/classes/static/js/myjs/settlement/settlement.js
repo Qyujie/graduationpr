@@ -29,7 +29,7 @@ $(function() {
 			},
 			success : function(message) {
 				if(message[0]==-1){
-					console.log("未登录");
+					ModalTip("未登录");
 				}else if(message[0]==-2||message[0]==0||message[0]==1){
 					$(".shoppingId[value='"+ dateId +"']").find(".f-to-arrival").text(arrival);
 					$(".shoppingId[value='"+ dateId +"']").find(".f-to-depature").text(depature);
@@ -169,7 +169,7 @@ $(function() {
 					},
 					success : function(message) {
 						if(message==-1){
-							console.log("未登录");
+							ModalTip("未登录");
 						}
 						console.log(message[1].number);
 					}

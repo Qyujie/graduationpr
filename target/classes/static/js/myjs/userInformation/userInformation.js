@@ -1,6 +1,5 @@
 $(function() {
     $("#uiSubmit").click(function() {
-    	console.log("++");
         var page = "updateUserInformation";
         var namevalue = $("#name-value").val();
         var sexvalue = $("#sex-value").val();
@@ -35,9 +34,9 @@ $(function() {
             },
             function(result) {
                 if (result == "Success") {
-                    console.log('修改成功');
+                    ModalTip('修改成功');
                 } else {
-                    console.log('修改失败');
+                    ModalTip('修改失败');
                 }
             }
         );

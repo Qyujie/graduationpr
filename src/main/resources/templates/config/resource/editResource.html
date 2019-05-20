@@ -38,10 +38,10 @@
 		  </select>
           <br/>
           价格:
-          <input type="text" name="price" th:value="${resource.price}"/>
+          <input type="text" name="price" th:value="${resource.price}" oninput = "value=value.replace(/[^\d]/g,'')"/>
           <br/>
           数量:
-          <input type="text" name="total" th:value="${resource.total}"/>
+          <input type="text" name="total" th:value="${resource.total}" oninput = "value=value.replace(/[^\d]/g,'')"/>
           <br/>
           设施:
           <div th:each="facility:${facilities}">

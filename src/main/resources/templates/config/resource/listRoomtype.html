@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"> 
   <script src="/js/jquery/2.0.0/jquery.min.js"/></script>
   <script src="/js/bootstrap/3.3.6/bootstrap.min.js"/></script>
-  <script src="/js/myjs/common/navtop/navTopCreate.js"/></script>
   
   <link href="/css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="/css/mycss/common.css" rel="stylesheet" type="text/css" />
@@ -37,12 +36,16 @@
             <td>删除</td>
           </tr>
             <tr th:each="roomtype:${page.list}">
-              <td th:text="${roomtype.name}"></td>
+              <td th:text="${roomtype.name}" class="roomtype"></td>
               <td th:text="${roomtype.bedtype}"></td>
               <td th:text="${roomtype.people}"></td>
               <td th:text="${roomtype.size}"></td>
               <td th:text="${roomtype.price}"></td>
-              <td><a th:href="@{${roomtype.imgurl}}">查看</a></td>
+              <td>
+              	<a th:href="@{${roomtype.imgurl}}" target="_blank">查看</a> 
+              	<a href="#" class="upload">上传</a>
+              	<input type="file" class="hide"/>
+              </td>
               <td th:text="${roomtype.desc}"></td>
               <td><a th:href="@{'editRoomtype?name='+${roomtype.name}}">编辑</a></td>
           	  <td><a th:href="@{'deleteRoomtype?name='+${roomtype.name}}">删除</a></td>
@@ -56,6 +59,10 @@
          <a href="addRoomtype">添加</a>
       </div>
     </body>
-<script src="/common/scroll/jquery.nicescroll.js"/></script>
-  <script src="/common/scroll/scrollStyle.js"/></script>
+    
+    <script src="/js/myjs/common/modelTip.js"></script>
+    <script src="/js/myjs/config/resource/rtImgUpload.js"/></script>
+    
+	<script src="/common/scroll/jquery.nicescroll.js"/></script>
+  	<script src="/common/scroll/scrollStyle.js"/></script>
   </html>

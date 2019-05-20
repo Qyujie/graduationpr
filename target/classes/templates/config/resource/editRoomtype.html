@@ -23,16 +23,15 @@
 <div class="workingroom">
     <div class="addOrEdit" >
         <form action="updateRoomtype" method="post">
-            设施名称: <input type="text" name="name" th:value="${roomtype.name}"> <br/> 
+            房型名称: <input type="text" name="name" th:value="${roomtype.name}"> <br/> 
             床型:<select name="bedtype">
 				 	<option value="">请选择</option>
 					<option th:each="bedtype:${bedtypes}" th:value="${bedtype.name}" th:text="${bedtype.name}"
 			 				th:selected="${bedtype.name==roomtype.bedtype}"></option>
 		  		</select><br/>
-            入住人数: <input type="text" name="people" th:value="${roomtype.people}"> <br/>
+            入住人数: <input type="text" name="people" th:value="${roomtype.people}" oninput = "value=value.replace(/[^\d]/g,'')"> <br/>
             大小： <input type="text" name="size" th:value="${roomtype.size}"> <br/>
-            参考价格: <input type="text" name="price" th:value="${roomtype.price}"> <br/>
-            图片: <input type="text" name="imgurl" th:value="${roomtype.imgurl}"> <br/>
+            参考价格: <input type="text" name="price" th:value="${roomtype.price}" oninput = "value=value.replace(/[^\d]/g,'')"> <br/>
             设施描述: <input type="text" name="desc" th:value="${roomtype.desc}"> <br/><br/>
             <input type="hidden" name="name" th:value="${roomtype.name}">
             <input type="submit" value="修改">
