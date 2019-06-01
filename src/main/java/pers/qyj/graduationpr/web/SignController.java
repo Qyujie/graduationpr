@@ -56,6 +56,7 @@ public class SignController {
 				signs = signService.getByOrderSign(search);
 			}
 		}
+		
 		model.addAttribute("signs", signs);
 		PageInfo<Sign> page = new PageInfo<>(signs);
 		model.addAttribute("page", page);
@@ -73,6 +74,7 @@ public class SignController {
 				String userName = order.getUserName();
 				signId_userName.put(sid, userName);
 			}
+			System.out.println(sign.getReid());
 			String roomtype = resourceService.get(sign.getReid()).getRoomtype();
 			signId_roomtype.put(sid, roomtype);
 		} 

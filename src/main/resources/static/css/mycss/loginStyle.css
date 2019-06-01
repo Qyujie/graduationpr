@@ -62,6 +62,12 @@ body {
     }
 }
 
+@-webkit-keyframes input-border-bottom {
+    to {
+        border-bottom: 1px solid #5bc0de;
+    }
+}
+
 .tip-failed {
     position: absolute;
     top: 100%;
