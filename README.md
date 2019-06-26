@@ -22,7 +22,10 @@ https://github.com/pagehelper/Mybatis-PageHelper
 http://shiro.apache.org/
 <br>
 
-### 数据库：`MySQL`<br>
+### 数据库：`MySQL`
+连接IP：119.23.50.158:3306
+账号：
+密码：
 
 ### 项目访问地址
 [119.23.50.158:8090](http://119.23.50.158:8090) 
