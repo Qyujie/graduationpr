@@ -94,7 +94,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-spring</artifactId>
-			<version>1.4.0</version>
+			<version>1.7.0</version>
 		</dependency>
 		
 		<!-- thymeleaf-shiro 标签 -->
